@@ -3050,7 +3050,7 @@ Int_t TProof::HandleInputMessage(TSlave *sl, TMessage *mess, Bool_t deactonfail)
                } else {
                   PDB(kGlobal,2)
                      Info("HandleInputMessage",
-                          "%s: kPROOF_OUTPUTLIST: ouputlist is empty", sl->GetOrdinal());
+                          "%s: kPROOF_OUTPUTLIST: outputlist is empty", sl->GetOrdinal());
                }
             } else {
                Warning("HandleInputMessage",
