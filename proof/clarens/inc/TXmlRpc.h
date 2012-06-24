@@ -39,7 +39,7 @@ struct xmlrpc_value;
 class TXmlRpc : public TObject {
 private:
    TClSession          *fSession;     //Clarens session info
-   xmlrpc_env          *fEnv;         //call enviroment
+   xmlrpc_env          *fEnv;         //call environment
    TString              fService;     //our service
 
 public:
