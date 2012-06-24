@@ -1221,7 +1221,7 @@ guess_architecture() {
         linux:alpha:*)         arch=linuxalphagcc   ;;
         linux:arm*:*)          arch=linuxarm        ;;
         linux:hppa*:*)         arch=linux           ;;
-        linux:mips:*)          arch=linuxmips       ;;
+        linux:mips*:*)         arch=linuxmips       ;;
         linux:sparc*:*)        arch=linux           ;;
         linux:parisc*:*)       arch=linuxhppa       ;;
         linux:ppc64*:*)        arch=linuxppc64gcc   ;;
