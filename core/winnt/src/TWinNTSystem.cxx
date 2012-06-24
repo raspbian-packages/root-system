@@ -3046,7 +3046,7 @@ const char *TWinNTSystem::FindFile(const char *search, TString& infile, EAccessM
 //______________________________________________________________________________
 Bool_t TWinNTSystem::InitUsersGroups()
 {
-   // Collect local users and groups accounts informations
+   // Collect local users and groups accounts information
 
    // Net* API functions allowed and OS is Windows NT/2000/XP
    if ((gEnv->GetValue("WinNT.UseNetAPI", 0)) && (::GetVersion() < 0x80000000)) {

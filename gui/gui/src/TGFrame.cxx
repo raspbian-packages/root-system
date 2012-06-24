@@ -2311,7 +2311,7 @@ TGHeaderFrame::TGHeaderFrame(const TGWindow *p, UInt_t w, UInt_t h,
 void TGHeaderFrame::SetColumnsInfo(Int_t nColumns, TGTextButton  **colHeader,
                TGVFileSplitter  **splitHeader)
 {
-   // Set columns informations in the header frame.
+   // Set columns information in the header frame.
 
    fNColumns = nColumns;
    fColHeader = colHeader;
