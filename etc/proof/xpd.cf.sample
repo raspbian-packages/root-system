@@ -100,7 +100,7 @@ xrd.protocol xproofd:1093 libXrdProofd.so
 # Format:
 #          xpd.shutdown <opt> <delay>
 # where:
-#          <opt> is the type of action to be taken when a client completly
+#          <opt> is the type of action to be taken when a client completely
 #                disconnets; the options are:
 #                0  remain connected
 #                1  terminate when idle
