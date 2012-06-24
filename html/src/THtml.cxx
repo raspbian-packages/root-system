@@ -2396,7 +2396,7 @@ void THtml::MakeTree(const char *className, Bool_t force)
 
 //______________________________________________________________________________
 void THtml::SetFoundDot(Bool_t found) {
-   // Set whether "dot" (a GraphViz utility) is avaliable
+   // Set whether "dot" (a GraphViz utility) is available
    if (found) fPathInfo.fFoundDot = PathInfo_t::kDotFound;
    else fPathInfo.fFoundDot = PathInfo_t::kDotNotFound;
 }
