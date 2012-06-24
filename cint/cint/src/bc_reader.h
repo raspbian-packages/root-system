@@ -57,7 +57,7 @@ public:
    int rewindpos() ;
    unsigned long getpos() { return((unsigned long)0 /* m_pos */ ); } //not used
    void setspos(unsigned long pos) {
-#if defined(__linux)
+#if defined(__linux) || defined(__GLIBC__)
  #if (__GNUC__==2 && __GNUC_MINOR__<96)
   #if defined(_G_IO_IO_FILE_VERSION) && _G_IO_IO_FILE_VERSION == 0x20001
       m_pos.__pos = pos;    // this is for Debian

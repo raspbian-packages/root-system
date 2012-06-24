@@ -190,7 +190,7 @@ static ERootdErrors gUsrPwdErr[4][4] = {
 //--- Machine specific routines ------------------------------------------------
 
 #if defined(__alpha) && !defined(linux) && !defined(__FreeBSD__) && \
-    !defined(__OpenBSD__)
+    !defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
 extern "C" int initgroups(const char *name, int basegid);
 #endif
 
@@ -209,7 +209,7 @@ extern "C" {
 #endif
 
 #if !defined(__hpux) && !defined(linux) && !defined(__FreeBSD__) && \
-    !defined(__OpenBSD__) || defined(cygwingcc)
+    !defined(__OpenBSD__) && !defined(__FreeBSD_kernel__) || defined(cygwingcc)
 static int setresgid(gid_t r, gid_t e, gid_t)
 {
    if (setgid(r) == -1)
