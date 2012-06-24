@@ -1,0 +1,11 @@
+--- a/configure
++++ b/configure
+@@ -1221,7 +1221,7 @@
+         linux:alpha:*)         arch=linuxalphagcc   ;;
+         linux:arm*:*)          arch=linuxarm        ;;
+         linux:hppa*:*)         arch=linux           ;;
+-        linux:mips:*)          arch=linuxmips       ;;
++        linux:mips*:*)         arch=linuxmips       ;;
+         linux:sparc*:*)        arch=linux           ;;
+         linux:parisc*:*)       arch=linuxhppa       ;;
+         linux:ppc64*:*)        arch=linuxppc64gcc   ;;

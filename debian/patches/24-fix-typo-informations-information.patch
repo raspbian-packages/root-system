@@ -1,0 +1,380 @@
+--- a/core/base/inc/TRemoteObject.h
++++ b/core/base/inc/TRemoteObject.h
+@@ -17,7 +17,7 @@
+ //                                                                      //
+ // The TRemoteObject class provides protocol for browsing ROOT objects  //
+ // from a remote ROOT session.                                          //
+-// It contains informations on the real remote object as:               //
++// It contains information on the real remote object as:               //
+ //  - Object Properties (i.e. file stat if the object is a TSystemFile) //
+ //  - Object Name                                                       //
+ //  - Class Name                                                        //
+--- a/core/base/src/TRemoteObject.cxx
++++ b/core/base/src/TRemoteObject.cxx
+@@ -15,7 +15,7 @@
+ //                                                                      //
+ // The TRemoteObject class provides protocol for browsing ROOT objects  //
+ // from a remote ROOT session.                                          //
+-// It contains informations on the real remote object as:               //
++// It contains information on the real remote object as:               //
+ //  - Object Properties (i.e. file stat if the object is a TSystemFile) //
+ //  - Object Name                                                       //
+ //  - Class Name                                                        //
+--- a/core/meta/src/TFunction.cxx
++++ b/core/meta/src/TFunction.cxx
+@@ -182,7 +182,7 @@
+    // of the function.  It has to work even if the function has been
+    // unloaded by cint (in which case fInfo is actually hold reference to
+    // memory that is (likely) not valid anymore.  So we cache the information.
+-   // Maybe we should also cache the rest of the informations .. but this might
++   // Maybe we should also cache the rest of the information .. but this might
+    // be too much duplication of information.
+    if (fInfo)
+       return fMangledName;
+--- a/core/winnt/src/TWinNTSystem.cxx
++++ b/core/winnt/src/TWinNTSystem.cxx
+@@ -3046,7 +3046,7 @@
+ //______________________________________________________________________________
+ Bool_t TWinNTSystem::InitUsersGroups()
+ {
+-   // Collect local users and groups accounts informations
++   // Collect local users and groups accounts information
+ 
+    // Net* API functions allowed and OS is Windows NT/2000/XP
+    if ((gEnv->GetValue("WinNT.UseNetAPI", 0)) && (::GetVersion() < 0x80000000)) {
+--- a/gui/ged/src/HelpSMText.cxx
++++ b/gui/ged/src/HelpSMText.cxx
+@@ -254,7 +254,7 @@
+ ;
+ 
+ const char gHelpSMTitle[] =
+-"In this tad, the informations related with titles are edited. You can choose\n"
++"In this tad, the information related with titles are edited. You can choose\n"
+ "to show or hide the title in your canvases via the check button 'Show title'.\n"
+ "\n"
+ "'Fill' group: \n"
+@@ -279,7 +279,7 @@
+ ;
+ 
+ const char gHelpSMStats[] =
+-"In this tad, the informations related with stats are edited.\n"
++"In this tad, the information related with stats are edited.\n"
+ "\n"
+ "'Fill' group: \n"
+ "   You can modify here the color and the pattern which is used to fill\n"
+@@ -302,18 +302,18 @@
+ "   the width (W) and the height (H).\n"
+ "\n"
+ "'Stat Options' group:\n"
+-"   You can select the informations you want to see in the stats pave.\n"
++"   You can select the information you want to see in the stats pave.\n"
+ "   The paint format is used as an argument in a C++ printf() method: it\n"
+ "   describes how the value will be shown.\n"
+ "\n"
+ "'Fit Options' group:\n"
+-"   You can select the way you want to show informations in the pave.\n"
++"   You can select the way you want to show information in the pave.\n"
+ "   The paint format is used as an argument in a C++ printf() method: it\n"
+ "   describes how the value will be shown.\n"
+ ;
+ 
+ const char gHelpSMPSPDF[] =
+-"In this tad, the informations related with PS and PDF are edited. These\n"
++"In this tad, the information related with PS and PDF are edited. These\n"
+ "settings can't be previewed, but as in the other tabs, any modification in\n"
+ "this one will take effect.\n"
+ "\n"
+--- a/gui/ged/src/TStyleManager.cxx
++++ b/gui/ged/src/TStyleManager.cxx
+@@ -4617,7 +4617,7 @@
+ 
+    if ((!samePad) && preview) DoPreview(kFALSE);
+ 
+-   // Update the informations' label about the selected objects.
++   // Update the information' label about the selected objects.
+    TString sPad;
+    if (fCurPad->GetName() && strlen(fCurPad->GetName())) 
+       sPad.Append(fCurPad->GetName());
+--- a/gui/gui/src/TGFrame.cxx
++++ b/gui/gui/src/TGFrame.cxx
+@@ -2311,7 +2311,7 @@
+ void TGHeaderFrame::SetColumnsInfo(Int_t nColumns, TGTextButton  **colHeader,
+                TGVFileSplitter  **splitHeader)
+ {
+-   // Set columns informations in the header frame.
++   // Set columns information in the header frame.
+ 
+    fNColumns = nColumns;
+    fColHeader = colHeader;
+--- a/gui/gui/src/TGTextEditor.cxx
++++ b/gui/gui/src/TGTextEditor.cxx
+@@ -476,7 +476,7 @@
+ //______________________________________________________________________________
+ void TGTextEditor::DataDropped(char *fname)
+ {
+-   // Update file informations when receiving the signal
++   // Update file information when receiving the signal
+    // DataDropped from TGTextEdit widget.
+ 
+    TString tmp;
+--- a/gui/guibuilder/src/TRootGuiBuilder.cxx
++++ b/gui/guibuilder/src/TRootGuiBuilder.cxx
+@@ -166,7 +166,7 @@
+  o Ctrl-Z    - undo last action (not implemented)\n\
+  o Shift-Ctrl-Z - redo (not implemented)\n\
+ \n\
+-                    More informations\n\
++                    More information\n\
+      ************************************************\n\
+ \n\
+ For more information, please see the GuiBuilder Howto page at:\n\
+--- a/gui/sessionviewer/src/TSessionViewer.cxx
++++ b/gui/sessionviewer/src/TSessionViewer.cxx
+@@ -1195,7 +1195,7 @@
+ //______________________________________________________________________________
+ void TSessionFrame::ProofInfos()
+ {
+-   // Display informations on current session.
++   // Display information on current session.
+ 
+    TString buf;
+ 
+@@ -2383,7 +2383,7 @@
+ //______________________________________________________________________________
+ void TSessionQueryFrame::Build(TSessionViewer *gui)
+ {
+-   // Build query informations frame.
++   // Build query information frame.
+ 
+    SetLayoutManager(new TGVerticalLayout(this));
+    SetCleanup(kDeepCleanup);
+@@ -2636,7 +2636,7 @@
+       return;
+    TString buf;
+ 
+-   // Update informations at first call
++   // Update information at first call
+    if (fEntries != total) {
+       buf.Form("PROOF cluster : \"%s\" - %d worker nodes",
+                fViewer->GetActDesc()->fProof->GetMaster(),
+@@ -2785,7 +2785,7 @@
+    // if no change since last call, just return
+    TString buf;
+ 
+-   // Update informations at first call
++   // Update information at first call
+    if (fEntries != total) {
+       fLabInfos->SetText("Local Session");
+ 
+@@ -3045,7 +3045,7 @@
+             }
+          }
+       }
+-      // update list tree, query frame informations, and buttons state
++      // update list tree, query frame information, and buttons state
+       fViewer->GetSessionHierarchy()->ClearViewPort();
+       fClient->NeedRedraw(fViewer->GetSessionHierarchy());
+       UpdateInfos();
+@@ -3087,7 +3087,7 @@
+    if (!obj || obj->IsA() != TQueryDescription::Class())
+       return;
+    TQueryDescription *newquery = (TQueryDescription *)obj;
+-   // reset progress informations
++   // reset progress information
+    ResetProgressDialog(newquery->fSelectorString,
+          newquery->fNbFiles, newquery->fFirstEntry, newquery->fNoEntries);
+    // set query start time
+@@ -3581,7 +3581,7 @@
+ //______________________________________________________________________________
+ void TSessionInputFrame::Build(TSessionViewer *gui)
+ {
+-   // Build query input informations frame.
++   // Build query input information frame.
+ 
+    fViewer = gui;
+    SetLayoutManager(new TGVerticalLayout(this));
+@@ -3991,7 +3991,7 @@
+                }
+                if (found) continue;
+                newdesc = new TSessionDescription();
+-               // and fill informations from Proof session
++               // and fill information from Proof session
+                newdesc->fTag       = d->GetName();
+                newdesc->fName      = d->GetTitle();
+                newdesc->fAddress   = d->GetTitle();
+@@ -4076,7 +4076,7 @@
+          if (found) continue;
+          // create new session description
+          newdesc = new TSessionDescription();
+-         // and fill informations from Proof session
++         // and fill information from Proof session
+          newdesc->fName       = proof->GetMaster();
+          newdesc->fConfigFile = proof->GetConfFile();
+          newdesc->fUserName   = proof->GetUser();
+@@ -4139,7 +4139,7 @@
+          if (found) continue;
+          // create new session description
+          newdesc = new TSessionDescription();
+-         // and fill informations from Proof session
++         // and fill information from Proof session
+          newdesc->fTag        = pdesc->GetName();
+          newdesc->fName       = pdesc->GetTitle();
+          proof = pdesc->GetProof();
+@@ -4650,7 +4650,7 @@
+          obj = (TObject *)entry->GetUserData();
+          if (!obj || obj->IsA() != TSessionDescription::Class())
+             return;
+-         // update server frame informations
++         // update server frame information
+          fServerFrame->Update((TSessionDescription *)obj);
+          fActDesc = (TSessionDescription*)obj;
+          // if Proof valid, update connection infos
+@@ -4729,7 +4729,7 @@
+       if (obj && obj->IsA() == TQueryDescription::Class()) {
+          fActDesc->fActQuery = (TQueryDescription *)obj;
+       }
+-      // update query informations and buttons state
++      // update query information and buttons state
+       fQueryFrame->UpdateInfos();
+       fQueryFrame->UpdateButtons(fActDesc->fActQuery);
+       if (fActFrame != fQueryFrame) {
+@@ -5096,7 +5096,7 @@
+                   if (!fSessionHierarchy->FindChildByName(item2, "OutputList"))
+                      fSessionHierarchy->AddItem(item2, "OutputList");
+             }
+-            // update list tree, query frame informations, and buttons state
++            // update list tree, query frame information, and buttons state
+             fSessionHierarchy->ClearViewPort();
+             fClient->NeedRedraw(fSessionHierarchy);
+             fQueryFrame->UpdateInfos();
+--- a/hist/hist/src/TLimit.cxx
++++ b/hist/hist/src/TLimit.cxx
+@@ -105,7 +105,7 @@
+     infile->Close();
+    </PRE></BLOCKQUOTE></p>
+    <p></p>
+-   <p>More informations can still be found on
++   <p>More information can still be found on
+    <a HREF="http://cern.ch/aleph-proj-alphapp/doc/tlimit.html">this</a> page.</p>
+    </FONT>
+    */
+--- a/math/mlp/src/TMLPAnalyzer.cxx
++++ b/math/mlp/src/TMLPAnalyzer.cxx
+@@ -165,7 +165,7 @@
+ //______________________________________________________________________________
+ void TMLPAnalyzer::GatherInformations()
+ {
+-   // Collect informations about what is usefull in the network.
++   // Collect information about what is usefull in the network.
+    // This method has to be called first when analyzing a network.
+    // Fills the two analysis trees.
+ 
+--- a/math/unuran/config.h.win.in
++++ b/math/unuran/config.h.win.in
+@@ -191,11 +191,11 @@
+    NULL pointer */
+ /* #undef UNUR_ENABLE_CHECKNULL */
+ 
+-/* Define to 1 if you want to use the info routine for printing informations
++/* Define to 1 if you want to use the info routine for printing information
+    about UNU.RAN objects */
+ #define UNUR_ENABLE_INFO 1
+ 
+-/* Define to 1 if you want to use a logfile for logging informations about
++/* Define to 1 if you want to use a logfile for logging information about
+    UNU.RAN objects */
+ /* #undef UNUR_ENABLE_LOGGING */
+ 
+--- a/proof/proof/src/TProof.cxx
++++ b/proof/proof/src/TProof.cxx
+@@ -10902,7 +10902,7 @@
+ //______________________________________________________________________________
+ void TProof::SaveWorkerInfo()
+ {
+-   // Save informations about the worker set in the file .workers in the working
++   // Save information about the worker set in the file .workers in the working
+    // dir. Called each time there is a change in the worker setup, e.g. by
+    // TProof::MarkBad().
+ 
+--- a/proof/proofplayer/src/TPacketizerUnit.cxx
++++ b/proof/proofplayer/src/TPacketizerUnit.cxx
+@@ -491,7 +491,7 @@
+    fProcessing = (num < (fTotalEntries - fAssigned)) ? num
+                                                      : (fTotalEntries - fAssigned);
+ 
+-   // Set the informations of the current slave
++   // Set the information of the current slave
+    slstat->fLastProcessed = fProcessing;
+    // Set the start time of the current packet
+    slstat->fTimeInstant = cTime;
+--- a/roofit/roostats/src/HybridCalculatorOriginal.cxx
++++ b/roofit/roostats/src/HybridCalculatorOriginal.cxx
+@@ -122,7 +122,7 @@
+ 
+    // observables are managed by the class (they are copied in) 
+   fObservables = new RooArgList(observables);
+-  //Try to recover the informations from the pdf's
++  //Try to recover the information from the pdf's
+   //fObservables=new RooArgList("fObservables");
+   //fNuisanceParameters=new RooArgSet("fNuisanceParameters");
+   // if (priorPdf){
+--- a/test/RootShower/MyParticle.cxx
++++ b/test/RootShower/MyParticle.cxx
+@@ -117,7 +117,7 @@
+ //______________________________________________________________________________
+ char *MyParticle::GetObjectInfo(Int_t, Int_t) const
+ {
+-   // Returns particle informations.
++   // Returns particle information.
+ 
+    static char info[64];
+    sprintf(info,"Particle = %s, E = %1.3e", GetName(), Energy());
+--- a/test/RootShower/RSHelpText.cxx
++++ b/test/RootShower/RSHelpText.cxx
+@@ -107,7 +107,7 @@
+ "status :\n"
+ "     Waiting to start simulation \n"
+ "     Done - Total particles : xxx - Waiting for next simulation \n"
+-"You can access informations on current event by selecting Infos into the\n"
++"You can access information on current event by selecting Infos into the\n"
+ "Event menu.\n"
+ "Select 3D View into this same menu to have a 3D view of the event into\n"
+ "a new OpenGL window. It is also possible to do this with the context menu\n"
+--- a/tmva/src/DataSetFactory.cxx
++++ b/tmva/src/DataSetFactory.cxx
+@@ -162,7 +162,7 @@
+    std::vector<VariableInfo>& varinfos = dsi.GetVariableInfos();
+ 
+    if (varinfos.empty())
+-      Log() << kFATAL << "Dynamic data set cannot be built, since no variable informations are present. Apparently no variables have been set. This should not happen, please contact the TMVA authors." << Endl;
++      Log() << kFATAL << "Dynamic data set cannot be built, since no variable information are present. Apparently no variables have been set. This should not happen, please contact the TMVA authors." << Endl;
+ 
+    std::vector<VariableInfo>::iterator it = varinfos.begin(), itEnd=varinfos.end();
+    for (;it!=itEnd;++it) {
+--- a/tutorials/eve/SplitGLView.C
++++ b/tutorials/eve/SplitGLView.C
+@@ -1104,7 +1104,7 @@
+    // Slot used to handle "OnMouseOver" signal coming from any GL viewer.
+    // We receive a pointer on the physical shape in which the mouse cursor is.
+ 
+-   // display informations on the physical shape in the status bar
++   // display information on the physical shape in the status bar
+    if (shape && shape->GetLogical() && shape->GetLogical()->GetExternal())
+       fStatusBar->SetText(Form("Mouse Over: \"%s\"", 
+          shape->GetLogical()->GetExternal()->GetName()), 0);
+--- a/tutorials/gui/CPUMeter.C
++++ b/tutorials/gui/CPUMeter.C
+@@ -115,11 +115,11 @@
+    prev_load = act_load;
+    old_memUsage = memUsage;
+ 
+-   // Get CPU informations
++   // Get CPU information
+    gSystem->GetCpuInfo(&cpuInfo, 100);
+    // actual CPU load
+    act_load = cpuInfo.fTotal;
+-   // Get Memory informations
++   // Get Memory information
+    gSystem->GetMemInfo(&memInfo);
+    // choose which value to display
+    if (gMainWindow->GetActInfo() == 0)

@@ -1,0 +1,10 @@
+--- a/configure
++++ b/configure
+@@ -6186,6 +6186,7 @@
+         libroot-gui-ged \
+         libroot-hist \
+         libroot-hist-spectrum \
++        libroot-html \
+         libroot-io \
+         libroot-math-foam \
+         libroot-math-genvector \

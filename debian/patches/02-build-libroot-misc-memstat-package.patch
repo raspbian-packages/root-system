@@ -1,0 +1,10 @@
+--- a/configure
++++ b/configure
+@@ -6142,6 +6142,7 @@
+     test "x$enable_xml"      = "xyes" && pl="$pl libroot-io-xmlparser"
+     test "x$enable_mathmore" = "xyes" && pl="$pl libroot-math-mathmore"
+     test "x$enable_unuran"   = "xyes" && pl="$pl libroot-math-unuran"
++    test "x$enable_memstat"  = "xyes" && pl="$pl libroot-misc-memstat"
+     test "x$enable_table"    = "xyes" && pl="$pl libroot-misc-table"
+     test "x$enable_ldap"     = "xyes" && pl="$pl libroot-net-ldap"
+     test "x$enable_clarens"  = "xyes" && pl="$pl libroot-proof-clarens"
