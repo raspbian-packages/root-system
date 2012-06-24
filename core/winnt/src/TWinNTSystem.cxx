@@ -2724,7 +2724,7 @@ int TWinNTSystem::Link(const char *from, const char *to)
 //______________________________________________________________________________
 int TWinNTSystem::Symlink(const char *from, const char *to)
 {
-   // Create a symlink from file1 to file2. Returns 0 when succesfull,
+   // Create a symlink from file1 to file2. Returns 0 when successful,
    // -1 in case of failure.
 
    HRESULT        hRes;                  /* Returned COM result code */

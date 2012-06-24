@@ -1612,7 +1612,7 @@ int TUnixSystem::Link(const char *from, const char *to)
 //______________________________________________________________________________
 int TUnixSystem::Symlink(const char *from, const char *to)
 {
-   // Create a symlink from file1 to file2. Returns 0 when succesfull,
+   // Create a symlink from file1 to file2. Returns 0 when successful,
    // -1 in case of failure.
 
 #if defined(R__AIX)
@@ -1625,7 +1625,7 @@ int TUnixSystem::Symlink(const char *from, const char *to)
 //______________________________________________________________________________
 int TUnixSystem::Unlink(const char *name)
 {
-   // Unlink, i.e. remove, a file or directory. Returns 0 when succesfull,
+   // Unlink, i.e. remove, a file or directory. Returns 0 when successful,
    // -1 in case of failure.
 
    TSystem *helper = FindHelper(name);

@@ -1776,7 +1776,7 @@ Int_t TCint::ReloadAllSharedLibraryMaps()
 Int_t TCint::UnloadAllSharedLibraryMaps()
 {
    // Unload the library map entries coming from all the loaded shared libraries.
-   // Returns 0 if succesful
+   // Returns 0 if successful
 
    const TString sharedLibLStr = GetSharedLibs();
    const TObjArray *sharedLibL = sharedLibLStr.Tokenize(" ");
