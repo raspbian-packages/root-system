@@ -1010,7 +1010,7 @@ Int_t GlobusIssuerName(TString &issuerName)
          fn = Form("%s/.globus/usercert.pem",gSystem->HomeDirectory());
       if (gSystem->AccessPathName(fn, kReadPermission)) {
          emsg += fn;
-         Error("GlobusIssuerName", emsg.Data());
+         Error("GlobusIssuerName", "%s", emsg.Data());
          return 1;
       }
    }
