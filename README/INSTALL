@@ -213,7 +213,7 @@ packages do:
 
         %_topdir <some where you can write>/redhat
 
-     Then you should make the appropiate directories:
+     Then you should make the appropriate directories:
 
         mkdir <some where you can write>/redhat
         mkdir <some where you can write>/redhat/SOURCES
