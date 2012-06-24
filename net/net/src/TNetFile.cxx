@@ -862,7 +862,7 @@ void TNetSystem::InitRemoteEntity(const char *url)
    // Check and save the host FQDN ...
    fHost = turl.GetHostFQDN();
 
-   // Remote port: the deafult should be 1094 because we are here
+   // Remote port: the default should be 1094 because we are here
    // only if the protocol is "root://"
    fPort = turl.GetPort();
 }

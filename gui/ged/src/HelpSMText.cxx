@@ -13,7 +13,7 @@
 
 const char gHelpSMTopLevel[] =
 "The Style Manager handles a list of styles in the ROOT session. It loads\n"
-"by default the five styles provided by ROOT: Deafult, Plain, Bold, Video,\n"
+"by default the five styles provided by ROOT: Default, Plain, Bold, Video,\n"
 "and Pub. If this list does not contain a style with the characteristics\n"
 "you want, you can create a new one and than apply it.\n"
 "\n"
