@@ -391,7 +391,7 @@ Uses \\[root-header-skel] and \\[root-source-skel]"
     (if (file-exists-p source-name) 
 	(error "Source file '%s' already exists - will not overwrite" 
 	       source-name))
-    ;; Check files are writeable 
+    ;; Check files are writable 
     (if (not (file-writable-p header-name)) 
 	(error "Cannot write header file '%s'" header-name))
     (if (not (file-writable-p source-name)) 
