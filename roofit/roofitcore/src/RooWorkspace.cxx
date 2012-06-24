@@ -1005,7 +1005,7 @@ Bool_t RooWorkspace::commitTransaction()
   }
   delete iter ;
 
-  // Remove all commited objects from the sandbox
+  // Remove all committed objects from the sandbox
   _sandboxNodes.removeAll() ;
 
   // Mark transaction as finished
