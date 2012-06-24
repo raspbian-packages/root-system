@@ -1304,7 +1304,7 @@ TSocket *TSocket::CreateAuthSocket(const char *url, Int_t size, Int_t tcpwindows
 
    R__LOCKGUARD2(gSocketAuthMutex);
 
-   // Url to be passed to choosen constructor
+   // Url to be passed to chosen constructor
    TString eurl(url);
 
    // Parse protocol, if any
