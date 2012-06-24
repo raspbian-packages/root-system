@@ -3289,7 +3289,7 @@ void TUnixSystem::CloseConnection(int sock, Bool_t force)
 //______________________________________________________________________________
 int TUnixSystem::RecvBuf(int sock, void *buf, int length)
 {
-   // Receive a buffer headed by a length indicator. Lenght is the size of
+   // Receive a buffer headed by a length indicator. Length is the size of
    // the buffer. Returns the number of bytes received in buf or -1 in
    // case of error.
 

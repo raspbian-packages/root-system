@@ -1321,7 +1321,7 @@ void TProofServ::HandleSocketInput()
    Int_t rc = 0;
    TString exmsg;
 
-   // Check log file lenght (before the action, so we have the chance to keep the
+   // Check log file length (before the action, so we have the chance to keep the
    // latest logs)
    TruncateLogFile();
 

@@ -4721,7 +4721,7 @@ void TWinNTSystem::CloseConnection(int socket, Bool_t force)
 //______________________________________________________________________________
 int TWinNTSystem::RecvBuf(int sock, void *buf, int length)
 {
-   // Receive a buffer headed by a length indicator. Lenght is the size of
+   // Receive a buffer headed by a length indicator. Length is the size of
    // the buffer. Returns the number of bytes received in buf or -1 in
    // case of error.
 
@@ -4770,7 +4770,7 @@ int TWinNTSystem::RecvRaw(int sock, void *buf, int length, int opt)
 {
    // Receive exactly length bytes into buffer. Use opt to receive out-of-band
    // data or to have a peek at what is in the buffer (see TSocket). Buffer
-   // must be able to store at least lenght bytes. Returns the number of
+   // must be able to store at least length bytes. Returns the number of
    // bytes received (can be 0 if other side of connection was closed) or -1
    // in case of error, -2 in case of MSG_OOB and errno == EWOULDBLOCK, -3
    // in case of MSG_OOB and errno == EINVAL and -4 in case of kNoBlock and
