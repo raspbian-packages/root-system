@@ -1,0 +1,164 @@
+--- a/cint/cint/include/graphbuf.h
++++ b/cint/cint/include/graphbuf.h
+@@ -391,7 +391,7 @@
+ 	return(*this);
+ }
+ 
+-// reset ouput pointer
++// reset output pointer
+ graphbuf& graphbuf::operator >>(char *s)
+ {
+ 	pout=0;
+--- a/core/textinput/src/textinput/TerminalDisplay.h
++++ b/core/textinput/src/textinput/TerminalDisplay.h
+@@ -24,7 +24,7 @@
+ namespace textinput {
+   class Color;
+ 
+-  // Base class for ouput to a terminal.
++  // Base class for output to a terminal.
+   class TerminalDisplay: public Display {
+   public:
+     ~TerminalDisplay();
+--- a/graf2d/asimage/src/libAfterImage/libpng/pngwio.c
++++ b/graf2d/asimage/src/libAfterImage/libpng/pngwio.c
+@@ -161,7 +161,7 @@
+                    arguments a pointer to a png_struct.  After a call to
+                    the flush function, there should be no data in any buffers
+                    or pending transmission.  If the output method doesn't do
+-                   any buffering of ouput, a function prototype must still be
++                   any buffering of output, a function prototype must still be
+                    supplied although it doesn't have to do anything.  If
+                    PNG_WRITE_FLUSH_SUPPORTED is not defined at libpng compile
+                    time, output_flush_fn will be ignored, although it must be
+--- a/graf2d/postscript/src/TSVG.cxx
++++ b/graf2d/postscript/src/TSVG.cxx
+@@ -1143,7 +1143,7 @@
+ //______________________________________________________________________________
+ void TSVG::Initialize()
+ {
+-   // Initialize the SVG file. The main task of the function is to ouput the
++   // Initialize the SVG file. The main task of the function is to output the
+    // SVG header file which consist in <title>, <desc> and <defs>. The
+    // HeaderPS provided by the user program is written in the <defs> part.
+ 
+@@ -1202,7 +1202,7 @@
+ void TSVG::NewPage()
+ {
+    // Start the SVG page. This function initialize the pad conversion
+-   // coefficients and ouput the <svg> directive which is close later in the
++   // coefficients and output the <svg> directive which is close later in the
+    // the function Close.
+ 
+    // Compute pad conversion coefficients
+--- a/proof/proof/src/TProof.cxx
++++ b/proof/proof/src/TProof.cxx
+@@ -3050,7 +3050,7 @@
+                } else {
+                   PDB(kGlobal,2)
+                      Info("HandleInputMessage",
+-                          "%s: kPROOF_OUTPUTLIST: ouputlist is empty", sl->GetOrdinal());
++                          "%s: kPROOF_OUTPUTLIST: outputlist is empty", sl->GetOrdinal());
+                }
+             } else {
+                Warning("HandleInputMessage",
+--- a/proof/proofplayer/src/TProofPlayer.cxx
++++ b/proof/proofplayer/src/TProofPlayer.cxx
+@@ -2474,7 +2474,7 @@
+    TList *tmp = (TList *) qr->GetOutputList();
+    if (!tmp) {
+       gSystem->RedirectOutput(0);
+-      Info("Finalize(TQueryResult *)", "ouputlist is empty");
++      Info("Finalize(TQueryResult *)", "outputlist is empty");
+       return -1;
+    }
+    TList *out = fOutput;
+--- a/test/stressHepix.cxx
++++ b/test/stressHepix.cxx
+@@ -26,7 +26,7 @@
+ //   make
+ //
+ // The default configuration of ROOT is enough.
+-// The ouput of this benchmark looks like:
++// The output of this benchmark looks like:
+ //
+ /// stressHepix
+ ///
+--- a/test/stressHistoFit.cxx
++++ b/test/stressHistoFit.cxx
+@@ -485,7 +485,7 @@
+    fflush(stdout);
+ }
+ 
+-// Sets the color of the ouput to red or normal
++// Sets the color of the output to red or normal
+ void setColor(int red = 0)
+ {
+    char command[13];
+--- a/tmva/inc/TMVA/Rule.h
++++ b/tmva/inc/TMVA/Rule.h
+@@ -55,7 +55,7 @@
+ 
+    class Rule {
+ 
+-      // ouput operator for a Rule
++      // output operator for a Rule
+       friend ostream& operator<< ( ostream& os, const Rule & rule );
+ 
+    public:
+--- a/tmva/src/MethodCFMlpANN_Utils.cxx
++++ b/tmva/src/MethodCFMlpANN_Utils.cxx
+@@ -267,7 +267,7 @@
+       ULog() << kINFO << "Number of layers for neuron(" << j << "): " << fNeur_1.neuron[j - 1] << Endl;
+    }
+    if (fNeur_1.neuron[fParam_1.layerm - 1] != 2) {
+-      printf("Error: wrong number of classes at ouput layer: %i != 2 ==> abort\n",
++      printf("Error: wrong number of classes at output layer: %i != 2 ==> abort\n",
+              fNeur_1.neuron[fParam_1.layerm - 1]);
+       Arret("stop");
+    }
+@@ -695,7 +695,7 @@
+    }
+    if (fParam_1.lclass < fNeur_1.neuron[fParam_1.layerm - 1]) {
+       ktest = 1;
+-      printf("Error: wrong number of classes at ouput layer: %i != %i ==> abort\n",
++      printf("Error: wrong number of classes at output layer: %i != %i ==> abort\n",
+              fNeur_1.neuron[fParam_1.layerm - 1], fParam_1.lclass);
+       Arret("problem needs to reported ");
+    }
+--- a/tmva/src/OptimizeConfigParameters.cxx
++++ b/tmva/src/OptimizeConfigParameters.cxx
+@@ -385,7 +385,7 @@
+ Double_t TMVA::OptimizeConfigParameters::GetSeparation()
+ {
+    // return the searation between the signal and background 
+-   // MVA ouput distribution
++   // MVA output distribution
+    GetMVADists();
+    if (1){
+       PDF *splS = new PDF( " PDF Sig", fMvaSig, PDF::kSpline2 );
+@@ -404,10 +404,10 @@
+    // calculate the area (integral) under the ROC curve as a
+    // overall quality measure of the classification
+    //
+-   // makeing pdfs out of the MVA-ouput distributions doesn't work
+-   // reliably for cases where the MVA-ouput isn't a smooth distribution.
++   // makeing pdfs out of the MVA-output distributions doesn't work
++   // reliably for cases where the MVA-output isn't a smooth distribution.
+    // this happens "frequently" in BDTs for example when the number of
+-   // trees is small resulting in only some discrete possible MVA ouput values.
++   // trees is small resulting in only some discrete possible MVA output values.
+    // (I still leave the code here, but use this with care!!! The default
+    // however is to use the distributions!!!
+ 
+--- a/tmva/src/PDEFoam.cxx
++++ b/tmva/src/PDEFoam.cxx
+@@ -1471,7 +1471,7 @@
+    // as rectangles in C++ format readable for ROOT.
+    //
+    // Parameters:
+-   // - filename - filename of ouput root macro
++   // - filename - filename of output root macro
+    //
+    // - opt - cell_value, rms, rms_ov_mean
+    //   If cell_value is set, the following values will be filled into

@@ -1,0 +1,13 @@
+diff --git a/proof/proofx/inc/TXSocket.h b/proof/proofx/inc/TXSocket.h
+index e350fa6..01e6fdb 100644
+--- a/proof/proofx/inc/TXSocket.h
++++ b/proof/proofx/inc/TXSocket.h
+@@ -110,7 +110,7 @@ private:
+    // Interrupts
+    TMutex             *fIMtx;          // To protect interrupt queue
+    kXR_int32           fILev;          // Highest received interrupt
+-   Bool_t              fIForward;      // Wheter the interrupt should be propagated
++   Bool_t              fIForward;      // Whether the interrupt should be propagated
+ 
+    // Process ID of the instatiating process (to signal interrupts)
+    Int_t               fPid;

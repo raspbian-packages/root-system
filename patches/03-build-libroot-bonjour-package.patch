@@ -1,0 +1,18 @@
+--- a/configure
++++ b/configure
+@@ -6144,6 +6144,7 @@
+     test "x$enable_unuran"   = "xyes" && pl="$pl libroot-math-unuran"
+     test "x$enable_memstat"  = "xyes" && pl="$pl libroot-misc-memstat"
+     test "x$enable_table"    = "xyes" && pl="$pl libroot-misc-table"
++    test "x$enable_bonjour"  = "xyes" && pl="$pl libroot-net-bonjour"
+     test "x$enable_ldap"     = "xyes" && pl="$pl libroot-net-ldap"
+     test "x$enable_clarens"  = "xyes" && pl="$pl libroot-proof-clarens"
+     test "x$enable_roofit"   = "xyes" && pl="$pl libroot-roofit"
+@@ -6162,7 +6163,6 @@
+     test "x$enable_minuit2"  = "xyes" && pl="$pl root-plugin-math-minuit2"
+     test "x$enable_pythia6"  = "xyes" && pl="$pl root-plugin-montecarlo-pythia6"
+     test "x$enable_alien"    = "xyes" && pl="$pl root-plugin-net-alien"
+-    test "x$enable_bonjour"  = "xyes" && pl="$pl root-plugin-net-bonjour"
+     test "x$enable_globus"   = "xyes" && pl="$pl root-plugin-net-globus"
+     test "x$enable_krb5"     = "xyes" && pl="$pl root-plugin-net-krb5"
+     test "x$enable_monalisa" = "xyes" && pl="$pl root-plugin-net-monalisa"

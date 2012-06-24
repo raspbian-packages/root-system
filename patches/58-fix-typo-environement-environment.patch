@@ -1,0 +1,109 @@
+diff --git a/README/README.ALIEN b/README/README.ALIEN
+index 231c5f3..015c1fe 100644
+--- a/README/README.ALIEN
++++ b/README/README.ALIEN
+@@ -15,7 +15,7 @@ a) // connecting to an API service
+     TGrid::Connect("alien://pcapiserv01.cern.ch:9000","aliprod);
+     
+     // connecting to an API service which is defined already by the
+-    environement variables:
++    environment variables:
+ 		 export alien_API_HOST=...
+ 		 export alien_API_PORT=...
+ 		 export alien_API_USER=...
+diff --git a/gui/qtgsi/inc/TQApplication.h b/gui/qtgsi/inc/TQApplication.h
+index a1a3ba6..b25e9a2 100644
+--- a/gui/qtgsi/inc/TQApplication.h
++++ b/gui/qtgsi/inc/TQApplication.h
+@@ -16,7 +16,7 @@
+ //
+ //  TQApplication
+ //
+-//  This class creates ROOT environement that will
++//  This class creates ROOT environment that will
+ //  interface with the Qt windowing system eventloop and eventhandlers.
+ //  This class will be instantiated once (singleton) in a main()
+ //  program.
+@@ -39,7 +39,7 @@ public:
+    virtual void LoadGraphicsLibs();
+    void SetCustomized();
+    
+-   ClassDef(TQApplication,0) //creates ROOT environement with the Qt windowing system
++   ClassDef(TQApplication,0) //creates ROOT environment with the Qt windowing system
+ };
+ 
+ #endif
+diff --git a/gui/qtgsi/inc/TQRootApplication.h b/gui/qtgsi/inc/TQRootApplication.h
+index 1db7d48..0501b16 100644
+--- a/gui/qtgsi/inc/TQRootApplication.h
++++ b/gui/qtgsi/inc/TQRootApplication.h
+@@ -16,7 +16,7 @@
+ //
+ //  TQRootApplication
+ //
+-//  This class creates Qt environement that will
++//  This class creates Qt environment that will
+ //  interface with the ROOT windowing system eventloop and eventhandlers,
+ //  via a polling mechanism.
+ //
+@@ -58,7 +58,7 @@ public slots:
+    void Quit();
+    
+ public:
+-   ClassDef(TQRootApplication,1)  //creates Qt environement interface with the ROOT windowing system
++   ClassDef(TQRootApplication,1)  //creates Qt environment interface with the ROOT windowing system
+ };
+ 
+ #endif
+diff --git a/gui/qtgsi/test/example1/README b/gui/qtgsi/test/example1/README
+index bce0c3a..d012ed8 100644
+--- a/gui/qtgsi/test/example1/README
++++ b/gui/qtgsi/test/example1/README
+@@ -1,7 +1,7 @@
+ 
+    QtROOT main application example 
+ 
+-  (Initialising both Root/Qt environement)
++  (Initialising both Root/Qt environment)
+ 
+    1. Build the example typing `make' on this
+       directory.
+diff --git a/gui/qtgsi/test/example1/main.cpp b/gui/qtgsi/test/example1/main.cpp
+index c3ef981..ac6878d 100644
+--- a/gui/qtgsi/test/example1/main.cpp
++++ b/gui/qtgsi/test/example1/main.cpp
+@@ -1,7 +1,7 @@
+ /**
+ *  Main program 
+ *
+-*  Initialising both Root/Qt environement    
++*  Initialising both Root/Qt environment    
+ *
+ *  Updated 10/10/01 
+ *  @authors Denis Bertini <d.bertini@gsi.de> 
+diff --git a/net/monalisa/src/TMonaLisaWriter.cxx b/net/monalisa/src/TMonaLisaWriter.cxx
+index 89f048c..cbb915a 100644
+--- a/net/monalisa/src/TMonaLisaWriter.cxx
++++ b/net/monalisa/src/TMonaLisaWriter.cxx
+@@ -204,7 +204,7 @@ void TMonaLisaWriter::Init(const char *monserver, const char *montag, const char
+    // case of process monitoring it can be just an identifier to classify
+    // the type of jobs e.g. "PROOF_PROCESSING".
+    // If monid is not specified, TMonaLisaWriter tries to set it in this order
+-   // from environement variables:
++   // from environment variables:
+    // - PROOF_JOB_ID
+    // - GRID_JOB_ID
+    // - LCG_JOB_ID
+diff --git a/test/periodic/XSGui.cxx b/test/periodic/XSGui.cxx
+index 440aed0..adee183 100644
+--- a/test/periodic/XSGui.cxx
++++ b/test/periodic/XSGui.cxx
+@@ -240,7 +240,7 @@ XSGui::ProcessMessage(Long_t msg, Long_t param1, Long_t)
+ 
+ //---- Main program ----------------------------------------------------------
+ 
+-TROOT root("GUI", "GUI test environement");
++TROOT root("GUI", "GUI test environment");
+ 
+ /* ----- main ----- */
+ int main(int ac, char *av[])

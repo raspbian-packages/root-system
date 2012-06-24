@@ -1,0 +1,390 @@
+--- /dev/null
++++ b/config/Makefile.kfreebsd
+@@ -0,0 +1,80 @@
++# -*- mode: makefile -*-
++#
++# Makefile of ROOT for kFreeBSD i386 with glibc and gcc.
++
++PLATFORM      = kfreebsd
++
++DEBUGFLAGS    = -g
++OPTFLAGS      = -O2
++
++ifeq (debug,$(findstring debug,$(ROOTBUILD)))
++OPT           = $(DEBUGFLAGS)
++NOOPT         =
++else
++OPT           = $(OPTFLAGS)
++NOOPT         =
++endif
++
++ifeq ($(CXX11),yes)
++CXX11FLAGS    = -std=c++11 -Wno-deprecated-declarations
++endif
++
++# Compiler:
++CXX           = g++
++CC            = gcc
++CXXFLAGS      = -pipe -m32 -Wall -W -Woverloaded-virtual \
++                -fPIC $(EXTRA_CXXFLAGS) $(CXX11FLAGS)
++CFLAGS        = -pipe -m32 -Wall -W -fPIC $(EXTRA_CFLAGS)
++CINTCXXFLAGS  = -pipe -m32 -Wall -W -Woverloaded-virtual \
++                -fPIC $(EXTRA_CXXFLAGS) $(CXX11FLAGS) \
++                -DG__REGEXP -DG__UNIX -DG__SHAREDLIB \
++                -DG__OSFDLL -DG__ROOT -DG__REDIRECTIO \
++                -DG__STD_EXCEPTION
++CINTCFLAGS    = -pipe -m32 -Wall -W -fPIC $(EXTRA_CFLAGS) \
++                -DG__REGEXP -DG__UNIX -DG__SHAREDLIB \
++                -DG__OSFDLL -DG__ROOT -DG__REDIRECTIO \
++                -DG__STD_EXCEPTION
++COMPILER      = gnu
++
++# Linker:
++LD            = g++
++LDFLAGS       = -m32 $(OPT) $(EXTRA_LDFLAGS) -Wl,--no-undefined -Wl,--as-needed
++SOFLAGS       = -shared -Wl,-soname,
++SOEXT         = so
++
++# System libraries:
++SYSLIBS       = -lm -ldl $(OSTHREADLIBDIR) $(OSTHREADLIB) \
++                $(ALLOCLIBDIR) $(ALLOCLIB) -rdynamic
++XLIBS         = $(XPMLIBDIR) $(XPMLIB) $(X11LIBDIR) -lXext -lX11
++CILIBS        = -lm -ldl -rdynamic
++CRYPTLIBS     = -lcrypt
++
++# Fortran:
++ifneq ($(findstring gfortran, $(F77)),)
++ifeq ($(F77),)
++# only needed to get default compiler in ./configure
++F77           = gfortran
++endif
++F77FLAGS      = -m32 -fPIC -std=legacy
++ifneq ($(shell $(F77) -m32 -print-file-name=libgfortran.$(SOEXT)),libgfortran.$(SOEXT))
++F77LIBS      := $(shell $(F77) -m32 -print-file-name=libgfortran.$(SOEXT))
++else
++F77LIBS      := $(shell $(F77) -m32 -print-file-name=libgfortran.a)
++endif
++F77LIBS      += $(shell $(F77) -m32 -print-file-name=libgfortranbegin.a)
++endif
++
++ifneq ($(findstring g77, $(F77)),)
++ifeq ($(F77),)
++# only needed to get default compiler in ./configure
++F77           = g77
++endif
++F77FLAGS      = -m32 -fPIC
++ifneq ($(shell $(F77) -print-file-name=libg2c.so),libg2c.so)
++F77LIBS      := $(shell $(F77) -m32 -print-file-name=libg2c.so) -lnsl
++else
++F77LIBS      := $(shell $(F77) -m32 -print-file-name=libg2c.a) -lnsl
++endif
++endif
++
++# Extras
+--- /dev/null
++++ b/config/Makefile.kfreebsdx8664gcc
+@@ -0,0 +1,80 @@
++# -*- mode: makefile -*-
++#
++# Makefile of ROOT for kFreeBSD x86-64 with glibc and gcc.
++
++PLATFORM      = kfreebsd
++
++DEBUGFLAGS    = -g
++OPTFLAGS      = -O2
++
++ifeq (debug,$(findstring debug,$(ROOTBUILD)))
++OPT           = $(DEBUGFLAGS)
++NOOPT         =
++else
++OPT           = $(OPTFLAGS)
++NOOPT         =
++endif
++
++ifeq ($(CXX11),yes)
++CXX11FLAGS    = -std=c++11 -Wno-deprecated-declarations
++endif
++
++# Compiler:
++CXX           = g++
++CC            = gcc
++CXXFLAGS      = -pipe -m64 -Wshadow -Wall -W -Woverloaded-virtual \
++                -fPIC $(EXTRA_CXXFLAGS) $(CXX11FLAGS)
++CFLAGS        = -pipe -m64 -Wshadow -Wall -W -fPIC $(EXTRA_CFLAGS)
++CINTCXXFLAGS  = -pipe -m64 -Wall -W -Woverloaded-virtual \
++                -fPIC $(EXTRA_CXXFLAGS) $(CXX11FLAGS) \
++                -DG__REGEXP -DG__UNIX -DG__SHAREDLIB \
++                -DG__OSFDLL -DG__ROOT -DG__REDIRECTIO \
++                -DG__STD_EXCEPTION -DG__64BIT
++CINTCFLAGS    = -pipe -m64 -Wall -W -fPIC $(EXTRA_CFLAGS) \
++                -DG__REGEXP -DG__UNIX -DG__SHAREDLIB \
++                -DG__OSFDLL -DG__ROOT -DG__REDIRECTIO \
++                -DG__STD_EXCEPTION -DG__64BIT
++COMPILER      = gnu
++
++# Linker:
++LD            = g++
++LDFLAGS       = -m64 $(OPT) $(EXTRA_LDFLAGS) -Wl,--no-undefined -Wl,--as-needed
++SOFLAGS       = -shared -Wl,-soname,
++SOEXT         = so
++
++# System libraries:
++SYSLIBS       = -lm -ldl $(OSTHREADLIBDIR) $(OSTHREADLIB) \
++                $(ALLOCLIBDIR) $(ALLOCLIB) -rdynamic
++XLIBS         = $(XPMLIBDIR) $(XPMLIB) $(X11LIBDIR) -lXext -lX11
++CILIBS        = -lm -ldl -rdynamic
++CRYPTLIBS     = -lcrypt
++
++# Fortran:
++ifneq ($(findstring gfortran, $(F77)),)
++ifeq ($(F77),)
++# only needed to get default compiler in ./configure
++F77           = gfortran
++endif
++F77FLAGS      = -fPIC -m64 -std=legacy
++ifneq ($(shell $(F77) -m64 -print-file-name=libgfortran.$(SOEXT)),libgfortran.$(SOEXT))
++F77LIBS      := $(shell $(F77) -m64 -print-file-name=libgfortran.$(SOEXT))
++else
++F77LIBS      := $(shell $(F77) -m64 -print-file-name=libgfortran.a)
++endif
++F77LIBS      += $(shell $(F77) -m64 -print-file-name=libgfortranbegin.a)
++endif
++
++ifneq ($(findstring g77, $(F77)),)
++ifeq ($(F77),)
++# only needed to get default compiler in ./configure
++F77           = g77
++endif
++F77FLAGS      = -fPIC -m64
++ifneq ($(shell $(F77) -print-file-name=libg2c.so),libg2c.so)
++F77LIBS      := $(shell $(F77) -m64 -print-file-name=libg2c.so) -lnsl
++else
++F77LIBS      := $(shell $(F77) -m64 -print-file-name=libg2c.a) -lnsl
++endif
++endif
++
++# Extras
+--- a/cint/cint/inc/G__ci.h
++++ b/cint/cint/inc/G__ci.h
+@@ -366,7 +366,7 @@
+ #endif
+ 
+ /* added by Fons Radamakers in 2000 Oct 2 */
+-#if (defined(__linux) || defined(__linux__) || defined(linux)) && ! defined(__CINT__)
++#if (defined(__linux) || defined(__linux__) || defined(linux) || defined(__FreeBSD_kernel__)) && ! defined(__CINT__)
+ #   include <features.h>
+ #   if __GLIBC__ == 2 && __GLIBC_MINOR__ >= 2
+ #      define G__NONSCALARFPOS2
+--- a/cint/cint/src/bc_reader.h
++++ b/cint/cint/src/bc_reader.h
+@@ -57,7 +57,7 @@
+    int rewindpos() ;
+    unsigned long getpos() { return((unsigned long)0 /* m_pos */ ); } //not used
+    void setspos(unsigned long pos) {
+-#if defined(__linux)
++#if defined(__linux) || defined(__GLIBC__)
+  #if (__GNUC__==2 && __GNUC_MINOR__<96)
+   #if defined(_G_IO_IO_FILE_VERSION) && _G_IO_IO_FILE_VERSION == 0x20001
+       m_pos.__pos = pos;    // this is for Debian
+--- a/config/ARCHS
++++ b/config/ARCHS
+@@ -5,6 +5,8 @@
+ freebsd4             for FreeBSD 4.x with gcc
+ freebsd5             for FreeBSD 5.x and 6.x with gcc
+ freebsd7             for FreeBSD 7.x with gcc
++kfreebsd             for i386 kFreeBSD with gcc
++kfreebsdx8664gcc     for x86-64 kFreeBSD with gcc
+ hpuxacc              for HP-UX 10.20 with HP aCC
+ hpuxgcc              for HP-UX 10.20 with gcc
+ hpuxia64acc          for HP-UX 11i v1.5 (IA-64) with HP aCC
+--- a/config/root-config.in
++++ b/config/root-config.in
+@@ -343,6 +343,18 @@
+    auxcflags=
+    auxlibs="-lm -lstdc++"
+    ;;
++kfreebsd)
++   # kFreeBSD with gcc
++   auxcflags="-m32"
++   auxldflags="-m32"
++   auxlibs="-lm -ldl -rdynamic"
++   ;;
++kfreebsdx8664gcc)
++   # AMD Opteron and Intel EM64T (64 bit mode) kFreeBSD with gcc
++   auxcflags="-m64"
++   auxldflags="-m64"
++   auxlibs="-lm -ldl -rdynamic"
++   ;;
+ openbsd)
+    # OpenBSD with libc
+    auxcflags=
+--- a/configure
++++ b/configure
+@@ -1213,6 +1213,8 @@
+         freebsd*:*:5*)         arch=freebsd5        ;;
+         freebsd*:*:4*)         arch=freebsd4        ;;
+         freebsd*:*:*)          arch=freebsd         ;;
++        gnu/kfreebsd:i*86:*)   arch=kfreebsd        ;;
++        gnu/kfreebsd:x86_64:*) arch=kfreebsdx8664gcc;;
+         hp-ux:ia64:*)          arch=hpuxia64acc     ;;
+         hp-ux:*:*)             arch=hpuxacc         ;;
+         hurd*:*:*)             arch=hurddeb         ;;
+@@ -1809,7 +1811,7 @@
+    fi
+ fi
+ 
+-if test "x$platform" = "xlinux" ; then
++if test "x$platform" = "xlinux" -o "x$platform" = "xkfreebsd" ; then
+     linuxdist=
+     if `$cwhich lsb_release > /dev/null 2>&1` ; then
+        if lsb_release -d | grep -i 'ubuntu' > /dev/null 2>& 1; then
+@@ -3905,7 +3907,7 @@
+ #
+ bonjourcppflags=
+ case $platform in
+-    linux|macosx|ios)
++    linux|kfreebsd|macosx|ios)
+         ;;
+     *)
+         if test "x$enable_bonjour" = "xyes" ; then
+@@ -5930,7 +5932,7 @@
+ message "Checking whether to build libMemStat"
+ if test "x$enable_memstat" = "xyes" || test ! "x$MEMSTAT" = "x"; then
+     case $arch in
+-    linux*|macos*)
++    linux*|macos*|kfreebsd*)
+        enable_memstat="yes" ;;
+     *)
+        enable_memstat="no" ;;
+--- a/core/base/inc/RConfig.h
++++ b/core/base/inc/RConfig.h
+@@ -350,6 +350,21 @@
+ #   define HAS_STRLCPY
+ #endif
+ 
++#if defined(__FreeBSD_kernel__)
++#   define R__UNIX
++#   define R__BYTESWAP
++#   if defined(__i386__)
++#      ifndef __i486__
++#         define __i486__    /* turn off if you really want to run on an i386 */
++#      endif
++#   endif
++#   if defined(__amd64__)
++#      define R__B64
++#   endif
++#   define R__GLIBC
++#   define R__THROWNEWDELETE /* new/delete throw exceptions */
++#endif
++
+ #if defined(__OpenBSD__)
+ #   define R__OBSD
+ #   define R__UNIX
+--- a/core/unix/src/TUnixSystem.cxx
++++ b/core/unix/src/TUnixSystem.cxx
+@@ -60,7 +60,7 @@
+ #if defined(R__AIX) || defined(R__LINUX) || defined(R__ALPHA) || \
+     defined(R__SGI) || defined(R__HIUX) || defined(R__FBSD) || \
+     defined(R__OBSD) || defined(R__LYNXOS) || defined(R__MACOSX) || \
+-    defined(R__HURD)
++    defined(R__HURD) || defined(__FreeBSD_kernel__)
+ #   include <sys/ioctl.h>
+ #endif
+ #if defined(R__AIX) || defined(R__SOLARIS)
+--- a/graf3d/gl/src/TGLFaceSet.cxx
++++ b/graf3d/gl/src/TGLFaceSet.cxx
+@@ -34,7 +34,7 @@
+ {
+ #if defined(__APPLE_CC__) && __APPLE_CC__ > 4000 && __APPLE_CC__ < 5450 && !defined(__INTEL_COMPILER)
+     typedef GLvoid (*tessfuncptr_t)(...);
+-#elif defined(__mips) || defined(__linux__) || defined(__FreeBSD__) || defined( __OpenBSD__ ) || defined(__sun) || defined (__CYGWIN__) || defined (__APPLE__)
++#elif defined(__mips) || defined(__linux__) || defined(__FreeBSD__) || defined( __OpenBSD__ ) || defined(__sun) || defined (__CYGWIN__) || defined (__APPLE__) || defined(__FreeBSD_kernel__)
+     typedef GLvoid (*tessfuncptr_t)();
+ #elif defined (WIN32)
+     typedef GLvoid (CALLBACK *tessfuncptr_t)();
+--- a/graf3d/gl/src/TGLPadUtils.cxx
++++ b/graf3d/gl/src/TGLPadUtils.cxx
+@@ -542,7 +542,7 @@
+ extern "C" {
+ #if defined(__APPLE_CC__) && __APPLE_CC__ > 4000 && __APPLE_CC__ < 5450 && !defined(__INTEL_COMPILER)
+     typedef GLvoid (*tess_t)(...);
+-#elif defined( __mips ) || defined( __linux__ ) || defined( __FreeBSD__ ) || defined( __OpenBSD__ ) || defined( __sun ) || defined (__CYGWIN__) || defined (__APPLE__)
++#elif defined( __mips ) || defined( __linux__ ) || defined( __FreeBSD__ ) || defined( __OpenBSD__ ) || defined( __sun ) || defined (__CYGWIN__) || defined (__APPLE__) || defined(__FreeBSD_kernel__)
+     typedef GLvoid (*tess_t)();
+ #elif defined ( WIN32)
+     typedef GLvoid (CALLBACK *tess_t)( );
+--- a/graf3d/gl/src/TGLUtil.cxx
++++ b/graf3d/gl/src/TGLUtil.cxx
+@@ -1396,7 +1396,7 @@
+ {
+ #if defined(__APPLE_CC__) && __APPLE_CC__ > 4000 && __APPLE_CC__ < 5450 && !defined(__INTEL_COMPILER)
+     typedef GLvoid (*tessfuncptr_t)(...);
+-#elif defined(__mips) || defined(__linux__) || defined(__FreeBSD__) || defined( __OpenBSD__ ) || defined(__sun) || defined (__CYGWIN__) || defined (__APPLE__)
++#elif defined(__mips) || defined(__linux__) || defined(__FreeBSD__) || defined( __OpenBSD__ ) || defined(__sun) || defined (__CYGWIN__) || defined (__APPLE__) || defined(__FreeBSD_kernel__)
+     typedef GLvoid (*tessfuncptr_t)();
+ #elif defined (WIN32)
+     typedef GLvoid (CALLBACK *tessfuncptr_t)();
+--- a/montecarlo/eg/inc/cfortran.h
++++ b/montecarlo/eg/inc/cfortran.h
+@@ -168,7 +168,7 @@
+ #if        defined(__CYGWIN__)                 /* 04/11/02 LEB (CFITSIO) */
+ #define       f2cFortran
+ #endif
+-#if        defined(__GNUC__) && defined(linux) /* 06/21/00 PDW (CFITSIO) */
++#if        defined(__GNUC__) && (defined(linux) || defined(__GLIBC__)) /* 06/21/00 PDW (CFITSIO) */
+ #define       f2cFortran
+ #endif
+ #if defined(macintosh)                         /* 11/1999 (CFITSIO) */
+--- a/net/rpdutils/src/daemon.cxx
++++ b/net/rpdutils/src/daemon.cxx
+@@ -53,7 +53,7 @@
+ 
+ #if defined(linux) || defined(__hpux) || defined(__sun) || defined(__sgi) || \
+     defined(_AIX) || defined(__FreeBSD__) || defined(__OpenBSD__) || \
+-    defined(__APPLE__) || defined(__MACH__) || \
++    defined(__APPLE__) || defined(__MACH__) || defined(__FreeBSD_kernel__) || \
+     (defined(__CYGWIN__) && defined(__GNUC__))
+ #define USE_SETSID
+ #endif
+--- a/net/rpdutils/src/rpdutils.cxx
++++ b/net/rpdutils/src/rpdutils.cxx
+@@ -190,7 +190,7 @@
+ //--- Machine specific routines ------------------------------------------------
+ 
+ #if defined(__alpha) && !defined(linux) && !defined(__FreeBSD__) && \
+-    !defined(__OpenBSD__)
++    !defined(__OpenBSD__) || defined(__FreeBSD_kernel__)
+ extern "C" int initgroups(const char *name, int basegid);
+ #endif
+ 
+@@ -209,7 +209,7 @@
+ #endif
+ 
+ #if !defined(__hpux) && !defined(linux) && !defined(__FreeBSD__) && \
+-    !defined(__OpenBSD__) || defined(cygwingcc)
++    !defined(__OpenBSD__) && !defined(__FreeBSD_kernel__) || defined(cygwingcc)
+ static int setresgid(gid_t r, gid_t e, gid_t)
+ {
+    if (setgid(r) == -1)
+--- a/build/unix/makelib.sh
++++ b/build/unix/makelib.sh
+@@ -65,7 +65,7 @@
+          EXPLLNKCORE="-Llib -lCint"
+       fi
+    fi
+-   if [ $PLATFORM = "linux" ]; then
++   if [ $PLATFORM = "linux" ] || [ $PLATFORM = "kfreebsd" ]; then
+       if [ -z "$EXPLLNKCORE" ]; then
+          EXPLLNKCORE=" -ldl"
+       else
+--- a/core/pcre/Module.mk
++++ b/core/pcre/Module.mk
+@@ -8,7 +8,7 @@
+ 
+ ifneq ($(BUILTINPCRE), yes)
+ 
+-PCRELIBF     := $(shell pcre-config --libs)
++PCRELIBF     := $(shell pcre-config --libs | sed -e 's|-Wl,-R.* ||')
+ PCREINC      := $(shell pcre-config --cflags)
+ PCRELIB      := $(filter -l%,$(PCRELIBF))
+ PCRELDFLAGS  := $(filter-out -l%,$(PCRELIBF))

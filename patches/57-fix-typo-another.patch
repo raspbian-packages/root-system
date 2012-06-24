@@ -1,0 +1,44 @@
+--- a/geom/geom/src/TGeoVolume.cxx
++++ b/geom/geom/src/TGeoVolume.cxx
+@@ -246,7 +246,7 @@
+ // The parameters order and number are the same as in the corresponding shape
+ // constructors.
+ //
+-//   An other particular case where volume families are used is when we want
++//   Another particular case where volume families are used is when we want
+ // that a volume positioned inside a container to match one ore more container
+ // limits. Suppose we want to position the same box inside 2 different volumes
+ // and we want the Z size to match the one of each container:
+--- a/tree/treeviewer/src/HelpTextTV.cxx
++++ b/tree/treeviewer/src/HelpTextTV.cxx
+@@ -163,7 +163,7 @@
+ const char gTVHelpUserCommands[] = "\
+ User commands can be issued directly from the textbox labeled <Command>\n\
+ from the upper-left toolbar by typing and pressing Enter at the end.\n\
+-An other way is from the right panel context menu: ExecuteCommand.\n\n\
++Another way is from the right panel context menu: ExecuteCommand.\n\n\
+ All commands can be interrupted at any time by pressing the STOP button\n\
+ from the bottom-left.\n\n\
+ You can toggle recording of the current command in the history file by\n\
+--- a/tree/treeviewer/src/TTreeViewer.cxx
++++ b/tree/treeviewer/src/TTreeViewer.cxx
+@@ -101,7 +101,7 @@
+ //
+ // User commands can be issued directly from the textbox labeled "Command"
+ // from the upper-left toolbar by typing and pressing Enter at the end.
+-//   An other way is from the right panel context menu : ExecuteCommand.
++//   Another way is from the right panel context menu : ExecuteCommand.
+ // All commands can be interrupted at any time by pressing the STOP button
+ // from the bottom-left
+ // You can toggle recording of the current command in the history file by
+--- a/docbook/users-guide/Histograms.xml
++++ b/docbook/users-guide/Histograms.xml
+@@ -1064,7 +1064,7 @@
+ 
+ <para>The method <code>SetTitle</code> has the same syntax:</para>
+ 
+-<programlisting language="c++">h-&gt;SetTitle("Histogram title;An other X title Axis");
++<programlisting language="c++">h-&gt;SetTitle("Histogram title;Another X title Axis");
+ </programlisting>
+ 
+ </sect1>

@@ -1,0 +1,121 @@
+--- a/docbook/users-guide/MathLibraries.xml
++++ b/docbook/users-guide/MathLibraries.xml
+@@ -254,7 +254,7 @@
+ double x = unr.Sample();
+ </programlisting>
+ <itemizedlist>
+-<listitem><para>For continous 1D distribution object via the class <emphasis role="bold"><code>TUnuranContDist</code></emphasis> that can be created for example from a <emphasis role="bold"><code>TF1</code></emphasis> function providing the pdf (probability density function) . The user can optionally provide additional information via <emphasis role="bold"><code>TUnuranContDist</code></emphasis><code>::SetDomain(min,max)</code>  like the <code>domain()</code> for generating numbers in a restricted region. </para></listitem>
++<listitem><para>For continuous 1D distribution object via the class <emphasis role="bold"><code>TUnuranContDist</code></emphasis> that can be created for example from a <emphasis role="bold"><code>TF1</code></emphasis> function providing the pdf (probability density function) . The user can optionally provide additional information via <emphasis role="bold"><code>TUnuranContDist</code></emphasis><code>::SetDomain(min,max)</code>  like the <code>domain()</code> for generating numbers in a restricted region. </para></listitem>
+ </itemizedlist>
+ <programlisting language="c++">
+ //1D case: create a distribution from two TF1 object pointers pdfFunc
+--- a/math/mathmore/inc/Math/Interpolator.h
++++ b/math/mathmore/inc/Math/Interpolator.h
+@@ -74,7 +74,7 @@
+ 
+    /**
+       Constructs an interpolator class from vector of data points \f$ (x_i, y_i )\f$ and with Interpolation::Type type.
+-      The method will compute a continous interpolating function \f$ y(x) \f$ such that \f$ y_i = y ( x_i )\f$.
++      The method will compute a continuous interpolating function \f$ y(x) \f$ such that \f$ y_i = y ( x_i )\f$.
+       The defult interpolation type is Cubic spline
+    */
+    Interpolator(const std::vector<double> & x, const std::vector<double> & y, Interpolation::Type type = Interpolation::kCSPLINE);
+--- a/math/unuran/inc/TUnuranContDist.h
++++ b/math/unuran/inc/TUnuranContDist.h
+@@ -28,7 +28,7 @@
+ 
+ //______________________________________________________________
+ /** 
+-   TUnuranContDist class describing one dimensional continous distribution. 
++   TUnuranContDist class describing one dimensional continuous distribution. 
+    It is used by TUnuran to generate random numbers according to this distribution via 
+    TUnuran::Sample()
+    
+--- a/math/unuran/src/TUnuran.cxx
++++ b/math/unuran/src/TUnuran.cxx
+@@ -172,7 +172,7 @@
+ 
+ bool  TUnuran::SetContDistribution(const TUnuranContDist & dist )
+ {
+-   // internal method to set in unuran the function pointer for a continous univariate distribution 
++   // internal method to set in unuran the function pointer for a continuous univariate distribution 
+    if (fUdistr != 0)  unur_distr_free(fUdistr);
+    fUdistr = unur_distr_cont_new(); 
+    if (fUdistr == 0) return false; 
+--- a/math/unuran/src/TUnuranSampler.cxx
++++ b/math/unuran/src/TUnuranSampler.cxx
+@@ -71,12 +71,12 @@
+          ret =  DoInitDiscrete1D(method);
+       }
+       else {
+-         if (fLevel>1) Info("TUnuranSampler::Init","Initialize one-dim continous distribution with method %s",method.Data());
++         if (fLevel>1) Info("TUnuranSampler::Init","Initialize one-dim continuous distribution with method %s",method.Data());
+          ret =  DoInit1D(method); 
+       }
+    }
+    else { 
+-      if (fLevel>1) Info("TUnuranSampler::Init","Initialize multi-dim continous distribution with method %s",method.Data());
++      if (fLevel>1) Info("TUnuranSampler::Init","Initialize multi-dim continuous distribution with method %s",method.Data());
+       ret = DoInitND(method); 
+    }
+    // set print level in UNURAN (must be done after having initialized) -
+--- a/math/unuran/src/UnuranDistrAdapter.h
++++ b/math/unuran/src/UnuranDistrAdapter.h
+@@ -19,7 +19,7 @@
+ #include <cmath>
+ 
+ /** 
+-   Free functions adapter needed by UNURAN for onedimensional continous distributions
++   Free functions adapter needed by UNURAN for onedimensional continuous distributions
+ */ 
+ 
+ #include "TUnuranContDist.h"
+--- a/tmva/inc/TMVA/Interval.h
++++ b/tmva/inc/TMVA/Interval.h
+@@ -31,7 +31,7 @@
+ //                                                                          //
+ // Interval definition, continuous and discrete                             //
+ //                                                                          //
+-// Interval(min,max)  : a continous interval [min,max]                      //
++// Interval(min,max)  : a continuous interval [min,max]                      //
+ // Interval(min,max,n): a "discrete interval" [min,max], i.e the n numbers: //
+ //          min, min+step, min+2*step,...., min+(n-1)*step, min+n*step=max  //
+ //   e.g.: Interval(1,5,5)=1,2,3,4,5                                        //
+@@ -89,7 +89,7 @@
+       static MsgLogger* fgLogger;   // message logger
+       MsgLogger& Log() const { return *fgLogger; }          
+ 
+-      ClassDef(Interval,0)    // Interval definition, continous and discrete
++      ClassDef(Interval,0)    // Interval definition, continuous and discrete
+    };
+ 
+ } // namespace TMVA
+--- a/tmva/src/Interval.cxx
++++ b/tmva/src/Interval.cxx
+@@ -30,7 +30,7 @@
+ //                                                                          //
+ // Interval definition, continuous and discrete                             //
+ //                                                                          //
+-// Interval(min,max)  : a continous interval [min,max]                      //
++// Interval(min,max)  : a continuous interval [min,max]                      //
+ // Interval(min,max,n): a "discrete interval" [min,max], i.e the n numbers: //
+ //          min, min+step, min+2*step,...., min+(n-1)*step, min+n*step=max  //
+ //   e.g.: Interval(1,5,5)=1,2,3,4,5                                        //
+@@ -44,7 +44,7 @@
+ <ul>
+    <li> Interval definition, continuous and discrete
+    <ul>
+-         <li>  Interval(min,max)  : a continous interval [min,max]
++         <li>  Interval(min,max)  : a continuous interval [min,max]
+          <li>  Interval(min,max,n): a "discrete interval" [min,max], i.e the n numbers:<br>
+          min, min+step, min+2*step,...., min+(n-1)*step=max <br>
+          e.g.: Interval(1,5,5)=1,2,3,4,5                    <br>
+@@ -87,7 +87,7 @@
+ 
+    // defines minimum and maximum of an interval
+    // when nbins > 0, interval describes a discrete distribution (equally distributed in the interval)
+-   // when nbins == 0, interval describes a continous interval
++   // when nbins == 0, interval describes a continuous interval
+    //
+    if (fMax - fMin < 0) Log() << kFATAL << "maximum lower than minimum" << Endl;
+    if (nbins < 0) {

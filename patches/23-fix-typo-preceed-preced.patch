@@ -1,0 +1,346 @@
+--- a/core/base/src/TApplication.cxx
++++ b/core/base/src/TApplication.cxx
+@@ -721,7 +721,7 @@
+       Printf("(as in ssh). A \"dbg\" value > 0 gives increasing verbosity.");
+       Printf("The last argument \"script\" allows to specify an alternative script to");
+       Printf("be executed remotely to startup the session, \"roots\" being");
+-      Printf("the default. If the script is preceeded by a \"<\" the script will be");
++      Printf("the default. If the script is preceded by a \"<\" the script will be");
+       Printf("sourced, after which \"roots\" is executed. The sourced script can be ");
+       Printf("used to change the PATH and other variables, allowing an alternative");
+       Printf("\"roots\" script to be found.");
+--- a/core/base/src/TVirtualPS.cxx
++++ b/core/base/src/TVirtualPS.cxx
+@@ -106,7 +106,7 @@
+          if (fLenBuffer > 0) nWrite = fLenBuffer;
+       } else {
+          if ((len + fLenBuffer) > nWrite) {
+-            // Search for the nearest preceeding space to break a line, if there is no instruction to escape the <end-of-line>.
++            // Search for the nearest preceding space to break a line, if there is no instruction to escape the <end-of-line>.
+             while ((nWrite >= fLenBuffer) && (str[nWrite - fLenBuffer] != ' ')) nWrite--;
+             if (nWrite < fLenBuffer) {
+                while ((nWrite >= 0) && (fBuffer[nWrite] != ' ')) nWrite--;
+--- a/core/clib/src/Demangle.c
++++ b/core/clib/src/Demangle.c
+@@ -2370,7 +2370,7 @@
+             {
+               /* If we have 10 or more types we might have more than a 1 digit
+                  index so we'll have to consume the whole count here. This
+-                 will loose if the next thing is a type name preceeded by a
++                 will loose if the next thing is a type name preceded by a
+                  count but it's impossible to demangle that case properly
+                  anyway. Eg if we already have 12 types is T12Pc "(..., type1,
+                  anyway. Eg if we already have 12 types is T12Pc "(..., type1,
+--- a/graf2d/graf/src/TGaxis.cxx
++++ b/graf2d/graf/src/TGaxis.cxx
+@@ -1494,7 +1494,7 @@
+ 
+                   LabelsLimits(label,first,last);  //Eliminate blanks
+ 
+-                  if (label[first] == '.') { //check if '.' is preceeded by a digit
++                  if (label[first] == '.') { //check if '.' is preceded by a digit
+                      strncpy(chtemp, "0",256);
+                      strlcat(chtemp, &label[first],256);
+                      strncpy(label, chtemp,256);
+--- a/graf3d/gl/inc/TGLOrthoCamera.h
++++ b/graf3d/gl/inc/TGLOrthoCamera.h
+@@ -36,7 +36,7 @@
+ {
+ public:
+    enum EType { kZOY,  kXOZ,  kXOY,    // Pair of world axes aligned to h/v screen.
+-                kZnOY, kXnOZ, kXnOY }; // 'n' means preceeding axis is negated.
++                kZnOY, kXnOZ, kXnOY }; // 'n' means preceding axis is negated.
+ private:
+    // Fields
+    EType          fType;         //! camera type
+--- a/gui/gui/src/HelpText.cxx
++++ b/gui/gui/src/HelpText.cxx
+@@ -452,7 +452,7 @@
+ (as in ssh). A \"dbg\" value > 0 gives increasing verbosity.\n\
+ The last argument \"script\" allows to specify an alternative script to\n\
+ be executed remotely to startup the session, \"roots\" being\n\
+-the default. If the script is preceeded by a \"<\" the script will be\n\
++the default. If the script is preceded by a \"<\" the script will be\n\
+ sourced, after which \"roots\" is executed. The sourced script can be \n\
+ used to change the PATH and other variables, allowing an alternative\n\
+ \"roots\" script to be found.\n\
+--- a/io/io/src/TFree.cxx
++++ b/io/io/src/TFree.cxx
+@@ -55,11 +55,11 @@
+ {
+ // Add a new free segment to the list of free segments.
+ //
+-//  If last just preceedes an existing free segment, then first becomes
++//  If last just precedes an existing free segment, then first becomes
+ //     the new starting location of the free segment.
+ //  if first just follows an existing free segment, then last becomes
+ //     the new ending location of the free segment.
+-//  if first just follows an existing free segment AND last just preceedes
++//  if first just follows an existing free segment AND last just precedes
+ //     an existing free segment, these two segments are merged into
+ //     one single segment.
+ //
+--- a/math/minuit/src/TMinuit.cxx
++++ b/math/minuit/src/TMinuit.cxx
+@@ -3835,7 +3835,7 @@
+       Printf("    reading. Note that this command is implemented in standard");
+       Printf("    Fortran 77 and the results may depend on the  system;");
+       Printf("    for example, if a filename is given under VM/CMS, it must");
+-      Printf("    be preceeded by a slash.");
++      Printf("    be preceded by a slash.");
+ 
+       Printf(" ");
+       Printf("   SET INTeractive");
+--- a/misc/table/src/TTable.cxx
++++ b/misc/table/src/TTable.cxx
+@@ -53,7 +53,7 @@
+ //     float x_last[3];      /* coord. of last measured point (cm)     */
+ //     float length;         /* from first to last point (cm)          */
+ //     float impact;         /* primary vertex (cm)                    */
+-//     unsigned long map[2]; /* extrap. info. (see preceeding comments)*/
++//     unsigned long map[2]; /* extrap. info. (see preceding comments)*/
+ //     int id;               /* Primary key (see comments)             */
+ //     int iflag;            /* bitmask quality info. (see comments)   */
+ //     int det_id;           /* Detector id information                */
+--- a/proof/proofd/src/XrdProofdAux.cxx
++++ b/proof/proofd/src/XrdProofdAux.cxx
+@@ -1542,7 +1542,7 @@
+ {
+    // Parse a path in the form of "<before>[.<pid>][.<after>]", filling 'rest'
+    // and returning 'pid'.
+-   // Return 0 if pid is not defined; 'before' is filled with the string preceeding
++   // Return 0 if pid is not defined; 'before' is filled with the string preceding
+    // <pid>, <after> with the string following <pid>.
+    XPDLOC(AUX, "ParsePidPath")
+ 
+--- a/roofit/histfactory/src/HistoToWorkspaceFactory.cxx
++++ b/roofit/histfactory/src/HistoToWorkspaceFactory.cxx
+@@ -430,11 +430,11 @@
+     string pdfName(pdfNameChar);
+     map<string,string>::iterator it;
+     string edit="EDIT::customized("+pdfName+",";
+-    string preceed="";
++    string preced="";
+     for(it=renameMap.begin(); it!=renameMap.end(); ++it) {
+       cout << it->first + "=" + it->second << endl;
+-      edit+=preceed + it->first + "=" + it->second;
+-      preceed=",";
++      edit+=preced + it->first + "=" + it->second;
++      preced=",";
+     }
+     edit+=")";
+     cout << edit<< endl;
+@@ -452,7 +452,7 @@
+     string edit="EDIT::newSimPdf("+pdfName+",";
+     string editList;
+     string lastPdf=pdfName;
+-    string preceed="";
++    string preced="";
+     unsigned int numReplacements = 0;
+     unsigned int nskipped = 0;
+     map<string,double>::iterator it;
+@@ -507,10 +507,10 @@
+ 
+       // replace alphas with alphaOfBeta and replace constraints
+       //cout <<         "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint" << endl;
+-      editList+=preceed + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
+-      preceed=",";
++      editList+=preced + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
++      preced=",";
+       //      cout <<         "alpha_"+it->first+"=alphaOfBeta_"+ it->first << endl;
+-      editList+=preceed + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
++      editList+=preced + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
+ 
+       /*
+       if( proto->pdf(("alpha_"+it->first+"Constraint").c_str()) && proto->var(("alpha_"+it->first).c_str()) )
+@@ -524,7 +524,7 @@
+ 	edit="EDIT::"+lastPdf+"_("+lastPdf+","+editList+")";
+ 	lastPdf+="_"; // append an underscore for the edit
+ 	editList=""; // reset edit list
+-	preceed="";
++	preced="";
+ 	cout << "Going to issue this edit command\n" << edit<< endl;
+ 	proto->factory( edit.c_str() );
+ 	RooAbsPdf* newOne = proto->pdf(lastPdf.c_str());
+@@ -559,10 +559,10 @@
+ 
+       // replace alphas with alphaOfBeta and replace constraints
+       cout <<         "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint" << endl;
+-      editList+=preceed + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
+-      preceed=",";
++      editList+=preced + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
++      preced=",";
+       cout <<         "alpha_"+it->first+"=alphaOfBeta_"+ it->first << endl;
+-      editList+=preceed + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
++      editList+=preced + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
+ 
+       if( proto->pdf(("alpha_"+it->first+"Constraint").c_str()) && proto->var(("alpha_"+it->first).c_str()) )
+ 	cout << " checked they are there" << proto->pdf(("alpha_"+it->first+"Constraint").c_str()) << " " << proto->var(("alpha_"+it->first).c_str()) << endl;
+@@ -574,7 +574,7 @@
+ 	edit="EDIT::"+lastPdf+"_("+lastPdf+","+editList+")";
+ 	lastPdf+="_"; // append an underscore for the edit
+ 	editList=""; // reset edit list
+-	preceed="";
++	preced="";
+ 	cout << edit<< endl;
+ 	proto->factory( edit.c_str() );
+ 	RooAbsPdf* newOne = proto->pdf(lastPdf.c_str());
+@@ -626,10 +626,10 @@
+ 
+       // replace alphas with alphaOfBeta and replace constraints
+       cout <<         "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint" << endl;
+-      editList+=preceed + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
+-      preceed=",";
++      editList+=preced + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
++      preced=",";
+       cout <<         "alpha_"+it->first+"=alphaOfBeta_"+ it->first << endl;
+-      editList+=preceed + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
++      editList+=preced + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
+ 
+       if( proto->pdf(("alpha_"+it->first+"Constraint").c_str()) && proto->var(("alpha_"+it->first).c_str()) )
+ 	cout << " checked they are there" << proto->pdf(("alpha_"+it->first+"Constraint").c_str()) << " " << proto->var(("alpha_"+it->first).c_str()) << endl;
+@@ -641,7 +641,7 @@
+ 	edit="EDIT::"+lastPdf+"_("+lastPdf+","+editList+")";
+ 	lastPdf+="_"; // append an underscore for the edit
+ 	editList=""; // reset edit list
+-	preceed="";
++	preced="";
+ 	cout << edit<< endl;
+ 	proto->factory( edit.c_str() );
+ 	RooAbsPdf* newOne = proto->pdf(lastPdf.c_str());
+--- a/roofit/histfactory/src/HistoToWorkspaceFactoryFast.cxx
++++ b/roofit/histfactory/src/HistoToWorkspaceFactoryFast.cxx
+@@ -737,11 +737,11 @@
+     string pdfName(pdfNameChar);
+     map<string,string>::iterator it;
+     string edit="EDIT::customized("+pdfName+",";
+-    string preceed="";
++    string preced="";
+     for(it=renameMap.begin(); it!=renameMap.end(); ++it) {
+       cout << it->first + "=" + it->second << endl;
+-      edit+=preceed + it->first + "=" + it->second;
+-      preceed=",";
++      edit+=preced + it->first + "=" + it->second;
++      preced=",";
+     }
+     edit+=")";
+     cout << edit<< endl;
+@@ -766,7 +766,7 @@
+     string edit="EDIT::newSimPdf("+pdfName+",";
+     string editList;
+     string lastPdf=pdfName;
+-    string preceed="";
++    string preced="";
+     unsigned int numReplacements = 0;
+     unsigned int nskipped = 0;
+     map<string,double>::iterator it;
+@@ -821,10 +821,10 @@
+ 
+       // replace alphas with alphaOfBeta and replace constraints
+       //cout <<         "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint" << endl;
+-      editList+=preceed + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
+-      preceed=",";
++      editList+=preced + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
++      preced=",";
+       //      cout <<         "alpha_"+it->first+"=alphaOfBeta_"+ it->first << endl;
+-      editList+=preceed + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
++      editList+=preced + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
+ 
+       /*
+       if( proto->pdf(("alpha_"+it->first+"Constraint").c_str()) && proto->var(("alpha_"+it->first).c_str()) )
+@@ -838,7 +838,7 @@
+ 	edit="EDIT::"+lastPdf+"_("+lastPdf+","+editList+")";
+ 	lastPdf+="_"; // append an underscore for the edit
+ 	editList=""; // reset edit list
+-	preceed="";
++	preced="";
+ 	cout << "Going to issue this edit command\n" << edit<< endl;
+ 	proto->factory( edit.c_str() );
+ 	RooAbsPdf* newOne = proto->pdf(lastPdf.c_str());
+@@ -873,10 +873,10 @@
+ 
+       // replace alphas with alphaOfBeta and replace constraints
+       cout <<         "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint" << endl;
+-      editList+=preceed + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
+-      preceed=",";
++      editList+=preced + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
++      preced=",";
+       cout <<         "alpha_"+it->first+"=alphaOfBeta_"+ it->first << endl;
+-      editList+=preceed + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
++      editList+=preced + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
+ 
+       if( proto->pdf(("alpha_"+it->first+"Constraint").c_str()) && proto->var(("alpha_"+it->first).c_str()) )
+ 	cout << " checked they are there" << proto->pdf(("alpha_"+it->first+"Constraint").c_str()) << " " << proto->var(("alpha_"+it->first).c_str()) << endl;
+@@ -888,7 +888,7 @@
+ 	edit="EDIT::"+lastPdf+"_("+lastPdf+","+editList+")";
+ 	lastPdf+="_"; // append an underscore for the edit
+ 	editList=""; // reset edit list
+-	preceed="";
++	preced="";
+ 	cout << edit<< endl;
+ 	proto->factory( edit.c_str() );
+ 	RooAbsPdf* newOne = proto->pdf(lastPdf.c_str());
+@@ -940,10 +940,10 @@
+ 
+       // replace alphas with alphaOfBeta and replace constraints
+       cout <<         "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint" << endl;
+-      editList+=preceed + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
+-      preceed=",";
++      editList+=preced + "alpha_"+it->first+"Constraint=beta_" + it->first+ "Constraint";
++      preced=",";
+       cout <<         "alpha_"+it->first+"=alphaOfBeta_"+ it->first << endl;
+-      editList+=preceed + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
++      editList+=preced + "alpha_"+it->first+"=alphaOfBeta_"+ it->first;
+ 
+       if( proto->pdf(("alpha_"+it->first+"Constraint").c_str()) && proto->var(("alpha_"+it->first).c_str()) )
+ 	cout << " checked they are there" << proto->pdf(("alpha_"+it->first+"Constraint").c_str()) << " " << proto->var(("alpha_"+it->first).c_str()) << endl;
+@@ -955,7 +955,7 @@
+ 	edit="EDIT::"+lastPdf+"_("+lastPdf+","+editList+")";
+ 	lastPdf+="_"; // append an underscore for the edit
+ 	editList=""; // reset edit list
+-	preceed="";
++	preced="";
+ 	cout << edit<< endl;
+ 	proto->factory( edit.c_str() );
+ 	RooAbsPdf* newOne = proto->pdf(lastPdf.c_str());
+@@ -984,15 +984,15 @@
+ 
+       // replace constraints
+       cout << "alpha_"+it->first+"Constraint=one" << endl;
+-      editList+=preceed + "alpha_"+it->first+"Constraint=one";
+-      preceed=",";
++      editList+=preced + "alpha_"+it->first+"Constraint=one";
++      preced=",";
+ 
+       // EDIT seems to die if the list of edits is too long.  So chunck them up.
+       if(numReplacements%10 == 0 && numReplacements+nskipped!=gammaSyst.size()){
+ 	edit="EDIT::"+lastPdf+"_("+lastPdf+","+editList+")";
+ 	lastPdf+="_"; // append an underscore for the edit
+ 	editList=""; // reset edit list
+-	preceed="";
++	preced="";
+ 	cout << edit << endl;
+ 	proto->factory( edit.c_str() );
+ 	RooAbsPdf* newOne = proto->pdf(lastPdf.c_str());
+--- a/roofit/roofitcore/src/RooStreamParser.cxx
++++ b/roofit/roofitcore/src/RooStreamParser.cxx
+@@ -204,7 +204,7 @@
+     }
+ 
+     if (!quotedString) {
+-      // Decide if next char is punctuation (exempt - and . that are part of floating point numbers, or +/- preceeding INF)
++      // Decide if next char is punctuation (exempt - and . that are part of floating point numbers, or +/- preceding INF)
+       if (isPunctChar(c) && !(c=='.' && (isdigit(cnext)||isdigit(cprev))) 
+ 	  && !((c=='-'||c=='+') && (isdigit(cnext)||cnext=='.'||cnext=='i'||cnext=='I'))) {
+ 	if (first) {
+--- a/tutorials/graphs/timeonaxis.C
++++ b/tutorials/graphs/timeonaxis.C
+@@ -12,7 +12,7 @@
+ // begin_html <a href="http://www.topology.org/sci/time.html">http://www.topology.org/sci/time.html</a> end_html
+ //
+ // The start time is : almost NOW (the time at which the script is executed)
+-// actualy, the nearest preceeding hour beginning.
++// actualy, the nearest preceding hour beginning.
+ // The time is in general expressed in UTC time with the C time() function
+ // This will obviously most of the time not be the time displayed on your watch
+ // since it is universal time. See the C time functions for converting this time

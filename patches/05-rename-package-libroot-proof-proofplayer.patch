@@ -1,0 +1,18 @@
+--- a/configure
++++ b/configure
+@@ -6204,6 +6204,7 @@
+         libroot-net \
+         libroot-net-auth \
+         libroot-proof \
++        libroot-proof-proofplayer \
+         libroot-tmva \
+         libroot-tree \
+         libroot-tree-treeplayer \
+@@ -6220,7 +6221,6 @@
+         root-plugin-io-sql \
+         root-plugin-io-xml \
+         root-plugin-math-fumili \
+-        root-plugin-proof-proofplayer \
+         root-plugin-proof-xproof \
+         root-plugin-tree-treeviewer \
+         root-system-proofd \

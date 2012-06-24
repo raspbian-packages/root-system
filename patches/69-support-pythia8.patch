@@ -1,0 +1,10 @@
+--- a/configure
++++ b/configure
+@@ -6162,6 +6162,7 @@
+     test "x$enable_gviz"     = "xyes" && pl="$pl root-plugin-graf2d-gviz"
+     test "x$enable_minuit2"  = "xyes" && pl="$pl root-plugin-math-minuit2"
+     test "x$enable_pythia6"  = "xyes" && pl="$pl root-plugin-montecarlo-pythia6"
++    test "x$enable_pythia8"  = "xyes" && pl="$pl root-plugin-montecarlo-pythia8"
+     test "x$enable_alien"    = "xyes" && pl="$pl root-plugin-net-alien"
+     test "x$enable_globus"   = "xyes" && pl="$pl root-plugin-net-globus"
+     test "x$enable_krb5"     = "xyes" && pl="$pl root-plugin-net-krb5"

@@ -1,0 +1,61 @@
+--- a/cint/cint/src/newlink.cxx
++++ b/cint/cint/src/newlink.cxx
+@@ -4876,7 +4876,7 @@
+                break;
+                
+             default:
+-               fprintf(fp, " Unkown: %c", formal_param->type);
++               fprintf(fp, " Unknown: %c", formal_param->type);
+                G__fprinterr(G__serr,"Type %c not known yet (methodcall)\n", para_type);
+          }
+          
+@@ -4979,7 +4979,7 @@
+                break;
+                
+             default:
+-               fprintf(fp, " Unkown: %c", formal_param->type);
++               fprintf(fp, " Unknown: %c", formal_param->type);
+                G__fprinterr(G__serr,"Type %c not known yet (G__write_dummy_param)\n",formal_param->type);
+          }  
+          fprintf(fp,"*");
+--- a/cint/cintex/test/dict/CintexTest.h
++++ b/cint/cintex/test/dict/CintexTest.h
+@@ -181,8 +181,8 @@
+   MyClass& retByReference() { return m_object; }
+   MyClass*& retByRefPointer() { return m_ptr; }
+   void* retByVoidPointer() { return &m_object; }
+-  UnknownType* retUnkownTypePointer() { return (UnknownType*)0x12345678; }
+-  UnknownType& retUnkownTypeReference() { return *(UnknownType*)0x12345678; }
++  UnknownType* retUnknownTypePointer() { return (UnknownType*)0x12345678; }
++  UnknownType& retUnknownTypeReference() { return *(UnknownType*)0x12345678; }
+   std::string retStrByValue() { return std::string("value");}
+   std::string& retStrByRef() { static std::string s("reference");return s;}
+   const std::string& retStrByConstRef() { static std::string s("const reference");return s;}    
+--- a/cint/cintex/test/test_Cintex.C
++++ b/cint/cintex/test/test_Cintex.C
+@@ -101,9 +101,9 @@
+ bool test_UnknownTypes() {
+   A::B::C::Calling calling;
+   //---Returning unknown types
+-  void* rp = calling.retUnkownTypePointer();
++  void* rp = calling.retUnknownTypePointer();
+   failUnless( rp );
+-  void* rr = (void*)&(calling.retUnkownTypeReference());
++  void* rr = (void*)&(calling.retUnknownTypeReference());
+   failUnless( rr );
+   //---Passing unknown types
+   failUnlessEqual( calling.setByUnknownTypePointer(rp), 0x12345678);
+--- a/cint/cintex/test/test_PyCintex_basics.py
++++ b/cint/cintex/test/test_PyCintex_basics.py
+@@ -101,9 +101,9 @@
+   def test04UnknownTypes(self) :
+     calling = self.A.B.C.Calling()
+     #---Returning unknown types
+-    rp = calling.retUnkownTypePointer()
++    rp = calling.retUnknownTypePointer()
+     self.failUnless( rp )
+-    rr = calling.retUnkownTypeReference()
++    rr = calling.retUnknownTypeReference()
+     self.failUnless( rr )
+     #---Passing unknown types
+     self.failUnlessEqual( calling.setByUnknownTypePointer(rp), 0x12345678)

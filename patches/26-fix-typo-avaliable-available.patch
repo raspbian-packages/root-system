@@ -1,0 +1,196 @@
+--- a/README/INSTALL
++++ b/README/INSTALL
+@@ -688,7 +688,7 @@
+ or you can download the source from the same directory. The original
+ sources can be found via Lunds FTP server.
+ 
+-More information is avaliable from:
++More information is available from:
+ 
+    http://www.thep.lu.se/~torbjorn/Pythia.html
+ 
+@@ -717,7 +717,7 @@
+ -------------------------
+ To build rootd and proofd with support for AFS authentication, you
+ first have to install AFS client libraries system. There are a few AFS
+-distributions avaliable.
++distributions available.
+ 
+ * OpenAFS
+   IBMs OpenSource AFS distribution - see
+--- a/cint/configure
++++ b/cint/configure
+@@ -421,7 +421,7 @@
+ #        *)
+ #            echo "Attempts at guessing your architecture failed."
+ #            echo "Please specify the architecture as the first argument."
+-#            echo "Do '$0 --help' for a list of avaliable architectures."
++#            echo "Do '$0 --help' for a list of available architectures."
+ #            exit 1
+ #            ;;
+     esac
+--- a/configure
++++ b/configure
+@@ -1245,7 +1245,7 @@
+             echo "Attempts at guessing your architecture failed."
+             echo "(triplet is $arch:$chip:$rele)"
+             echo "Please specify the architecture as the first argument."
+-            echo "Do '$0 --help' for a list of avaliable architectures."
++            echo "Do '$0 --help' for a list of available architectures."
+             echo "Or file a bug at https://savannah.cern.ch/projects/savroot/"
+             echo "including the full config.log and a dump of"
+             echo "  touch dummy_file.c; gcc -E -dM dummy_file.c"
+--- a/html/src/TClassDocOutput.cxx
++++ b/html/src/TClassDocOutput.cxx
+@@ -1046,7 +1046,7 @@
+       }
+       outdot << "}" << endl; // dependencies
+    } else
+-      outdot << "\"No rlibmap information avaliable.\"" << endl;
++      outdot << "\"No rlibmap information available.\"" << endl;
+ 
+    outdot << "}" << endl; // digraph
+ 
+--- a/html/src/THtml.cxx
++++ b/html/src/THtml.cxx
+@@ -2396,7 +2396,7 @@
+ 
+ //______________________________________________________________________________
+ void THtml::SetFoundDot(Bool_t found) {
+-   // Set whether "dot" (a GraphViz utility) is avaliable
++   // Set whether "dot" (a GraphViz utility) is available
+    if (found) fPathInfo.fFoundDot = PathInfo_t::kDotFound;
+    else fPathInfo.fFoundDot = PathInfo_t::kDotNotFound;
+ }
+--- a/io/xml/src/TXMLFile.cxx
++++ b/io/xml/src/TXMLFile.cxx
+@@ -928,7 +928,7 @@
+ void TXMLFile::SetUsedDtd(Bool_t use)
+ {
+    // Specify usage of DTD for this file.
+-   // Currently this option not avaliable (always false).
++   // Currently this option not available (always false).
+    // Can be changed only for newly created file.
+ 
+    if (IsWritable() &&  (GetListOfKeys()->GetSize()==0))
+--- a/man/man1/g2root.1
++++ b/man/man1/g2root.1
+@@ -110,7 +110,7 @@
+ .RS 
+ .I The ROOT Users Guide
+ .RE
+-avaliable from the main 
++available from the main 
+ .B ROOT
+ website:
+ .RS
+--- a/man/man1/g2rootold.1
++++ b/man/man1/g2rootold.1
+@@ -111,7 +111,7 @@
+ .RS 
+ .I The ROOT Users Guide
+ .RE
+-avaliable from the main 
++available from the main 
+ .B ROOT
+ website:
+ .RS
+--- a/man/man1/h2root.1
++++ b/man/man1/h2root.1
+@@ -106,7 +106,7 @@
+ .RS 
+ .I The ROOT Users Guide
+ .RE
+-avaliable from the main 
++available from the main 
+ .B ROOT
+ website:
+ .RS
+--- a/man/man1/hadd.1
++++ b/man/man1/hadd.1
+@@ -26,7 +26,7 @@
+ \fIhttp://root.cern.ch\fR
+ .UE
+ .PP
+-A \fBUsers Guide\fR is avaliable from
++A \fBUsers Guide\fR is available from
+ .UR http://root.cern.ch/root/UsersGuide.html
+ here.
+ .UE
+--- a/man/man1/rlibmap.1
++++ b/man/man1/rlibmap.1
+@@ -15,7 +15,7 @@
+ .SH OPTIONS 
+ .TP 
+ .B --help
+-Gives a short list of options avaliable, and exit
++Gives a short list of options available, and exit
+ .TP
+ .BI -f 
+ What!?
+--- a/man/man1/root-config.1
++++ b/man/man1/root-config.1
+@@ -146,7 +146,7 @@
+ .SH OPTIONS 
+ .TP 
+ .B \-\-help
+-Gives a short list of options avaliable, and exit
++Gives a short list of options available, and exit
+ .TP
+ .B \-\-version 
+ Report the version number of installed \fBROOT\fR, and exit. 
+--- a/man/man1/root.1
++++ b/man/man1/root.1
+@@ -48,7 +48,7 @@
+ \fIhttp://root.cern.ch\fR
+ .UE
+ .PP
+-A \fBUsers Guide\fR is avaliable 
++A \fBUsers Guide\fR is available 
+ .UR http://root.cern.ch/root/UsersGuide.html
+ online.
+ .UE
+--- a/man/man1/roota.1
++++ b/man/man1/roota.1
+@@ -49,7 +49,7 @@
+ \fIROOT web-site\fR
+ .UE
+ .IP *
+-A \fBUsers Guide\fR is avaliable from 
++A \fBUsers Guide\fR is available from 
+ .UR http://root.cern.ch/root/UsersGuide.html
+ \fIthe ROOT website\fR
+ .UE
+--- a/man/man1/ssh2rpd.1
++++ b/man/man1/ssh2rpd.1
+@@ -14,7 +14,7 @@
+ .SH OPTIONS 
+ .TP 
+ .B --help
+-Gives a short list of options avaliable, and exit
++Gives a short list of options available, and exit
+ .SH "SEE ALSO"
+ \fIroot\fR(1), \fIrootd\fR(1)
+ .PP
+--- a/roofit/roofitcore/src/RooRealConstant.cxx
++++ b/roofit/roofitcore/src/RooRealConstant.cxx
+@@ -65,7 +65,7 @@
+ RooConstVar& RooRealConstant::value(Double_t value) 
+ {
+   // Return a constant value object with given value.
+-  // Return previously created object if avaliable,
++  // Return previously created object if available,
+   // otherwise create a new one on the fly.
+   
+   // Lookup existing constant
+--- a/tmva/src/MethodMLP.cxx
++++ b/tmva/src/MethodMLP.cxx
+@@ -1657,7 +1657,7 @@
+          << "only the TMlpANN performs an explicit separation of the" << Endl;
+    Log() << "full training sample into independent training and validation samples." << Endl;
+    Log() << "We have found that in most high-energy physics applications the " << Endl;
+-   Log() << "avaliable degrees of freedom (training events) are sufficient to " << Endl;
++   Log() << "available degrees of freedom (training events) are sufficient to " << Endl;
+    Log() << "constrain the weights of the relatively simple architectures required" << Endl;
+    Log() << "to achieve good performance. Hence no overtraining should occur, and " << Endl;
+    Log() << "the use of validation samples would only reduce the available training" << Endl;

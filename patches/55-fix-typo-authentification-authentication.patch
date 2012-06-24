@@ -1,0 +1,11 @@
+--- a/net/krb5auth/src/Krb5Auth.cxx
++++ b/net/krb5auth/src/Krb5Auth.cxx
+@@ -485,7 +485,7 @@
+ 
+    if (gDebug > 1)
+      Info("Krb5Authenticate",
+-          "Sending kerberos authentification to %s",
++          "Sending kerberos authentication to %s",
+           serv_host.Data());
+ 
+    retval = krb5_sendauth(context, &auth_context, (krb5_pointer)&sockd,

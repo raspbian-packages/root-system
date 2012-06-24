@@ -1,0 +1,385 @@
+--- a/cint/configure
++++ b/cint/configure
+@@ -701,7 +701,7 @@
+ EXPORTS=(${EXPORTS[*]} HAVE_CONFIG)
+ 
+ # now set the default values of the installation directories, if
+-# they were not set explicitely by the user
++# they were not set explicitly by the user
+ 
+ if [ "x$WITHPREFIX" = "x1" ]; then
+   # prefix based build
+--- a/config/roots.in
++++ b/config/roots.in
+@@ -7,7 +7,7 @@
+ # Template for the 'roots.sh' script.
+ # In case of problems with 'ssh' not executing the relevant <shell>rc init
+ # script, an ad hoc version of this script can be put, for example, under
+-# $HOME/bin, defining explicitely $ROOTSYS, e.g.
++# $HOME/bin, defining explicitly $ROOTSYS, e.g.
+ #
+ # ----------------------------------------------------------------------
+ # #!/bin/sh
+--- a/configure
++++ b/configure
+@@ -2941,7 +2941,7 @@
+        mysqllib=$found_lib
+        mysqllibdir=$found_dir
+ 
+-       # on linux, but maybe also other systems, explicitely add libz
++       # on linux, but maybe also other systems, explicitly add libz
+        # (formally only needed when linking against the static libmysqlclient.a)
+        if test ! "x$mysqllib" = "x" ; then
+            case $platform in
+--- a/core/thread/src/TPosixThreadFactory.cxx
++++ b/core/thread/src/TPosixThreadFactory.cxx
+@@ -23,7 +23,7 @@
+ #include "TPosixThread.h"
+ 
+ // Force creation of TPosixThreadFactory when shared library will be loaded
+-// (don't explicitely create a TPosixThreadFactory).
++// (don't explicitly create a TPosixThreadFactory).
+ static TPosixThreadFactory gPosixThreadFactoryCreator;
+ 
+ ClassImp(TPosixThreadFactory)
+--- a/core/thread/src/TWin32ThreadFactory.cxx
++++ b/core/thread/src/TWin32ThreadFactory.cxx
+@@ -23,7 +23,7 @@
+ #include "TWin32Thread.h"
+ 
+ // Force creation of TWin32ThreadFactory when shared library will be loaded
+-// (don't explicitely create a TWin32ThreadFactory).
++// (don't explicitly create a TWin32ThreadFactory).
+ static TWin32ThreadFactory gWin32ThreadFactoryCreator;
+ 
+ ClassImp(TWin32ThreadFactory)
+--- a/etc/proof/xpd.cf.sample
++++ b/etc/proof/xpd.cf.sample
+@@ -32,7 +32,7 @@
+ ### to export /tmp.
+ ### NB: specifying any of these directives removes the default /tmp
+ ###     from the internal list; in such a case a directive needs to
+-###     be given explicitely if /tmp needs to be exposed.
++###     be given explicitly if /tmp needs to be exposed.
+ xrootd.export /tmp
+ xrootd.export /pool/data
+ 
+@@ -63,7 +63,7 @@
+ 
+ ###
+ ### Directives governing the behaviour of the XrdProofd plug-in.
+-### Except when explicitely indicated, all the following directives support
++### Except when explicitly indicated, all the following directives support
+ ### an optional 'if <pattern>' condition at the end of the line, e.g.
+ ###    xpd.rootsys /opt/root   if lxb*.cern.ch
+ ###    xpd.rootsys /usr/local  if lxp*.cern.ch
+--- a/graf2d/win32gdk/gdk/src/gdk/gdkdraw.c
++++ b/graf2d/win32gdk/gdk/src/gdk/gdkdraw.c
+@@ -237,7 +237,7 @@
+  *
+  * Modified by Li-Da Lho to draw 16 bits and Multibyte strings
+  *
+- * Interface changed: add "GdkFont *font" to specify font or fontset explicitely
++ * Interface changed: add "GdkFont *font" to specify font or fontset explicitly
+  */
+ void
+ gdk_draw_string(GdkDrawable * drawable,
+@@ -252,7 +252,7 @@
+  *
+  * Modified by Li-Da Lho to draw 16 bits and Multibyte strings
+  *
+- * Interface changed: add "GdkFont *font" to specify font or fontset explicitely
++ * Interface changed: add "GdkFont *font" to specify font or fontset explicitly
+  */
+ void
+ gdk_draw_text(GdkDrawable * drawable,
+--- a/gui/guihtml/inc/TGHtml.h
++++ b/gui/guihtml/inc/TGHtml.h
+@@ -150,7 +150,7 @@
+   signed int   fSubscript : 4;      // Positive for <sup>, negative for <sub>
+   unsigned int fAlign     : 2;      // Horizontal alignment
+   unsigned int fBgcolor   : 6;      // Background color
+-  unsigned int fExpbg     : 1;      // Set to 1 if bgcolor explicitely set
++  unsigned int fExpbg     : 1;      // Set to 1 if bgcolor explicitly set
+   unsigned int fFlags     : 7;      // the STY_ flags below
+ };
+ 
+--- a/hist/hist/src/TSVDUnfold.cxx
++++ b/hist/hist/src/TSVDUnfold.cxx
+@@ -39,7 +39,7 @@
+ <li><tt>bini</tt>: reconstructed spectrum (TH1D, n bins)
+ <li><tt>Adet</tt>: response matrix (TH2D, nxn bins)
+ </ul>
+-Consider the unfolding of a measured spectrum <tt>bdat</tt> with covariance matrix <tt>Bcov</tt> (if not passed explicitely, a diagonal covariance will be built given the errors of <tt>bdat</tt>). The corresponding spectrum in the Monte Carlo is given by <tt>bini</tt>, with the true underlying spectrum given by <tt>xini</tt>. The detector response is described by <tt>Adet</tt>, with <tt>Adet</tt> filled with events (not probabilities) with the true observable on the y-axis and the reconstructed observable on the x-axis.
++Consider the unfolding of a measured spectrum <tt>bdat</tt> with covariance matrix <tt>Bcov</tt> (if not passed explicitly, a diagonal covariance will be built given the errors of <tt>bdat</tt>). The corresponding spectrum in the Monte Carlo is given by <tt>bini</tt>, with the true underlying spectrum given by <tt>xini</tt>. The detector response is described by <tt>Adet</tt>, with <tt>Adet</tt> filled with events (not probabilities) with the true observable on the y-axis and the reconstructed observable on the x-axis.
+ <p>
+ The measured distribution can be unfolded for any combination of resolution, efficiency and acceptance effects, provided an appropriate definition of <tt>xini</tt> and <tt>Adet</tt>.<br><br>
+ <p>
+--- a/io/io/src/TBufferFile.cxx
++++ b/io/io/src/TBufferFile.cxx
+@@ -2981,7 +2981,7 @@
+    if (readClass) {
+       if ((cli = fMap->GetValue(offset)) == 0) {
+          // No class found at this location in map. It might have been skipped
+-         // as part of a skipped object. Try to explicitely read the class.
++         // as part of a skipped object. Try to explicitly read the class.
+ 
+          // save fBufCur and set to place specified by offset (-kMapOffset-sizeof(bytecount))
+          char *bufsav = fBufCur;
+@@ -3013,7 +3013,7 @@
+ 
+       if ((cli = fMap->GetValue(offset)) == 0) {
+          // No object found at this location in map. It might have been skipped
+-         // as part of a skipped object. Try to explicitely read the object.
++         // as part of a skipped object. Try to explicitly read the object.
+ 
+          // save fBufCur and set to place specified by offset (-kMapOffset)
+          char *bufsav = fBufCur;
+--- a/io/io/src/TContainerConverters.cxx
++++ b/io/io/src/TContainerConverters.cxx
+@@ -119,7 +119,7 @@
+                if (b.GetBufferVersion()==0) continue;
+ 
+                // No object found at this location in map. It might have been skipped
+-               // as part of a skipped object. Try to explicitely read the object.
++               // as part of a skipped object. Try to explicitly read the object.
+                b.MapObject(*(void**)addr, fProxy->GetCollectionClass(), 0);
+                Int_t currentpos = b.Length();
+                b.SetBufferOffset( tag - kMapOffset );
+--- a/math/mlp/src/TMultiLayerPerceptron.cxx
++++ b/math/mlp/src/TMultiLayerPerceptron.cxx
+@@ -159,7 +159,7 @@
+ </UL>
+ <P><FONT SIZE=3>TMLP is build from 3 classes: TNeuron, TSynapse and
+ TMultiLayerPerceptron. Only TMultiLayerPerceptron should be used
+-explicitely by the user.</FONT></P>
++explicitly by the user.</FONT></P>
+ <P><FONT SIZE=3>TMultiLayerPerceptron will take examples from a TTree
+ given in the constructor. The network is described by a simple
+ string: The input/output layers are defined by giving the expression for
+@@ -178,7 +178,7 @@
+ </SPAN>TMultiLayerPerceptron(&quot;x,y:10:5:f&quot;,inputTree);</SPAN></FONT></P>
+ <P><FONT SIZE=3>Both the TTree and the TEventLists can be defined in
+ the constructor, or later with the suited setter method. The lists
+-used for training and test can be defined either explicitely, or via
++used for training and test can be defined either explicitly, or via
+ a string containing the formula to be used to define them, exactly as
+ for a TCut.</FONT></P>
+ <P><FONT SIZE=3>The learning method is defined using the
+--- a/net/net/src/TNetFile.cxx
++++ b/net/net/src/TNetFile.cxx
+@@ -656,7 +656,7 @@
+    // option argument with an "-", e.g.: "-recreate". Do this only
+    // in cases when you are very sure nobody else is using the file.
+    // To bypass the writelock on a file, to allow the reading of a file
+-   // that is being written by another process, explicitely specify the
++   // that is being written by another process, explicitly specify the
+    // "+read" option ("read" being the default option).
+    // The netopt argument can be used to specify the size of the tcp window in
+    // bytes (for more info see: http://www.psc.edu/networking/perf_tune.html).
+@@ -887,7 +887,7 @@
+    // Check locality, taking into account possible prefixes
+    fLocalPrefix = "";
+    fIsLocal = kFALSE;
+-   // We may have been asked explicitely to go through the daemon
++   // We may have been asked explicitly to go through the daemon
+    Bool_t forceRemote = gEnv->GetValue("Path.ForceRemote", 0);
+    TString opts = TUrl(url).GetOptions();
+    if (opts.Contains("remote=1"))
+--- a/net/net/src/TPSocket.cxx
++++ b/net/net/src/TPSocket.cxx
+@@ -332,7 +332,7 @@
+    // Close a parallel socket. If option is "force", calls shutdown(id,2) to
+    // shut down the connection. This will close the connection also
+    // for the parent of this process. Also called via the dtor (without
+-   // option "force", call explicitely Close("force") if this is desired).
++   // option "force", call explicitly Close("force") if this is desired).
+ 
+ 
+    if (!IsValid()) {
+--- a/net/net/src/TSocket.cxx
++++ b/net/net/src/TSocket.cxx
+@@ -385,7 +385,7 @@
+    // Close the socket. If option is "force", calls shutdown(id,2) to
+    // shut down the connection. This will close the connection also
+    // for the parent of this process. Also called via the dtor (without
+-   // option "force", call explicitely Close("force") if this is desired).
++   // option "force", call explicitly Close("force") if this is desired).
+ 
+    Bool_t force = option ? (!strcmp(option, "force") ? kTRUE : kFALSE) : kFALSE;
+ 
+--- a/proof/doc/v522/index.html
++++ b/proof/doc/v522/index.html
+@@ -197,7 +197,7 @@
+ 
+     <li>Avoid duplicating worker logs in the master log file
+ unless
+-when explicitely needed by the request (Exec(...), Print(...)) or when
++when explicitly needed by the request (Exec(...), Print(...)) or when
+ an error occured</li><li>Fix
+ problem with the determination and transmission of the name of the
+ object to be processed. The problem appeared when processing files
+--- a/proof/proof/src/TProof.cxx
++++ b/proof/proof/src/TProof.cxx
+@@ -832,7 +832,7 @@
+    if (enableSchemaEvolution) {
+       TMessage::EnableSchemaEvolutionForAll();
+    } else {
+-      Info("TProof", "automatic schema evolution in TMessage explicitely disabled");
++      Info("TProof", "automatic schema evolution in TMessage explicitly disabled");
+    }
+ 
+    if (IsMaster()) {
+@@ -10784,7 +10784,7 @@
+       if (mgr && mgr->IsValid()) {
+ 
+          // If XProofd we always attempt an attach first (unless
+-         // explicitely not requested).
++         // explicitly not requested).
+          Bool_t attach = (create || mgr->IsProofd() || mgr->IsLite()) ? kFALSE : kTRUE;
+          if (attach) {
+             TProofDesc *d = 0;
+--- a/proof/proof/src/TProofServ.cxx
++++ b/proof/proof/src/TProofServ.cxx
+@@ -762,7 +762,7 @@
+    if (enableSchemaEvolution) {
+       TMessage::EnableSchemaEvolutionForAll();
+    } else {
+-      Info("TProofServ", "automatic schema evolution in TMessage explicitely disabled");
++      Info("TProofServ", "automatic schema evolution in TMessage explicitly disabled");
+    }
+ }
+ 
+@@ -2533,7 +2533,7 @@
+    fflush(stdout);
+ 
+    // On workers we do not send the logs to masters (to avoid duplication of
+-   // text) unless asked explicitely, e.g. after an Exec(...) request.
++   // text) unless asked explicitly, e.g. after an Exec(...) request.
+    if (!IsMaster()) {
+       if (!fSendLogToMaster) {
+          FlushLogFile();
+--- a/proof/proofd/src/XrdProofdClientMgr.cxx
++++ b/proof/proofd/src/XrdProofdClientMgr.cxx
+@@ -335,7 +335,7 @@
+ 
+    TRACEP(p, HDBG, "enter");
+ 
+-   // If this server is explicitely required to be a worker node or a
++   // If this server is explicitly required to be a worker node or a
+    // submaster, check whether the requesting host is allowed to connect
+    if (p->Request()->login.role[0] != 'i' &&
+       (fMgr->SrvType() == kXPD_MasterWorker || fMgr->SrvType() == kXPD_Master)) {
+--- a/proof/proofplayer/src/TPacketizerFile.cxx
++++ b/proof/proofplayer/src/TPacketizerFile.cxx
+@@ -109,7 +109,7 @@
+       return;
+    }
+ 
+-   // Check if the files not explicitely assigned have to be processed
++   // Check if the files not explicitly assigned have to be processed
+    Int_t procnotass = 1;
+    if (TProof::GetParameter(input, "PROOF_ProcessNotAssigned", procnotass) == 0) {
+       if (procnotass == 0) {
+--- a/proof/proofplayer/src/TProofPlayer.cxx
++++ b/proof/proofplayer/src/TProofPlayer.cxx
+@@ -1636,7 +1636,7 @@
+       } else {
+          listOfMissingFiles = new TList;
+       }
+-      // Do the lookup; we only skip it if explicitely requested so.
++      // Do the lookup; we only skip it if explicitly requested so.
+       TString lkopt;
+       if (TProof::GetParameter(fInput, "PROOF_LookupOpt", lkopt) != 0 || lkopt != "none")
+          dset->Lookup(kTRUE, &listOfMissingFiles);
+--- a/proof/proofx/src/TXSocket.cxx
++++ b/proof/proofx/src/TXSocket.cxx
+@@ -2095,7 +2095,7 @@
+    Int_t tryreconnect = gEnv->GetValue("TXSocket.Reconnect", 1);
+    if (tryreconnect == 0 || fXrdProofdVersion < 1005) {
+       if (tryreconnect == 0)
+-         Info("Reconnect","%p: reconnection attempts explicitely disabled!", this);
++         Info("Reconnect","%p: reconnection attempts explicitly disabled!", this);
+       else
+          Info("Reconnect","%p: server does not support reconnections (protocol: %d < 1005)",
+                           this, fXrdProofdVersion);
+--- a/test/stress.cxx
++++ b/test/stress.cxx
+@@ -656,7 +656,7 @@
+    helist->Write();
+    hcut->Write();
+ 
+-   // now loop on eventlist explicitely and fill helist again
++   // now loop on eventlist explicitly and fill helist again
+    Float_t pxr;
+    ntuple->SetBranchAddress("px",&pxr);
+    TH1F *helistc = (TH1F*)helist->Clone();
+--- a/test/threads.cxx
++++ b/test/threads.cxx
+@@ -35,7 +35,7 @@
+    c1->SetGrid();
+    pad1->Draw();
+ 
+-   // creating a histogram is explicitely locked by a global mutex
++   // creating a histogram is explicitly locked by a global mutex
+    TThread::Lock();
+    TH1F *main   = new TH1F("main","Main contributor",100,-4,4);
+    TThread::UnLock();
+--- a/proof/proofd/src/XrdProofdManager.cxx
++++ b/proof/proofd/src/XrdProofdManager.cxx
+@@ -338,7 +338,7 @@
+       // Policy: check first the general directive for groups; a user of a specific group
+       // (both UNIX or PROOF groups) can be rejected by prefixing a '-'.
+       // The group check fails if active (the allowedgroups directive has entries) and at
+-      // least of the two groups (UNIX or PROOF) are explicitely denied.
++      // least of the two groups (UNIX or PROOF) are explicitly denied.
+       // The result of the group check is superseeded by any explicit speicification in the
+       // allowedusers, either positive or negative.
+       //
+@@ -352,13 +352,13 @@
+       //         User 'katy' is allowed because part of PROOF group 'student'; 
+       //         users 'jack' and 'john' are denied because not part of PROOF group 'student' (no 'allowedusers' directive)
+       //   3.    xpd.allowedgroups alfa,-student
+-      //         User 'katy' is denied because part of PROOF group 'student' which is explicitely denied;
++      //         User 'katy' is denied because part of PROOF group 'student' which is explicitly denied;
+       //         users 'jack' and 'john' are allowed becasue part of UNIX group 'alfa' (no 'allowedusers' directive)
+       //   4.    xpd.allowedgroups alfa,-student
+       //         xpd.allowedusers katy,-jack
+-      //         User 'katy' is allowed because explicitely allowed by the 'allowedusers' directive;
+-      //         user 'jack' is denied because explicitely denied by the 'allowedusers' directive;
+-      //         user 'john' is allowed because part of 'alfa' and not explicitely denied by the 'allowedusers' directive
++      //         User 'katy' is allowed because explicitly allowed by the 'allowedusers' directive;
++      //         user 'jack' is denied because explicitly denied by the 'allowedusers' directive;
++      //         user 'john' is allowed because part of 'alfa' and not explicitly denied by the 'allowedusers' directive
+       //         (the allowedgroups directive is in this case ignored for users 'katy' and 'jack').
+ 
+       bool grpok = 1;
+@@ -428,7 +428,7 @@
+          usrok = 1;
+          e = "";
+       }
+-      // We fail if either the user is explicitely denied or it is not explicitely allowed
++      // We fail if either the user is explicitly denied or it is not explicitly allowed
+       // and the group is denied
+       if (usrok == -1 || (!grpok && usrok != 1)) return -1;
+    }
+@@ -938,7 +938,7 @@
+ 
+    // Groups
+    if (!fGroupsMgr)
+-      // Create default group, if none explicitely requested
++      // Create default group, if none explicitly requested
+       fGroupsMgr = new XrdProofGroupMgr;
+ 
+    if (fGroupsMgr)
+--- a/geom/gdml/src/TGDMLParse.cxx
++++ b/geom/gdml/src/TGDMLParse.cxx
+@@ -19,7 +19,7 @@
+ --------------------------------------------------------------------
+ 
+  This class contains the implementation of the GDML  parser associated to
+- all the supported GDML elements. User should never need to explicitely
++ all the supported GDML elements. User should never need to explicitly
+  instaciate this class. It is internally used by the TGeoManager.
+ 
+  Each element process has a 'Binding' to ROOT. The 'binding' is specific
