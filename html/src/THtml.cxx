@@ -785,7 +785,7 @@ These are typical things people do with THtml:
 or to run on just a few classes:
 <pre>
     root[] <a href="http://root.cern.ch/root/html/THtml.html">THtml</a> html;                // create a <a href="http://root.cern.ch/root/html/THtml.html">THtml</a> object
-    root[] html.MakeIndex();           // create auxilliary files (style sheet etc) and indices
+    root[] html.MakeIndex();           // create auxiliary files (style sheet etc) and indices
     root[] html.MakeClass("TMyClass"); // create documentation for TMyClass only
 </pre>
 To "beautify" (i.e. create links to documentation for class names etc) some text
