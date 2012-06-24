@@ -87,5 +87,5 @@ distclean-$(MODNAME): clean-$(MODNAME)
 distclean::     distclean-$(MODNAME)
 
 ##### extra rules ######
-$(RUBYROOTO): CXXFLAGS += $(RUBYINCDIR:%=-I%) -Iinclude/cint
-$(RUBY64O): CFLAGS += $(RUBYINCDIR:%=-I%)
+$(RUBYROOTO): CXXFLAGS += $(RUBYINCDIR:%=-I%) -I$(RUBYARCHINC) -Iinclude/cint
+$(RUBY64O): CFLAGS += $(RUBYINCDIR:%=-I%) -I$(RUBYARCHINC)
