@@ -701,7 +701,7 @@ HAVE_CONFIG=1
 EXPORTS=(${EXPORTS[*]} HAVE_CONFIG)
 
 # now set the default values of the installation directories, if
-# they were not set explicitely by the user
+# they were not set explicitly by the user
 
 if [ "x$WITHPREFIX" = "x1" ]; then
   # prefix based build

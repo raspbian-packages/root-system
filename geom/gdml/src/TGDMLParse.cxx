@@ -19,7 +19,7 @@ TGDMLParse Class
 --------------------------------------------------------------------
 
  This class contains the implementation of the GDML  parser associated to
- all the supported GDML elements. User should never need to explicitely
+ all the supported GDML elements. User should never need to explicitly
  instaciate this class. It is internally used by the TGeoManager.
 
  Each element process has a 'Binding' to ROOT. The 'binding' is specific

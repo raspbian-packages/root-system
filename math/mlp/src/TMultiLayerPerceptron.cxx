@@ -159,7 +159,7 @@ the direction is reset to the steepes descent.</P>
 </UL>
 <P><FONT SIZE=3>TMLP is build from 3 classes: TNeuron, TSynapse and
 TMultiLayerPerceptron. Only TMultiLayerPerceptron should be used
-explicitely by the user.</FONT></P>
+explicitly by the user.</FONT></P>
 <P><FONT SIZE=3>TMultiLayerPerceptron will take examples from a TTree
 given in the constructor. The network is described by a simple
 string: The input/output layers are defined by giving the expression for
@@ -178,7 +178,7 @@ One defines the training and test datasets by TEventLists.</FONT></P>
 </SPAN>TMultiLayerPerceptron(&quot;x,y:10:5:f&quot;,inputTree);</SPAN></FONT></P>
 <P><FONT SIZE=3>Both the TTree and the TEventLists can be defined in
 the constructor, or later with the suited setter method. The lists
-used for training and test can be defined either explicitely, or via
+used for training and test can be defined either explicitly, or via
 a string containing the formula to be used to define them, exactly as
 for a TCut.</FONT></P>
 <P><FONT SIZE=3>The learning method is defined using the
