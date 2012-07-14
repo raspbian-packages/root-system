@@ -4919,8 +4919,8 @@ void *TUnixSystem::SearchUtmpEntry(int n, const char *tty)
 
 //---- System, CPU and Memory info ---------------------------------------------
 
-#if defined(R__MACOSX)
 #include <sys/resource.h>
+#if defined(R__MACOSX)
 #include <mach/mach.h>
 #include <mach/mach_error.h>
 
