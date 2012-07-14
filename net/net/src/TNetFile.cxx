@@ -656,7 +656,7 @@ void TNetFile::Create(const char * /*url*/, Option_t *option, Int_t netopt)
    // option argument with an "-", e.g.: "-recreate". Do this only
    // in cases when you are very sure nobody else is using the file.
    // To bypass the writelock on a file, to allow the reading of a file
-   // that is being written by another process, explicitely specify the
+   // that is being written by another process, explicitly specify the
    // "+read" option ("read" being the default option).
    // The netopt argument can be used to specify the size of the tcp window in
    // bytes (for more info see: http://www.psc.edu/networking/perf_tune.html).
@@ -887,7 +887,7 @@ void TNetSystem::Create(const char *url, TSocket *sock)
    // Check locality, taking into account possible prefixes
    fLocalPrefix = "";
    fIsLocal = kFALSE;
-   // We may have been asked explicitely to go through the daemon
+   // We may have been asked explicitly to go through the daemon
    Bool_t forceRemote = gEnv->GetValue("Path.ForceRemote", 0);
    TString opts = TUrl(url).GetOptions();
    if (opts.Contains("remote=1"))

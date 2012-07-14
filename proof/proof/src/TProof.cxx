@@ -832,7 +832,7 @@ Int_t TProof::Init(const char *, const char *conffile,
    if (enableSchemaEvolution) {
       TMessage::EnableSchemaEvolutionForAll();
    } else {
-      Info("TProof", "automatic schema evolution in TMessage explicitely disabled");
+      Info("TProof", "automatic schema evolution in TMessage explicitly disabled");
    }
 
    if (IsMaster()) {
@@ -10784,7 +10784,7 @@ TProof *TProof::Open(const char *cluster, const char *conffile,
       if (mgr && mgr->IsValid()) {
 
          // If XProofd we always attempt an attach first (unless
-         // explicitely not requested).
+         // explicitly not requested).
          Bool_t attach = (create || mgr->IsProofd() || mgr->IsLite()) ? kFALSE : kTRUE;
          if (attach) {
             TProofDesc *d = 0;

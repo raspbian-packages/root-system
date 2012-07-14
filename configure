@@ -2941,7 +2941,7 @@ if test ! "x$enable_mysql" = "xno"; then
        mysqllib=$found_lib
        mysqllibdir=$found_dir
 
-       # on linux, but maybe also other systems, explicitely add libz
+       # on linux, but maybe also other systems, explicitly add libz
        # (formally only needed when linking against the static libmysqlclient.a)
        if test ! "x$mysqllib" = "x" ; then
            case $platform in
