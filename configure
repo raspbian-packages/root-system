@@ -6186,6 +6186,7 @@ if test "x$show_pkglist" = "xyes" ; then
         libroot-gui-ged \
         libroot-hist \
         libroot-hist-spectrum \
+        libroot-html \
         libroot-io \
         libroot-math-foam \
         libroot-math-genvector \
