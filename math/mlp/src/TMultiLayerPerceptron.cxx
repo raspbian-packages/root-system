@@ -50,7 +50,7 @@
 </UL>
 <P>Neural Networks are more and more used in various fields for data
 analysis and classification, both for research and commercial
-institutions. Some randomly choosen examples are:</P>
+institutions. Some randomly chosen examples are:</P>
 <UL>
         <LI><P>image analysis</P>
         <LI><P>financial movements predictions and analysis</P>
@@ -64,7 +64,7 @@ implementation of multilayer perceptrons is inspired from the
 package</A> originaly written by Jerome Schwindling. MLPfit remains
 one of the fastest tool for neural networks studies, and this ROOT
 add-on will not try to compete on that. A clear and flexible Object
-Oriented implementation has been choosen over a faster but more
+Oriented implementation has been chosen over a faster but more
 difficult to maintain code. Nevertheless, the time penalty does not
 exceed a factor 2.</P>
 <UL>
