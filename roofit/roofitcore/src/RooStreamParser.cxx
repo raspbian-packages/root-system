@@ -204,7 +204,7 @@ TString RooStreamParser::readToken()
     }
 
     if (!quotedString) {
-      // Decide if next char is punctuation (exempt - and . that are part of floating point numbers, or +/- preceeding INF)
+      // Decide if next char is punctuation (exempt - and . that are part of floating point numbers, or +/- preceding INF)
       if (isPunctChar(c) && !(c=='.' && (isdigit(cnext)||isdigit(cprev))) 
 	  && !((c=='-'||c=='+') && (isdigit(cnext)||cnext=='.'||cnext=='i'||cnext=='I'))) {
 	if (first) {
