@@ -48,7 +48,7 @@ AM_LDFLAGS              = \-L@ROOTLIBDIR@
 CLEANFILES              = *Cint.cxx *Cint.h *~ core 
 
 %Cint.cxx %Cint.h:Include.h LinkDef.h
-        @ROOTCINT@ \-f $*Cint.cxx -c $(INCLUDES) $(AM_CPPFLAGS) $^  
+        @ROOTCINT@ \(hyf $*Cint.cxx \(hyc $(INCLUDES) $(AM_CPPFLAGS) $^  
 
 .fi
 .RE
