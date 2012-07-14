@@ -166,7 +166,7 @@ const char gHelpBuilder[] = "\
  o Ctrl-Z    - undo last action (not implemented)\n\
  o Shift-Ctrl-Z - redo (not implemented)\n\
 \n\
-                    More informations\n\
+                    More information\n\
      ************************************************\n\
 \n\
 For more information, please see the GuiBuilder Howto page at:\n\

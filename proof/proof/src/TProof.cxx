@@ -10902,7 +10902,7 @@ void TProof::ResetEnvVars()
 //______________________________________________________________________________
 void TProof::SaveWorkerInfo()
 {
-   // Save informations about the worker set in the file .workers in the working
+   // Save information about the worker set in the file .workers in the working
    // dir. Called each time there is a change in the worker setup, e.g. by
    // TProof::MarkBad().
 
