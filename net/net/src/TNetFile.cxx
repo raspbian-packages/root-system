@@ -412,7 +412,7 @@ Bool_t TNetFile::ReadBuffers(char *buf,  Long64_t *pos, Int_t *len, Int_t nbuf)
    Double_t start = 0;
    if (gPerfStats) start = TTimeStamp();
 
-   // Make the string with a list of offsets and lenghts
+   // Make the string with a list of offsets and lengths
    Long64_t total_len = 0;
    Long64_t actual_pos;
    for(Int_t i = 0; i < nbuf; i++) {
@@ -423,7 +423,7 @@ Bool_t TNetFile::ReadBuffers(char *buf,  Long64_t *pos, Int_t *len, Int_t nbuf)
       total_len += len[i];
    }
 
-   // Send the command with the lenght of the info and number of buffers
+   // Send the command with the length of the info and number of buffers
    if (fSocket->Send(Form("%d %d %d", nbuf, data_buf.Length(), blockSize),
                           kROOTD_GETS) < 0) {
       Error("ReadBuffers", "error sending kROOTD_GETS command");
