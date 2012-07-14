@@ -1265,7 +1265,7 @@ Bool_t TUnixSystem::CheckSignals(Bool_t sync)
 //______________________________________________________________________________
 void TUnixSystem::CheckChilds()
 {
-   // Check if childs have finished.
+   // Check if children have finished.
 
 #if 0  //rdm
    int pid;
