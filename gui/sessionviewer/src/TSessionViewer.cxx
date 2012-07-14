@@ -932,7 +932,7 @@ void TSessionFrame::Build(TSessionViewer *gui)
    tf->AddFrame(fFC, new TGLayoutHints(kLHintsTop | kLHintsLeft |
          kLHintsExpandX | kLHintsExpandY));
 
-   // add comand line label and text entry
+   // add command line label and text entry
    TGCompositeFrame* frmCmd = new TGHorizontalFrame(fFC, 350, 100);
    frmCmd->SetCleanup(kDeepCleanup);
    frmCmd->AddFrame(new TGLabel(frmCmd, "Command Line :"),
