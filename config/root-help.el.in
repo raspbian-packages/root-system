@@ -608,7 +608,7 @@ int main(int argc, char** argv)
 
 ;;____________________________________________________________________
 (defun root-insert-linkdef () 
-  "Insert lines appropiate for a linkdef file into current buffer
+  "Insert lines appropriate for a linkdef file into current buffer
 
 The user will be prompted for classes to add to the linkdef file.  An
 empty string ends the input."
