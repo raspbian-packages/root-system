@@ -28,7 +28,7 @@ GLH          := $(filter-out $(MODDIRI)/TX11GL.h, $(GLH))
 endif
 
 # Excluded from rootcint
-GLH1         := $(MODDIRI)/gl2ps.h $(MODDIRI)/CsgOps.h \
+GLH1         := $(MODDIRI)/CsgOps.h \
                 $(MODDIRI)/TGLIncludes.h $(MODDIRI)/TGLWSIncludes.h \
                 $(MODDIRI)/TGLContextPrivate.h $(MODDIRI)/TGLMarchingCubes.h \
 		$(MODDIRI)/TKDEAdapter.h $(MODDIRI)/TGL5DPainter.h \
@@ -70,7 +70,7 @@ $(GLLIB):       $(GLO) $(GLDO) $(ORDER_) $(MAINLIBS) $(GLLIBDEP) $(FTGLLIB) \
 		@$(MAKELIB) $(PLATFORM) $(LD) "$(LDFLAGS)" \
 		   "$(SOFLAGS)" libRGL.$(SOEXT) $@ "$(GLO) $(GLO1) $(GLDO)" \
 		   "$(GLLIBEXTRA) $(FTGLLIBDIR) $(FTGLLIBS) \
-		    $(GLEWLIBDIR) $(GLEWLIBS) $(GLLIBS)"
+		    $(GLEWLIBDIR) $(GLEWLIBS) -lgl2ps $(GLLIBS)"
 
 $(GLDS):	$(GLH2) $(GLL) $(ROOTCINTTMPDEP)
 		$(MAKEDIR)
