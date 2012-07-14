@@ -4876,7 +4876,7 @@ void G__write_dummy_param(FILE *fp, G__paramfunc *formal_param)
                break;
                
             default:
-               fprintf(fp, " Unkown: %c", formal_param->type);
+               fprintf(fp, " Unknown: %c", formal_param->type);
                G__fprinterr(G__serr,"Type %c not known yet (methodcall)\n", para_type);
          }
          
@@ -4979,7 +4979,7 @@ void G__write_dummy_param(FILE *fp, G__paramfunc *formal_param)
                break;
                
             default:
-               fprintf(fp, " Unkown: %c", formal_param->type);
+               fprintf(fp, " Unknown: %c", formal_param->type);
                G__fprinterr(G__serr,"Type %c not known yet (G__write_dummy_param)\n",formal_param->type);
          }  
          fprintf(fp,"*");
