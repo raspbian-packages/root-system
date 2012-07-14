@@ -8,7 +8,7 @@ PCREVERS     := pcre-7.8
 
 ifneq ($(BUILTINPCRE), yes)
 
-PCRELIBF     := $(shell pcre-config --libs)
+PCRELIBF     := $(shell pcre-config --libs | sed -e 's|-Wl,-R.* ||')
 PCREINC      := $(shell pcre-config --cflags)
 PCRELIB      := $(filter -l%,$(PCRELIBF))
 PCRELDFLAGS  := $(filter-out -l%,$(PCRELIBF))

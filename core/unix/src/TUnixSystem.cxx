@@ -60,7 +60,7 @@
 #if defined(R__AIX) || defined(R__LINUX) || defined(R__ALPHA) || \
     defined(R__SGI) || defined(R__HIUX) || defined(R__FBSD) || \
     defined(R__OBSD) || defined(R__LYNXOS) || defined(R__MACOSX) || \
-    defined(R__HURD)
+    defined(R__HURD) || defined(__FreeBSD_kernel__)
 #   include <sys/ioctl.h>
 #endif
 #if defined(R__AIX) || defined(R__SOLARIS)

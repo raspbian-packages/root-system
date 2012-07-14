@@ -53,7 +53,7 @@
 
 #if defined(linux) || defined(__hpux) || defined(__sun) || defined(__sgi) || \
     defined(_AIX) || defined(__FreeBSD__) || defined(__OpenBSD__) || \
-    defined(__APPLE__) || defined(__MACH__) || \
+    defined(__APPLE__) || defined(__MACH__) || defined(__FreeBSD_kernel__) || \
     (defined(__CYGWIN__) && defined(__GNUC__))
 #define USE_SETSID
 #endif
