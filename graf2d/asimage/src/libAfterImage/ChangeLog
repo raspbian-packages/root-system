@@ -3383,7 +3383,7 @@
 	* Completed Pseudo-color support with colormap allocation and
 	  ximage handling.  Added create_asimage and destroy_asimage for
 	  convinience.	Added missing stuff to libAfterImage/afterbase.h to
-	  make it completely independant.  libAfterImage thus should be
+	  make it completely independent.  libAfterImage thus should be
 	  ready for release - only to write up some docs :)
 
 2001-06-13  sasha
@@ -3495,7 +3495,7 @@
 	  it.  That should allow for better library independancy - visual
 	  will go with libAfterImage while ScreenInfo will move into
 	  libAfterStep , or, possibly will split up even more.	Goal is to
-	  make libAfterImage completely independant from everything else.
+	  make libAfterImage completely independent from everything else.
 
 2001-05-23  allanon
 
