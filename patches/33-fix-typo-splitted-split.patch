@@ -1,0 +1,201 @@
+--- a/cint/reflex/inc/Reflex/Tools.h
++++ b/cint/reflex/inc/Reflex/Tools.h
+@@ -64,8 +64,8 @@
+ 
+ 
+ /**
+- * StringSplit will return a vector of splitted strings
+- * @param  splitValues returns the vector with splitted strings
++ * StringSplit will return a vector of split strings
++ * @param  splitValues returns the vector with split strings
+  * @param  str the input string
+  * @param  delim the delimiter on which to split
+  */
+--- a/core/base/inc/TUri.h
++++ b/core/base/inc/TUri.h
+@@ -43,7 +43,7 @@
+ private:
+ 
+    // In order to represent the five basic components of an URI,
+-   // we use 7 member variables (authority gets splitted in 3 parts)
++   // we use 7 member variables (authority gets split in 3 parts)
+    //
+    //   foo://user:pass@example.com:8042/over/there?name=ferret#nose
+    //   \_/   \________________________/\_________/ \_________/ \__/
+--- a/geom/geom/src/TGeoCompositeShape.cxx
++++ b/geom/geom/src/TGeoCompositeShape.cxx
+@@ -58,7 +58,7 @@
+ //   This represent the union of A, B and C. Both union operators are at the
+ // same level. Since:
+ //        A+B+C = (A+B)+C = A+(B+C)
+-// the first (+) is taken as separator, hence the expression splitted:
++// the first (+) is taken as separator, hence the expression split:
+ //        A and B+C
+ // A Boolean node of type TGeoUnion("A", "B+C") is created. This tries to replace
+ // the 2 expressions by actual pointers to corresponding shapes.
+--- a/geom/geom/src/TGeoPolygon.cxx
++++ b/geom/geom/src/TGeoPolygon.cxx
+@@ -17,7 +17,7 @@
+ // TGeoXtru class for computing Contains() and Safety(). Only the pointers to
+ // the actual lists of XY values are used - these are not owned by the class.
+ // 
+-// To check if a point in XY plane is contained by a polygon, this is splitted
++// To check if a point in XY plane is contained by a polygon, this is split
+ // into an outscribed convex polygon and the remaining polygons of its subtracton
+ // from the outscribed one. A point is INSIDE if it is 
+ // contained by the outscribed polygon but NOT by the remaining ones. Since these
+@@ -27,7 +27,7 @@
+ //  Pconvex-P = P1 + P2 + ...           where (+) means 'union'
+ //
+ //  *Note that P1, P2, ... do not intersect each other and they are defined
+-//   by subsets of the list of vertices of P. They can be splitted in the same
++//   by subsets of the list of vertices of P. They can be split in the same
+ //   way as P*
+ //
+ // Therefore, if C(P) represents the Boolean : 'does P contains a given point?',
+--- a/geom/geombuilder/src/TGeoVolumeEditor.cxx
++++ b/geom/geombuilder/src/TGeoVolumeEditor.cxx
+@@ -16,7 +16,7 @@
+ //////////////////////////////////////////////////////////////////////////
+ /* Editor for geometry volumes and assemblies of volumes. Besides the volume
+    name and line attributes, a TGeoVolume has the following editable categories 
+-   splitted vertically by a shutter:
++   split vertically by a shutter:
+    - Properties: one can edit the shape and medium components from here. It is
+    also possible to change the existing ones.
+    - Daughters: the main category allowing defining, editing, removing or 
+--- a/gui/gui/src/TGSplitFrame.cxx
++++ b/gui/gui/src/TGSplitFrame.cxx
+@@ -407,7 +407,7 @@
+ {
+    // Horizontally split the frame.
+ 
+-   // return if already splitted
++   // return if already split
+    if ((fSplitter != 0) || (fFirst != 0) || (fSecond != 0) || (fFrame != 0))
+       return;
+    UInt_t height = (h > 0) ? h : fHeight/2;
+@@ -436,7 +436,7 @@
+ {
+    // Vertically split the frame.
+ 
+-   // return if already splitted
++   // return if already split
+    if ((fSplitter != 0) || (fFirst != 0) || (fSecond != 0) || (fFrame != 0))
+       return;
+    UInt_t width = (w > 0) ? w : fWidth/2;
+--- a/roofit/roofitcore/src/RooSimWSTool.cxx
++++ b/roofit/roofitcore/src/RooSimWSTool.cxx
+@@ -641,7 +641,7 @@
+ //_____________________________________________________________________________
+ void RooSimWSTool::SplitRule::splitParameter(const char* paramNameList, const char* categoryNameList) 
+ {
+-  // Specify that parameters names listed in paramNameList be splitted in (product of) category(s)
++  // Specify that parameters names listed in paramNameList be split in (product of) category(s)
+   // listed in categoryNameList
+ 
+   char paramBuf[4096] ;
+@@ -669,7 +669,7 @@
+ //_____________________________________________________________________________
+ void RooSimWSTool::SplitRule::splitParameterConstrained(const char* paramNameList, const char* categoryNameList, const char* remainderStateName) 
+ {
+-  // Specify that parameters names listed in paramNameList be splitted in constrained way in (product of) category(s)
++  // Specify that parameters names listed in paramNameList be split in constrained way in (product of) category(s)
+   // listed in categoryNameList and that remainder fraction formula be put in state with name remainderStateName
+ 
+   char paramBuf[4096] ;
+--- a/tmva/inc/TMVA/RegressionVariance.h
++++ b/tmva/inc/TMVA/RegressionVariance.h
+@@ -80,7 +80,7 @@
+       // destructor
+       virtual ~RegressionVariance(){}
+ 
+-      // Return the gain in separation of the original sample is splitted in two sub-samples
++      // Return the gain in separation of the original sample is split in two sub-samples
+       // (N * Index_parent) - (N_left * Index_left) - (N_right * Index_right) 
+       Double_t GetSeparationGain( const Double_t &nLeft, const Double_t &targetLeft, const Double_t &target2Left,
+                                   const Double_t &nTot, const Double_t &targetTot, const Double_t &target2Tot );
+--- a/tmva/inc/TMVA/SeparationBase.h
++++ b/tmva/inc/TMVA/SeparationBase.h
+@@ -98,7 +98,7 @@
+       // destructor
+       virtual ~SeparationBase(){}
+ 
+-      // Return the gain in separation of the original sample is splitted in two sub-samples
++      // Return the gain in separation of the original sample is split in two sub-samples
+       // (N * Index_parent) - (N_left * Index_left) - (N_right * Index_right)
+       Double_t GetSeparationGain( const Double_t& nSelS, const Double_t& nSelB,
+                                   const Double_t& nTotS, const Double_t& nTotB );
+--- a/tree/treeplayer/inc/TFormLeafInfo.h
++++ b/tree/treeplayer/inc/TFormLeafInfo.h
+@@ -340,7 +340,7 @@
+ // TFormLeafInfoMultiVarDim is a small helper class to implement reading a
+ // data member on a variable size array inside a TClonesArray object stored in
+ // a TTree.  This is the version used when the data member is inside a
+-// non-splitted object.
++// non-split object.
+ 
+ class TFormLeafInfoMultiVarDim : public TFormLeafInfo {
+ public:
+--- a/tree/treeplayer/src/TFormLeafInfo.cxx
++++ b/tree/treeplayer/src/TFormLeafInfo.cxx
+@@ -2245,7 +2245,7 @@
+ // TFormLeafInfoMultiVarDim is a helper class to implement reading a
+ // data member on a variable size array inside a TClonesArray object stored in
+ // a TTree.  This is the version used when the data member is inside a
+-// non-splitted object.
++// non-split object.
+ 
+ //______________________________________________________________________________
+ TFormLeafInfoMultiVarDim::TFormLeafInfoMultiVarDim( TClass* classptr,
+--- a/tree/treeplayer/src/TTreeFormula.cxx
++++ b/tree/treeplayer/src/TTreeFormula.cxx
+@@ -2248,7 +2248,7 @@
+             }
+ 
+             // What we have so far might be a member function of one of the
+-            // leaves that are not splitted (for example "GetNtrack" for the Event class).
++            // leaves that are not split (for example "GetNtrack" for the Event class).
+             TIter next(fTree->GetIteratorOnAllLeaves());
+             TLeaf* leafcur = 0;
+             while (!leaf && (leafcur = (TLeaf*) next())) {
+@@ -2445,7 +2445,7 @@
+                *current = 0;
+             } else {
+                // What we have so far might be a data member of one of the
+-               // leaves that are not splitted (for example "fNtrack" for the Event class.
++               // leaves that are not split (for example "fNtrack" for the Event class.
+                TLeaf *leafcur = GetLeafWithDatamember(first,work,readentry);
+                if (leafcur) {
+                   leaf = leafcur;
+--- a/tree/treeplayer/src/TTreeProxyGenerator.cxx
++++ b/tree/treeplayer/src/TTreeProxyGenerator.cxx
+@@ -1354,7 +1354,7 @@
+          if ( branch->GetListOfBranches()->GetEntries() == 0 ) {
+ 
+             if (cl) {
+-               // We have a non-splitted object!
++               // We have a non-split object!
+ 
+                if (desc) {
+                   TVirtualStreamerInfo *cinfo = cl->GetStreamerInfo();
+@@ -1382,7 +1382,7 @@
+ 
+          } else {
+ 
+-            // We have a splitted object
++            // We have a split object
+ 
+             TIter subnext( branch->GetListOfBranches() );
+             if (desc) {
+--- a/test/stressProof.cxx
++++ b/test/stressProof.cxx
+@@ -952,7 +952,7 @@
+                                &PT_H1FileCollection, (void *)&gStd_Old, "1", "h1analysis", kTRUE));
+    // H1 analysis over HTTP by dataset name
+    testList->Add(new ProofTest("H1: by-name processing", 8, &PT_H1DataSet, 0, "1,4", "h1analysis", kTRUE));
+-   // H1 analysis over HTTP by dataset name splitted in two
++   // H1 analysis over HTTP by dataset name split in two
+    testList->Add(new ProofTest("H1: multi dataset processing", 9, &PT_H1MultiDataSet, 0, "1,4", "h1analysis", kTRUE));
+    // H1 analysis over HTTP by dataset name
+    testList->Add(new ProofTest("H1: multi dataset and entry list", 10, &PT_H1MultiDSetEntryList, 0, "1,4", "h1analysis", kTRUE));

@@ -1,0 +1,10 @@
+--- a/configure
++++ b/configure
+@@ -6222,7 +6222,6 @@
+         root-plugin-io-sql \
+         root-plugin-io-xml \
+         root-plugin-math-fumili \
+-        root-plugin-proof-xproof \
+         root-plugin-tree-treeviewer \
+         root-system-proofd \
+         root-system-rootd \

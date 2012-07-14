@@ -1,0 +1,117 @@
+--- a/cint/doc/ref.txt
++++ b/cint/doc/ref.txt
+@@ -1926,7 +1926,7 @@
+ G__value G__calc(const char* expression)    // precompiled library environment
+ 
+  G__calc() API evaluates C/C++ expression and returns its' value. 
+-In interpreter enviroment, type of the return value is automatically 
++In interpreter environment, type of the return value is automatically 
+ converted to suitable type without explicit type casting.
+ In precompiled library environment, it returns G__value object which
+ can be converted to long or double type object by G__double() or G__int()
+@@ -2571,7 +2571,7 @@
+ G__value G__exec_text(const char* unmamedmacro);    // from precompiled code
+ 
+  G__exec_text() API evaluates C/C++ statements and returns its' value. 
+-In interpreter enviroment, type of the return value is automatically 
++In interpreter environment, type of the return value is automatically 
+ converted to suitable type without explicit type casting.
+ In compiled code , it returns G__value object which can be converted 
+ to long or double type object by G__double() or G__int() API.
+--- a/core/meta/src/TCint.cxx
++++ b/core/meta/src/TCint.cxx
+@@ -1291,7 +1291,7 @@
+    // The 'name' is known to the interpreter, this function returns
+    // the internal version of this name (usually just resolving typedefs)
+    // This is used in particular to synchronize between the name used
+-   // by rootcint and by the run-time enviroment (TClass)
++   // by rootcint and by the run-time environment (TClass)
+    // Return 0 if the name is not known.
+ 
+    R__LOCKGUARD(gCINTMutex);
+--- a/io/xml/src/TXMLPlayer.cxx
++++ b/io/xml/src/TXMLPlayer.cxx
+@@ -13,7 +13,7 @@
+ //
+ // Class for xml code generation
+ // It should be used for generation of xml steramers, which could be used outside root
+-// enviroment. This means, that with help of such streamers user can read and write
++// environment. This means, that with help of such streamers user can read and write
+ // objects from/to xml file, which later can be accepted by ROOT.
+ //
+ // At the moment supported only classes, which are not inherited from TObject
+--- a/net/alien/src/TAlienFile.cxx
++++ b/net/alien/src/TAlienFile.cxx
+@@ -64,7 +64,7 @@
+    //     "alien:///alice/test.root"
+    // If you want to write a file on specific storage element use the syntax
+    //     "alien:///alice/test.root?&se=Alice::CERN::Storage"
+-   // The default SE is specified by the enviroment variable alien_CLOSE_SE
++   // The default SE is specified by the environment variable alien_CLOSE_SE
+    //
+    // If you read a file, the closest file image to alien_CLOSE_SE is taken.
+    // If the file cannot opened from the closest image, the next image is tried,
+--- a/proof/clarens/inc/TXmlRpc.h
++++ b/proof/clarens/inc/TXmlRpc.h
+@@ -39,7 +39,7 @@
+ class TXmlRpc : public TObject {
+ private:
+    TClSession          *fSession;     //Clarens session info
+-   xmlrpc_env          *fEnv;         //call enviroment
++   xmlrpc_env          *fEnv;         //call environment
+    TString              fService;     //our service
+ 
+ public:
+--- a/sql/odbc/src/TODBCServer.cxx
++++ b/sql/odbc/src/TODBCServer.cxx
+@@ -53,7 +53,7 @@
+    //    Configuring unixODBC under Linux: http://www.unixodbc.org/odbcinst.html
+    //    Remarks: for variants 1 & 2 it is enough to create/configure
+    //    odbcinst.ini file. For variant 3 file odbc.ini should be created.
+-   //    Path to this files can be specified in enviromental variables like
++   //    Path to this files can be specified in environmental variables like
+    //      export ODBCINI=/home/my/unixODBC/etc/odbc.ini
+    //      export ODBCSYSINI=/home/my/unixODBC/etc
+    //
+@@ -70,7 +70,7 @@
+    //       1) Two additional DLLs are required: mfc71.dll & msver71.dll
+    //          They can be found either in MS VC++ 7.1 Free Toolkit or
+    //          downloaded from other Internet sites
+-   //       2) ORACLE_HOME enviroment variable should be specified and point to
++   //       2) ORACLE_HOME environment variable should be specified and point to
+    //           location, where Instant Client files are extracted
+    //       3) Run odbc_install.exe from account with administrative rights
+    //       3) In $ORACLE_HOME/network/admin/ directory appropriate *.ora files
+--- a/tmva/test/setup.sh
++++ b/tmva/test/setup.sh
+@@ -48,7 +48,7 @@
+     root_in_ld=$?
+     if [ ! $LD_LIBRARY_PATH ]; then
+         if [ $root_in_ld -ne 0 ]; then
+-            echo "Warning: so far you haven't setup your ROOT enviroment properly (no LD_LIBRARY_PATH): TMVA will not work"
++            echo "Warning: so far you haven't setup your ROOT environment properly (no LD_LIBRARY_PATH): TMVA will not work"
+         fi
+     fi
+     export LD_LIBRARY_PATH=$PWD/lib:${LD_LIBRARY_PATH}
+--- a/cmake/modules/SearchInstalledSoftware.cmake
++++ b/cmake/modules/SearchInstalledSoftware.cmake
+@@ -531,7 +531,7 @@
+   if(NOT builtin_xrootd)
+     find_package(XROOTD)
+     if(NOT XROOTD_FOUND)
+-      message(STATUS "XROOTD not found. Set enviroment variable XRDSYS to point to your XROOTD installation")
++      message(STATUS "XROOTD not found. Set environment variable XRDSYS to point to your XROOTD installation")
+       message(STATUS "                  Alternatively, you can also enable the option 'builtin_xrootd' to build XROOTD  internally'") 
+       message(STATUS "                  For the time being switching OFF 'xrootd' option")
+       set(xrootd OFF CACHE BOOL "" FORCE)
+--- a/sql/oracle/inc/TOracleStatement.h
++++ b/sql/oracle/inc/TOracleStatement.h
+@@ -41,7 +41,7 @@
+       char* namebuf;
+    };
+ 
+-   oracle::occi::Environment *fEnv;         // enviroment 
++   oracle::occi::Environment *fEnv;         // environment 
+    oracle::occi::Connection  *fConn;        // connection to Oracle
+    oracle::occi::Statement   *fStmt;        // executed statement
+    oracle::occi::ResultSet   *fResult;      // query result (rows)

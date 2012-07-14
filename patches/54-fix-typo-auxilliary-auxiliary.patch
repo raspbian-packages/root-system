@@ -1,0 +1,144 @@
+--- a/core/textinput/src/textinput/TextInputContext.cpp
++++ b/core/textinput/src/textinput/TextInputContext.cpp
+@@ -7,7 +7,7 @@
+ //
+ //===----------------------------------------------------------------------===//
+ //
+-//  This file defines the internal interface for TextInput's auxilliary
++//  This file defines the internal interface for TextInput's auxiliary
+ //  objects.
+ //
+ //  Axel Naumann <axel@cern.ch>, 2011-05-12
+--- a/core/textinput/src/textinput/TextInputContext.h
++++ b/core/textinput/src/textinput/TextInputContext.h
+@@ -7,7 +7,7 @@
+ //
+ //===----------------------------------------------------------------------===//
+ //
+-//  This file defines the internal interface for TextInput's auxilliary
++//  This file defines the internal interface for TextInput's auxiliary
+ //  objects.
+ //
+ //  Axel Naumann <axel@cern.ch>, 2011-05-12
+--- a/graf3d/ftgl/inc/FTFace.h
++++ b/graf3d/ftgl/inc/FTFace.h
+@@ -41,16 +41,16 @@
+         virtual ~FTFace();
+ 
+         /**
+-         * Attach auxilliary file to font (e.g., font metrics).
++         * Attach auxiliary file to font (e.g., font metrics).
+          *
+-         * @param fontFilePath  auxilliary font file path.
++         * @param fontFilePath  auxiliary font file path.
+          * @return          <code>true</code> if file has opened
+          *                  successfully.
+          */
+         bool Attach( const char* fontFilePath);
+ 
+         /**
+-         * Attach auxilliary data to font (e.g., font metrics) from memory
++         * Attach auxiliary data to font (e.g., font metrics) from memory
+          *
+          * @param pBufferBytes  the in-memory buffer
+          * @param bufferSizeInBytes  the length of the buffer in bytes
+--- a/graf3d/ftgl/inc/FTFont.h
++++ b/graf3d/ftgl/inc/FTFont.h
+@@ -55,18 +55,18 @@
+         virtual ~FTFont();
+         
+         /**
+-         * Attach auxilliary file to font e.g font metrics.
++         * Attach auxiliary file to font e.g font metrics.
+          *
+          * Note: not all font formats implement this function.
+          *
+-         * @param fontFilePath  auxilliary font file path.
++         * @param fontFilePath  auxiliary font file path.
+          * @return          <code>true</code> if file has been attached
+          *                  successfully.
+          */
+         bool Attach( const char* fontFilePath);
+ 
+         /**
+-         * Attach auxilliary data to font e.g font metrics, from memory
++         * Attach auxiliary data to font e.g font metrics, from memory
+          *
+          * Note: not all font formats implement this function.
+          *
+--- a/html/src/THtml.cxx
++++ b/html/src/THtml.cxx
+@@ -785,7 +785,7 @@
+ or to run on just a few classes:
+ <pre>
+     root[] <a href="http://root.cern.ch/root/html/THtml.html">THtml</a> html;                // create a <a href="http://root.cern.ch/root/html/THtml.html">THtml</a> object
+-    root[] html.MakeIndex();           // create auxilliary files (style sheet etc) and indices
++    root[] html.MakeIndex();           // create auxiliary files (style sheet etc) and indices
+     root[] html.MakeClass("TMyClass"); // create documentation for TMyClass only
+ </pre>
+ To "beautify" (i.e. create links to documentation for class names etc) some text
+--- a/proof/proof/inc/TProof.h
++++ b/proof/proof/inc/TProof.h
+@@ -307,7 +307,7 @@
+    ClassDef(TMergerInfo,0)          // Basic info on merger, i.e. worker serving as merger
+ };
+ 
+-// Small auxilliary class for merging progress notification
++// Small auxiliary class for merging progress notification
+ class TProofMergePrg {
+ private:
+    TString      fExp;
+--- a/proof/proof/src/TDataSetManager.cxx
++++ b/proof/proof/src/TDataSetManager.cxx
+@@ -492,7 +492,7 @@
+    //    L, locateonly:  only locate the selected files
+    //    S, stageonly:   issue a stage request for the selected files not yet staged
+    //
+-   //  'auxilliary' field
++   //  'auxiliary' field
+    //    V, verbose:     notify the actions
+    //
+    // Returns 0 on success, -1 if any failure occurs.
+--- a/proof/proofd/inc/XrdProofdAux.h
++++ b/proof/proofd/inc/XrdProofdAux.h
+@@ -18,7 +18,7 @@
+ //                                                                      //
+ // Authors: G. Ganis, CERN, 2007                                        //
+ //                                                                      //
+-// Small auxilliary classes used in XrdProof                            //
++// Small auxiliary classes used in XrdProof                            //
+ //                                                                      //
+ //////////////////////////////////////////////////////////////////////////
+ #include <list>
+--- a/proof/proofd/src/XrdProofdAux.cxx
++++ b/proof/proofd/src/XrdProofdAux.cxx
+@@ -15,7 +15,7 @@
+ //                                                                      //
+ // Authors: G. Ganis, CERN, 2007                                        //
+ //                                                                      //
+-// Small auxilliary classes used in XrdProof                            //
++// Small auxiliary classes used in XrdProof                            //
+ //                                                                      //
+ //////////////////////////////////////////////////////////////////////////
+ #include "XrdProofdPlatform.h"
+--- a/tutorials/proof/ProofAux.C
++++ b/tutorials/proof/ProofAux.C
+@@ -2,7 +2,7 @@
+ 
+ //////////////////////////////////////////////////////////////
+ //
+-// Selector used for auxilliary actions in the PROOF tutorials
++// Selector used for auxiliary actions in the PROOF tutorials
+ //
+ //////////////////////////////////////////////////////////////
+ 
+--- a/tutorials/proof/ProofAux.h
++++ b/tutorials/proof/ProofAux.h
+@@ -1,6 +1,6 @@
+ //////////////////////////////////////////////////////////////
+ //
+-// Selector used for auxilliary actions in the PROOF tutorials
++// Selector used for auxiliary actions in the PROOF tutorials
+ //
+ //////////////////////////////////////////////////////////////
+ 

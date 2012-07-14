@@ -1,0 +1,290 @@
+--- a/cint/reflex/python/genreflex/gendict.py
++++ b/cint/reflex/python/genreflex/gendict.py
+@@ -1464,7 +1464,7 @@
+       c += indent + '};\n'
+     return c    
+ #----------------------------------------------------------------------------------
+-  def genTypedefBuild(self, attrs, childs) :
++  def genTypedefBuild(self, attrs, children) :
+     if self.no_membertypedefs : return ''
+     # access selection doesn't work with gccxml0.6 - typedefs don't have it
+     if self.interpreter and 'access' in attrs : return ''
+@@ -1472,11 +1472,11 @@
+     s += '  .AddTypedef(%s, Reflex::Literal("%s::%s"))' % ( self.genTypeID(attrs['type']), self.genTypeName(attrs['context']), attrs['name']) 
+     return s  
+ #----------------------------------------------------------------------------------
+-  def genEnumerationBuild(self, attrs, childs):
++  def genEnumerationBuild(self, attrs, children):
+     s = ''
+     name = self.genTypeName(attrs['id']) 
+     values = ''
+-    for child in childs : values += child['name'] + '=' + child['init'] +';'
++    for child in children : values += child['name'] + '=' + child['init'] +';'
+     values = values[:-1]
+     mod = self.genModifier(attrs, None)
+     if self.isUnnamedType(name) :
+@@ -1818,7 +1818,7 @@
+       else                    : pass
+     return cnt
+ #----------------------------------------------------------------------------------
+-  def genFieldBuild(self, attrs, childs):
++  def genFieldBuild(self, attrs, children):
+     type   = self.genTypeName(attrs['type'], enum=False, const=False)
+     cl     = self.genTypeName(attrs['context'],colon=True)
+     cls    = self.genTypeName(attrs['context'])
+@@ -1860,7 +1860,7 @@
+           c += '\n  .AddProperty(Reflex::Literal("%s"),Reflex::Literal("%s"))' % (pname, pval)     
+     return c
+ #----------------------------------------------------------------------------------
+-  def genVariableBuild(self, attrs, childs):
++  def genVariableBuild(self, attrs, children):
+     if 'access' in attrs and attrs['access'] in ('private','protected') : return ''
+     type   = self.genTypeName(attrs['type'], enum=False, const=False)
+     cl     = self.genTypeName(attrs['context'],colon=True)
+@@ -2150,7 +2150,7 @@
+     body += '}\n'
+     return head + body
+ #----------------------------------------------------------------------------------
+-  def genDestructorDef(self, attrs, childs):
++  def genDestructorDef(self, attrs, children):
+     cl = self.genTypeName(attrs['context'])
+     static = ''
+     dtorscope = ''
+@@ -2164,7 +2164,7 @@
+       # unnamed; can't call.
+       return dtorimpl + '  // unnamed, cannot call destructor\n}'
+ #----------------------------------------------------------------------------------
+-  def genDestructorBuild(self, attrs, childs):
++  def genDestructorBuild(self, attrs, children):
+     if self.isUnnamedType(self.xref[attrs['context']]['attrs'].get('demangled')) or \
+        self.checkAccessibleType(self.xref[attrs['context']]) : return ''
+     mod = self.genModifier(attrs,None)
+--- a/cint/reflex/python/genreflex/genheader.py
++++ b/cint/reflex/python/genreflex/genheader.py
+@@ -25,68 +25,68 @@
+     return genName(attrs[u'type'])+'&'
+   elif elem == 'FunctionType' :
+     s = genName(attrs[u'returns']) + '(*)('
+-    childs = xref[id][2]
+-    for a in childs :
++    children = xref[id][2]
++    for a in children :
+       s += genArgument(a)
+-      if a != childs[-1] : s += ', '
++      if a != children[-1] : s += ', '
+     s += ')'
+     return s
+   elif elem == 'ArrayType' :
+     return genName(attrs[u'type'])+'['+attrs[u'max']+']'
+   else :
+     return attrs[u'name']
+-def genField(attrs, childs):
++def genField(attrs, children):
+   return '%s %s;' % (genName(attrs[u'type']), attrs[u'name'] )
+-def genVariable(attrs, childs):
++def genVariable(attrs, children):
+   return 'static %s %s;' % (genName(attrs[u'type']), attrs[u'name'] )
+ def genArgument(attrs):
+   if u'name' in attrs : 
+     return '%s %s' % (genName(attrs[u'type']), attrs[u'name'] )
+   else :
+     return '%s ' % (genName(attrs[u'type']))  
+-def genMethod(attrs, childs):
++def genMethod(attrs, children):
+   s = ''
+   if u'virtual' in attrs : s += 'virtual '
+   if u'static' in attrs : s += 'static '
+   s += '%s %s(' % (genName(attrs[u'returns']), attrs[u'name'])
+-  for a in childs : 
++  for a in children : 
+     s += genArgument(a)
+-    if a != childs[-1] : s += ', '
++    if a != children[-1] : s += ', '
+   s += ')'
+   if u'const' in attrs : s += ' const'
+   if u'pure_virtual' in attrs : s += ' = 0'
+   s += ';'
+   return s
+-def genConstructor(attrs, childs):
++def genConstructor(attrs, children):
+   s = '%s(' % (attrs[u'name'])
+-  for a in childs : 
++  for a in children : 
+     s += genArgument(a)
+-    if a != childs[-1] : s += ', '
++    if a != children[-1] : s += ', '
+   s += ');'
+   return s
+-def genOperatorMethod(attrs, childs):
++def genOperatorMethod(attrs, children):
+   s = '%s operator %s(' % ( genName(attrs[u'returns']), attrs[u'name'])
+-  for a in childs : 
++  for a in children : 
+     s += genArgument(a)
+-    if a != childs[-1] : s += ', '
++    if a != children[-1] : s += ', '
+   s += ')'
+   if u'const' in attrs : s += ' const'
+   s += ';'
+   return s
+-def genDestructor(attrs, childs):
++def genDestructor(attrs, children):
+   return '~%s();' % (attrs[u'name'])
+-def genConverter(attrs, childs):
++def genConverter(attrs, children):
+   return 'operator %s();' % (attrs[u'returns'])
+ def genEnumValue(attrs):
+   return '%s = %s' % (attrs[u'name'], attrs[u'init'])
+-def genEnumeration(attrs, childs):
++def genEnumeration(attrs, children):
+   s = 'enum %s { ' % (attrs[u'name'])
+-  for a in childs :
++  for a in children :
+     s += genEnumValue(a)
+-    if a != childs[-1] : s += ', '
++    if a != children[-1] : s += ', '
+   s += '};'
+   return s
+-def genClass(attrs, childs ):
++def genClass(attrs, children ):
+   s = 'class %s ' % (attrs[u'name'])
+   if u'bases' in attrs :
+     bases = string.split(attrs[u'bases'])
+@@ -109,7 +109,7 @@
+         print 'Function '+funcname+' not found'
+   s += '};'
+   return s
+-def genTypedef(attrs, childs):
++def genTypedef(attrs, children):
+   return 'typedef %s %s;' % ( genName(attrs[u'type']), attrs[u'name'] )
+   
+ def start_element(name, attrs):
+--- a/core/unix/src/TUnixSystem.cxx
++++ b/core/unix/src/TUnixSystem.cxx
+@@ -1265,7 +1265,7 @@
+ //______________________________________________________________________________
+ void TUnixSystem::CheckChilds()
+ {
+-   // Check if childs have finished.
++   // Check if children have finished.
+ 
+ #if 0  //rdm
+    int pid;
+--- a/gui/gui/inc/TGMdiMainFrame.h
++++ b/gui/gui/inc/TGMdiMainFrame.h
+@@ -152,10 +152,10 @@
+    };
+ 
+    Int_t            fCurrentX, fCurrentY, fResizeMode;   // current MDI child XY position and resize mode
+-   Int_t            fArrangementMode;                    // MDI childs arrangement mode
+-   TGFont          *fFontCurrent, *fFontNotCurrent;      // fonts for active and inactive MDI childs
+-   Pixel_t          fBackCurrent, fForeCurrent;          // back and fore colors for active MDI childs
+-   Pixel_t          fBackNotCurrent, fForeNotCurrent;    // back and fore colors for inactive MDI childs
++   Int_t            fArrangementMode;                    // MDI children arrangement mode
++   TGFont          *fFontCurrent, *fFontNotCurrent;      // fonts for active and inactive MDI children
++   Pixel_t          fBackCurrent, fForeCurrent;          // back and fore colors for active MDI children
++   Pixel_t          fBackNotCurrent, fForeNotCurrent;    // back and fore colors for inactive MDI children
+ 
+    TGGC            *fBoxGC;                              // GC used to draw resizing box (rectangle)
+ 
+--- a/gui/gui/src/TGMenu.cxx
++++ b/gui/gui/src/TGMenu.cxx
+@@ -1273,7 +1273,7 @@
+ 
+    if (fDelay) fDelay->Remove();
+ 
+-   // destroy any cascaded childs and get any ID
++   // destroy any cascaded children and get any ID
+ 
+    if (fCurrent != 0) {
+ 
+--- a/io/sql/src/TSQLStructure.cxx
++++ b/io/sql/src/TSQLStructure.cxx
+@@ -1730,7 +1730,7 @@
+    }
+ 
+    if (columntyp==kColSimpleArray) {
+-      // number of items should be exactly equal to number of childs
++      // number of items should be exactly equal to number of children
+ 
+       if (NumChilds()!=1) {
+          Error("StoreElementInNormalForm","In fixed array %s only array node should be", elem->GetName());
+--- a/io/xml/src/TXMLEngine.cxx
++++ b/io/xml/src/TXMLEngine.cxx
+@@ -36,7 +36,7 @@
+ };
+ 
+ enum EXmlNodeType {
+-  kXML_NODE = 1,       // normal node with childs
++  kXML_NODE = 1,       // normal node with children
+   kXML_COMMENT = 2,    // comment (stored as value of node fName)
+   kXML_PI_NODE = 3,    // processing instructions node (like <?name  attr="" ?>
+   kXML_RAWLINE = 4     // just one line of xml code
+@@ -959,7 +959,7 @@
+ //______________________________________________________________________________
+ void TXMLEngine::CleanNode(XMLNodePointer_t xmlnode)
+ {
+-   // remove all childs node from xmlnode
++   // remove all children node from xmlnode
+ 
+    if (xmlnode==0) return;
+    SXmlNode_t* node = (SXmlNode_t*) xmlnode;
+@@ -1483,7 +1483,7 @@
+ 
+    if (*inp->fCurrent!='<') {
+       // here should be reading of element content
+-      // only one entry for content is supported, only before any other childs
++      // only one entry for content is supported, only before any other children
+       if ((parent==0) || (parent->fChild!=0)) { resvalue = -2; return 0; }
+       int contlen = inp->LocateContent();
+       if (contlen<0) return 0;
+@@ -1529,14 +1529,14 @@
+    }
+ 
+    EXmlNodeType nodetype = kXML_NODE;
+-   Bool_t canhaschilds = true;
++   Bool_t canhaschildren = true;
+    char endsymbol = '/';
+ 
+    // this is case of processing instructions node
+    if (*inp->fCurrent=='?') {
+       if (!inp->ShiftCurrent()) return 0;
+       nodetype = kXML_PI_NODE;
+-      canhaschilds = false;
++      canhaschildren = false;
+       endsymbol = '?';
+    }
+ 
+@@ -1578,8 +1578,8 @@
+             return node;
+          } else return 0;
+       } else
+-      if (nextsymb=='>') { // this is end of parent node, lets find all childs
+-         if (!canhaschilds) { resvalue = -11; return 0; }
++      if (nextsymb=='>') { // this is end of parent node, lets find all children
++         if (!canhaschildren) { resvalue = -11; return 0; }
+ 
+          if (!inp->ShiftCurrent()) return 0;
+ 
+--- a/tutorials/xml/xmlreadfile.C
++++ b/tutorials/xml/xmlreadfile.C
+@@ -33,7 +33,7 @@
+ 
+ void DisplayNode(TXMLEngine* xml, XMLNodePointer_t node, Int_t level) 
+ {
+-   // this function display all accessible information about xml node and its childs
++   // this function display all accessible information about xml node and its children
+    
+    printf("%*c node: %s\n",level,' ', xml->GetNodeName(node));
+    
+--- a/geom/gdml/src/TGDMLParse.cxx
++++ b/geom/gdml/src/TGDMLParse.cxx
+@@ -726,7 +726,7 @@
+             fracmap[ref.Data()] = n;
+          }
+          child = gdml->GetNext(child);
+-      } // loop on childs
++      } // loop on children
+       // Create TGeoElement - note: Object(name, title) corresponds to Element(formula, name)
+       TGeoElement *ele = new TGeoElement(NameShort(name), NameShort(name), ncompo);
+       for (fractions f = fracmap.begin(); f != fracmap.end(); f++) {

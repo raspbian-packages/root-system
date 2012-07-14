@@ -1,0 +1,44 @@
+--- a/cint/cint/src/bc_parse.cxx
++++ b/cint/cint/src/bc_parse.cxx
+@@ -309,7 +309,7 @@
+ // expression, 2nd level
+ ////////////////////////////////////////////////////////////////////////////
+ /***********************************************************************
+- * G__blockscope::compile_expresion()
++ * G__blockscope::compile_expression()
+  *	func(args);  -> expr
+  *	type(args);  -> expr
+  *      (expr);      -> expr
+--- a/geom/geom/src/TGeoBoolNode.cxx
++++ b/geom/geom/src/TGeoBoolNode.cxx
+@@ -202,7 +202,7 @@
+    TString sleft, sright, stransf;
+    Int_t boolop = TGeoManager::Parse(expr, sleft, sright, stransf);
+    if (boolop<0) {
+-      Error("MakeBranch", "invalid expresion");
++      Error("MakeBranch", "invalid expression");
+       return kFALSE;
+    }
+    TGeoShape *shape = 0;
+--- a/roofit/roofitcore/inc/RooClassFactory.h
++++ b/roofit/roofitcore/inc/RooClassFactory.h
+@@ -45,7 +45,7 @@
+   static Bool_t makePdf(const char* name, const char* realArgNames=0, const char* catArgNames=0, 
+ 			const char* expression="1.0", Bool_t hasAnaInt=kFALSE, Bool_t hasIntGen=kFALSE, const char* intExpression=0) ;
+   static Bool_t makeFunction(const char* name, const char* realArgNames=0, const char* catArgNames=0, 
+-			     const char* expresion="1.0", Bool_t hasAnaInt=kFALSE, const char* intExpression=0) ;
++			     const char* expression="1.0", Bool_t hasAnaInt=kFALSE, const char* intExpression=0) ;
+   static Bool_t makeClass(const char* className, const char* name, const char* realArgNames=0, const char* catArgNames=0, 
+ 			  const char* expression="1.0", Bool_t hasAnaInt=kFALSE, Bool_t hasIntGen=kFALSE, const char* intExpression=0) ;
+ 
+--- a/tree/tree/src/TTreeCache.cxx
++++ b/tree/tree/src/TTreeCache.cxx
+@@ -357,7 +357,7 @@
+    // this is to be used by user (thats why we pass the name of the branch).
+    // It works in exactly the same way as TTree::SetBranchStatus so you
+    // probably want to look over ther for details about the use of bname
+-   // with regular expresions.
++   // with regular expressions.
+    // The branches are taken with respect to the Owner of this TTreeCache
+    // (i.e. the original Tree)
+    // NB: if bname="*" all branches are put in the cache and the learning phase stopped

@@ -1,0 +1,108 @@
+--- a/cint/cint/src/newlink.cxx
++++ b/cint/cint/src/newlink.cxx
+@@ -5123,7 +5123,7 @@
+  *
+  * 25-07-07
+  *
+- * Create the deafult cons, dests, etc as ifunc entries before writing
++ * Create the default cons, dests, etc as ifunc entries before writing
+  * them to the file
+  **************************************************************************/
+ void G__make_default_ifunc(G__ifunc_table_internal *ifunc_copy)
+--- a/graf2d/qt/src/TQtWidget.cxx
++++ b/graf2d/qt/src/TQtWidget.cxx
+@@ -751,7 +751,7 @@
+    //  it saves the double buffer of this object using the default save
+    //  format  defined the file extension
+    //  If the "fileName" has no extension the "default" format is to be used instead
+-   //  The deafult format is "PNG".
++   //  The default format is "PNG".
+    //  It can be changed with the TQtWidget::SetSaveFormat method
+    //
+     return Save(QString(fileName));
+@@ -764,7 +764,7 @@
+    //  it saves the double buffer of this object using the default save
+    //  format  defined the file extension
+    //  If the "fileName" has no extension the "default" format is to be used instead
+-   //  The deafult format is "PNG".
++   //  The default format is "PNG".
+    //  It can be changed with the TQtWidget::SetSaveFormat method
+    //
+    QString fileNameExtension = QFileInfo(fileName).suffix().toUpper();
+--- a/graf3d/gl/inc/TGLCamera.h
++++ b/graf3d/gl/inc/TGLCamera.h
+@@ -77,8 +77,8 @@
+    Bool_t      fExternalCenter;  //! use external center insead of scene center
+    Bool_t      fFixDefCenter;    //! use fixed default center
+    TGLVector3  fExtCenter;       //! external camera center
+-   TGLVector3  fDefCenter;       //! deafult camera center
+-   TGLVector3  fFDCenter;        //! fixed deafult camera center
++   TGLVector3  fDefCenter;       //! default camera center
++   TGLVector3  fFDCenter;        //! fixed default camera center
+    TGLVector3 *fCenter;          //! current camera center
+ 
+    mutable Double_t fNearClip;   //! last applied near-clip
+--- a/gui/ged/src/HelpSMText.cxx
++++ b/gui/ged/src/HelpSMText.cxx
+@@ -13,7 +13,7 @@
+ 
+ const char gHelpSMTopLevel[] =
+ "The Style Manager handles a list of styles in the ROOT session. It loads\n"
+-"by default the five styles provided by ROOT: Deafult, Plain, Bold, Video,\n"
++"by default the five styles provided by ROOT: Default, Plain, Bold, Video,\n"
+ "and Pub. If this list does not contain a style with the characteristics\n"
+ "you want, you can create a new one and than apply it.\n"
+ "\n"
+--- a/gui/gui/src/TGFrame.cxx
++++ b/gui/gui/src/TGFrame.cxx
+@@ -566,7 +566,7 @@
+ void TGFrame::Resize(UInt_t w, UInt_t h)
+ {
+    // Resize the frame.
+-   // If w=0 && h=0 - Resize to deafult size
++   // If w=0 && h=0 - Resize to default size
+ 
+    if (w != fWidth || h != fHeight) {
+       TGDimension siz(0,0);
+@@ -590,7 +590,7 @@
+ void TGFrame::MoveResize(Int_t x, Int_t y, UInt_t w, UInt_t h)
+ {
+    // Move and/or resize the frame.
+-   // If w=0 && h=0 - Resize to deafult size
++   // If w=0 && h=0 - Resize to default size
+ 
+    // we do it anyway as we don't know if it's only a move or only a resize
+    TGDimension siz(0,0);
+--- a/net/auth/src/THostAuth.cxx
++++ b/net/auth/src/THostAuth.cxx
+@@ -34,7 +34,7 @@
+ //______________________________________________________________________________
+    THostAuth::THostAuth() : TObject()
+ {
+-   // Deafult constructor.
++   // Default constructor.
+ 
+    Create(0, 0);
+ }
+--- a/net/net/src/TNetFile.cxx
++++ b/net/net/src/TNetFile.cxx
+@@ -862,7 +862,7 @@
+    // Check and save the host FQDN ...
+    fHost = turl.GetHostFQDN();
+ 
+-   // Remote port: the deafult should be 1094 because we are here
++   // Remote port: the default should be 1094 because we are here
+    // only if the protocol is "root://"
+    fPort = turl.GetPort();
+ }
+--- a/proof/proofd/src/proofd.cxx
++++ b/proof/proofd/src/proofd.cxx
+@@ -102,7 +102,7 @@
+ //   -noauth           do not require client authentication             //
+ //   -p port#          specifies a different port to listen on          //
+ //   -s <sshd_port>    specifies the port number for the sshd daemon    //
+-//                     (deafult is 22)                                  //
++//                     (default is 22)                                  //
+ //   -S keytabfile     use this keytab file, instead of the default     //
+ //                     (option only supported when compiled with        //
+ //                     Kerberos5 support)                               //

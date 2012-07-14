@@ -1,0 +1,249 @@
+--- a/core/base/src/TVirtualX.cxx
++++ b/core/base/src/TVirtualX.cxx
+@@ -1589,7 +1589,7 @@
+ Int_t TVirtualX::TextWidth(FontStruct_t /*font*/, const char * /*s*/,
+                              Int_t /*len*/)
+ {
+-   // Return lenght of the string "s" in pixels. Size depends on font.
++   // Return length of the string "s" in pixels. Size depends on font.
+ 
+    return 5;
+ }
+--- a/core/unix/src/TUnixSystem.cxx
++++ b/core/unix/src/TUnixSystem.cxx
+@@ -3289,7 +3289,7 @@
+ //______________________________________________________________________________
+ int TUnixSystem::RecvBuf(int sock, void *buf, int length)
+ {
+-   // Receive a buffer headed by a length indicator. Lenght is the size of
++   // Receive a buffer headed by a length indicator. Length is the size of
+    // the buffer. Returns the number of bytes received in buf or -1 in
+    // case of error.
+ 
+--- a/core/winnt/src/TWinNTSystem.cxx
++++ b/core/winnt/src/TWinNTSystem.cxx
+@@ -4721,7 +4721,7 @@
+ //______________________________________________________________________________
+ int TWinNTSystem::RecvBuf(int sock, void *buf, int length)
+ {
+-   // Receive a buffer headed by a length indicator. Lenght is the size of
++   // Receive a buffer headed by a length indicator. Length is the size of
+    // the buffer. Returns the number of bytes received in buf or -1 in
+    // case of error.
+ 
+@@ -4770,7 +4770,7 @@
+ {
+    // Receive exactly length bytes into buffer. Use opt to receive out-of-band
+    // data or to have a peek at what is in the buffer (see TSocket). Buffer
+-   // must be able to store at least lenght bytes. Returns the number of
++   // must be able to store at least length bytes. Returns the number of
+    // bytes received (can be 0 if other side of connection was closed) or -1
+    // in case of error, -2 in case of MSG_OOB and errno == EWOULDBLOCK, -3
+    // in case of MSG_OOB and errno == EINVAL and -4 in case of kNoBlock and
+--- a/graf2d/qt/src/GQtGUI.cxx
++++ b/graf2d/qt/src/GQtGUI.cxx
+@@ -2242,7 +2242,7 @@
+ //______________________________________________________________________________
+ Int_t TGQt::TextWidth(FontStruct_t font, const char *s, Int_t len)
+ {
+-   // Return lenght of string in pixels. Size depends on font.
++   // Return length of string in pixels. Size depends on font.
+ 
+    Int_t textWidth = 0;
+    if (len >0 && s && s[0] != 0 ) {
+--- a/graf2d/win32gdk/src/TGWin32.cxx
++++ b/graf2d/win32gdk/src/TGWin32.cxx
+@@ -6407,7 +6407,7 @@
+ //______________________________________________________________________________
+ Int_t TGWin32::TextWidth(FontStruct_t font, const char *s, Int_t len)
+ {
+-   // Return lenght of string in pixels. Size depends on font.
++   // Return length of string in pixels. Size depends on font.
+ 
+    return gdk_text_width((GdkFont *)font, s, len);
+ }
+--- a/graf2d/x11/src/GX11Gui.cxx
++++ b/graf2d/x11/src/GX11Gui.cxx
+@@ -2058,7 +2058,7 @@
+ //______________________________________________________________________________
+ Int_t TGX11::TextWidth(FontStruct_t font, const char *s, Int_t len)
+ {
+-   // Return lenght of string in pixels. Size depends on font.
++   // Return length of string in pixels. Size depends on font.
+ 
+    return XTextWidth((XFontStruct*) font, (char*) s, len);
+ }
+--- a/graf2d/x11ttf/src/TGX11TTF.cxx
++++ b/graf2d/x11ttf/src/TGX11TTF.cxx
+@@ -591,7 +591,7 @@
+ //______________________________________________________________________________
+ Int_t TGX11TTF::TextWidth(FontStruct_t font, const char *s, Int_t len)
+ {
+-   // Return lenght of string in pixels. Size depends on font
++   // Return length of string in pixels. Size depends on font
+ 
+    if (!fXftFontHash) {
+       return TGX11::TextWidth(font, s, len);
+--- a/graf3d/gl/src/TGLAxisPainter.cxx
++++ b/graf3d/gl/src/TGLAxisPainter.cxx
+@@ -568,7 +568,7 @@
+    glGetDoublev(GL_PROJECTION_MATRIX, pm);
+    glGetIntegerv(GL_VIEWPORT, vp);
+ 
+-   // determine bitmap font size from lenght of projected vertical
++   // determine bitmap font size from length of projected vertical
+    GLdouble dn[3];
+    GLdouble up[3];
+    gluProject(fAxisTitlePos[2].X(), fAxisTitlePos[2].Y(), fAxis[2]->GetXmin(), mm.Arr(), pm, vp, &dn[0], &dn[1], &dn[2]);
+--- a/gui/gui/inc/TGListBox.h
++++ b/gui/gui/inc/TGListBox.h
+@@ -156,7 +156,7 @@
+ protected:
+    UInt_t      fLineWidth;       // line width
+    Style_t     fLineStyle;       // line style
+-   UInt_t      fLineLength;      // line lenght
++   UInt_t      fLineLength;      // line length
+    TGGC       *fLineGC;          // line graphics context
+ 
+    virtual void DoRedraw();
+--- a/gui/gui/inc/TGPack.h
++++ b/gui/gui/inc/TGPack.h
+@@ -103,7 +103,7 @@
+    Bool_t GetVertical() const { return fVertical; }
+    void   SetVertical(Bool_t x);
+ 
+-   // For now assume this is always true. Lenght of splitter = 4 pixels.
++   // For now assume this is always true. Length of splitter = 4 pixels.
+    Bool_t GetUseSplitters() const { return fUseSplitters; }
+    void SetUseSplitters(Bool_t x) { fUseSplitters = x; }
+ 
+--- a/gui/gui/inc/TGText.h
++++ b/gui/gui/inc/TGText.h
+@@ -38,7 +38,7 @@
+ 
+ protected:
+    char         *fString;   // line of text
+-   ULong_t       fLength;   // lenght of line
++   ULong_t       fLength;   // length of line
+    TGTextLine   *fPrev;     // previous line
+    TGTextLine   *fNext;     // next line
+ 
+--- a/gui/gui/src/TGTextEntry.cxx
++++ b/gui/gui/src/TGTextEntry.cxx
+@@ -328,7 +328,7 @@
+    fSelbackGC   = GetDefaultSelectedBackgroundGC()();
+ 
+    fOffset = 0;
+-   // Set default maximum lenght to 4096. Can be changed with SetMaxLength() 
++   // Set default maximum length to 4096. Can be changed with SetMaxLength() 
+    fMaxLen = 4096;
+    fFrameDrawn = kTRUE;
+    fEdited = kFALSE;
+--- a/math/smatrix/inc/Math/Functions.h
++++ b/math/smatrix/inc/Math/Functions.h
+@@ -371,7 +371,7 @@
+ 
+ 
+ /** Unit.
+-    Return a vector of unit lenght: \f$ \vec{e}_v = \vec{v}/|\vec{v}| \f$.
++    Return a vector of unit length: \f$ \vec{e}_v = \vec{v}/|\vec{v}| \f$.
+ 
+     @ingroup VectFunction
+     @author T. Glebe
+--- a/math/smatrix/inc/Math/SVector.h
++++ b/math/smatrix/inc/Math/SVector.h
+@@ -297,7 +297,7 @@
+ #endif
+    
+    /** @name --- Expert functions --- */
+-   /// transform vector into a vector of lenght 1
++   /// transform vector into a vector of length 1
+    SVector<T,D>& Unit();
+    /// place a sub-vector starting from the given position
+    template <unsigned int D2>
+--- a/misc/table/doc/index.txt
++++ b/misc/table/doc/index.txt
+@@ -12,7 +12,7 @@
+ That defines the hierarchical nature the class and all its subclasses.
+ <br>
+ The most advanced subclasses of TDataSet are TTable and TGenericTable 
+-to create the TDataSet implementations bearing the self-described variable lenght arrays 
++to create the TDataSet implementations bearing the self-described variable length arrays 
+ of the C-structures.
+ <P>
+ See STAR publications:
+--- a/net/net/src/TNetFile.cxx
++++ b/net/net/src/TNetFile.cxx
+@@ -412,7 +412,7 @@
+    Double_t start = 0;
+    if (gPerfStats) start = TTimeStamp();
+ 
+-   // Make the string with a list of offsets and lenghts
++   // Make the string with a list of offsets and lengths
+    Long64_t total_len = 0;
+    Long64_t actual_pos;
+    for(Int_t i = 0; i < nbuf; i++) {
+@@ -423,7 +423,7 @@
+       total_len += len[i];
+    }
+ 
+-   // Send the command with the lenght of the info and number of buffers
++   // Send the command with the length of the info and number of buffers
+    if (fSocket->Send(Form("%d %d %d", nbuf, data_buf.Length(), blockSize),
+                           kROOTD_GETS) < 0) {
+       Error("ReadBuffers", "error sending kROOTD_GETS command");
+--- a/proof/proof/src/TDSetProxy.cxx
++++ b/proof/proof/src/TDSetProxy.cxx
+@@ -65,7 +65,7 @@
+ 
+    fCurrent = fServ->GetNextPacket(totalEntries);
+    
+-   // Check log file lenght (before processing the next packet, so we have the
++   // Check log file length (before processing the next packet, so we have the
+    // chance to keep the latest logs)
+    fServ->TruncateLogFile();
+ 
+--- a/proof/proof/src/TProofServ.cxx
++++ b/proof/proof/src/TProofServ.cxx
+@@ -1321,7 +1321,7 @@
+    Int_t rc = 0;
+    TString exmsg;
+ 
+-   // Check log file lenght (before the action, so we have the chance to keep the
++   // Check log file length (before the action, so we have the chance to keep the
+    // latest logs)
+    TruncateLogFile();
+ 
+--- a/roofit/roostats/inc/RooStats/HLFactory.h
++++ b/roofit/roostats/inc/RooStats/HLFactory.h
+@@ -96,7 +96,7 @@
+     /// Create the category for the combinations
+     void fCreateCategory();
+ 
+-    /// Check the lenght of the lists
++    /// Check the length of the lists
+     bool fNamesListsConsistent();
+ 
+     /// List of channels names to combine for the signal plus background pdfs
+--- a/tmva/src/CostComplexityPruneTool.cxx
++++ b/tmva/src/CostComplexityPruneTool.cxx
+@@ -227,7 +227,7 @@
+    // for automatic pruning, at each step, we calculate the current quality of the 
+    //     tree and in the end we will prune at the minimum of the tree quality   
+    // for the fixed parameter pruing, the cut is simply set at a relative position
+-   //     in the sequence according to the "lenght" of the sequence of pruned trees.
++   //     in the sequence according to the "length" of the sequence of pruned trees.
+    //     100: at the end (pruned until the root node would be the next pruning candidate
+    //     50: in the middle of the sequence
+    //     etc...
+--- a/tree/tree/inc/TBranch.h
++++ b/tree/tree/inc/TBranch.h
+@@ -88,7 +88,7 @@
+    TObjArray   fBranches;        //-> List of Branches of this branch
+    TObjArray   fLeaves;          //-> List of leaves of this branch
+    TObjArray   fBaskets;         //-> List of baskets of this branch
+-   Int_t      *fBasketBytes;     //[fMaxBaskets] Lenght of baskets on file
++   Int_t      *fBasketBytes;     //[fMaxBaskets] Length of baskets on file
+    Long64_t   *fBasketEntry;     //[fMaxBaskets] Table of first entry in eack basket
+    Long64_t   *fBasketSeek;      //[fMaxBaskets] Addresses of baskets on file
+    TTree      *fTree;            //! Pointer to Tree header

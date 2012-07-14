@@ -1,0 +1,26 @@
+diff --git a/roofit/roostats/inc/RooStats/BernsteinCorrection.h b/roofit/roostats/inc/RooStats/BernsteinCorrection.h
+index b4da0ca..4f06b2d 100644
+--- a/roofit/roostats/inc/RooStats/BernsteinCorrection.h
++++ b/roofit/roostats/inc/RooStats/BernsteinCorrection.h
+@@ -39,7 +39,7 @@ namespace RooStats {
+ 
+   private:
+     Double_t fMaxCorrection; // maximum correction factor at any point
+-    Double_t fTolerance; // probability to add an unecessary term
++    Double_t fTolerance; // probability to add an unnecessary term
+ 
+    protected:
+     ClassDef(BernsteinCorrection,1) // A utility to add polynomial corrrection terms to a model to improve the description of data.
+diff --git a/tutorials/roostats/rs_bernsteinCorrection.C b/tutorials/roostats/rs_bernsteinCorrection.C
+index f519658..111e609 100644
+--- a/tutorials/roostats/rs_bernsteinCorrection.C
++++ b/tutorials/roostats/rs_bernsteinCorrection.C
+@@ -80,7 +80,7 @@ void rs_bernsteinCorrection(){
+   wks->import(*data, Rename("data"));
+   wks->import(nominal);
+ 
+-  // The tolerance sets the probability to add an unecessary term.
++  // The tolerance sets the probability to add an unnecessary term.
+   // lower tolerance will add fewer terms, while higher tolerance
+   // will add more terms and provide a more flexible function.
+   Double_t tolerance = 0.05; 

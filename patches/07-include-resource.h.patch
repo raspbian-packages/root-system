@@ -1,0 +1,12 @@
+--- a/core/unix/src/TUnixSystem.cxx
++++ b/core/unix/src/TUnixSystem.cxx
+@@ -4919,8 +4919,8 @@
+ 
+ //---- System, CPU and Memory info ---------------------------------------------
+ 
+-#if defined(R__MACOSX)
+ #include <sys/resource.h>
++#if defined(R__MACOSX)
+ #include <mach/mach.h>
+ #include <mach/mach_error.h>
+ 

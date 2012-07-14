@@ -1,0 +1,186 @@
+--- a/docbook/users-guide/WritingGUI.xml
++++ b/docbook/users-guide/WritingGUI.xml
+@@ -127,7 +127,7 @@
+    fMain-&gt;MapWindow();
+ }
+ void MyMainFrame::DoDraw() {
+-   <emphasis role="italic">// Draws function graphics in randomly choosen interval</emphasis>
++   <emphasis role="italic">// Draws function graphics in randomly chosen interval</emphasis>
+    TF1 *f1 = new TF1("f1","sin(x)/x",0,gRandom-&gt;Rndm()*10);
+    f1-&gt;SetLineWidth(3);
+    f1-&gt;Draw();
+--- a/gui/guibuilder/src/TGuiBldDragManager.cxx
++++ b/gui/guibuilder/src/TGuiBldDragManager.cxx
+@@ -5472,7 +5472,7 @@
+ //______________________________________________________________________________
+ void TGuiBldDragManager::DoClassMenu(Int_t id)
+ {
+-   // Process a method choosen via frame context menu
++   // Process a method chosen via frame context menu
+ 
+    if (!fFrameMenu || ((id != kMethodMenuAct) && (id != kToggleMenuAct))) {
+       return;
+--- a/hist/hist/src/TFormula.cxx
++++ b/hist/hist/src/TFormula.cxx
+@@ -3721,7 +3721,7 @@
+    //
+    //          pdata[operand={Var,Par,Const}][offset]
+    //          pdata[fOperOffsets0[i]][fOperOffset1[i+1]]
+-   // 2.) The fastest evaluation function is choosen at the end
++   // 2.) The fastest evaluation function is chosen at the end
+    //     a.) fOptimal := pointer to the fastest function for given evaluation string
+    //             switch(GetActionOptimized(0)){
+    //               case kData : {fOptimal= (TFormulaPrimitive::TFuncG)&TFormula::EvalPrimitive0; break;}
+--- a/math/mathcore/inc/Math/RootFinder.h
++++ b/math/mathcore/inc/Math/RootFinder.h
+@@ -45,7 +45,7 @@
+    @defgroup RootFinders One-dimensional Root-Finding algorithms 
+    Various implementation esists in MathCore and MathMore
+    The user interacts with a proxy class ROOT::Math::RootFinder which creates behing 
+-   the choosen algorithms which are implemented using the ROOT::Math::IRootFinderMethod interface
++   the chosen algorithms which are implemented using the ROOT::Math::IRootFinderMethod interface
+ 
+    @ingroup NumAlgo
+ */
+--- a/math/mathmore/inc/Math/GSLMinimizer1D.h
++++ b/math/mathmore/inc/Math/GSLMinimizer1D.h
+@@ -70,7 +70,7 @@
+ <A HREF="http://www.gnu.org/software/gsl/manual/html_node/One-dimensional-Minimization.html">GSL online doc</A>
+ 
+ The algorithms uspported are only bracketing algorithm which do not use derivatives information. 
+-The algorithms which can be choosen at construction time are  GOLDENSECTION, whic is the simplest method 
++The algorithms which can be chosen at construction time are  GOLDENSECTION, whic is the simplest method 
+ but the slowest and BRENT (the default one) which combines the golden section with a parabolic interpolation. 
+ 
+ 
+--- a/math/mathmore/src/GSLIntegrator.cxx
++++ b/math/mathmore/src/GSLIntegrator.cxx
+@@ -273,7 +273,7 @@
+ 
+ double  GSLIntegrator::Integral( ) {
+    // Eval for indefined integrals: use QAGI method
+-   // if method was choosen NO_ADAPTIVE WS does not exist create it
++   // if method was chosen NO_ADAPTIVE WS does not exist create it
+ 
+    if (!CheckFunction()) return 0;  
+ 
+@@ -289,7 +289,7 @@
+ 
+ double  GSLIntegrator::IntegralUp( double a ) {
+    // Integral between [a, + inf]
+-   // if method was choosen NO_ADAPTIVE WS does not exist create it
++   // if method was chosen NO_ADAPTIVE WS does not exist create it
+ 
+    if (!CheckFunction()) return 0;  
+ 
+@@ -305,7 +305,7 @@
+ 
+ double  GSLIntegrator::IntegralLow( double b ) {
+    // Integral between [-inf, + b]
+-   // if method was choosen NO_ADAPTIVE WS does not exist create it
++   // if method was chosen NO_ADAPTIVE WS does not exist create it
+ 
+    if (!CheckFunction()) return 0;  
+ 
+--- a/math/mlp/src/TMultiLayerPerceptron.cxx
++++ b/math/mlp/src/TMultiLayerPerceptron.cxx
+@@ -50,7 +50,7 @@
+ </UL>
+ <P>Neural Networks are more and more used in various fields for data
+ analysis and classification, both for research and commercial
+-institutions. Some randomly choosen examples are:</P>
++institutions. Some randomly chosen examples are:</P>
+ <UL>
+         <LI><P>image analysis</P>
+         <LI><P>financial movements predictions and analysis</P>
+@@ -64,7 +64,7 @@
+ package</A> originaly written by Jerome Schwindling. MLPfit remains
+ one of the fastest tool for neural networks studies, and this ROOT
+ add-on will not try to compete on that. A clear and flexible Object
+-Oriented implementation has been choosen over a faster but more
++Oriented implementation has been chosen over a faster but more
+ difficult to maintain code. Nevertheless, the time penalty does not
+ exceed a factor 2.</P>
+ <UL>
+--- a/net/net/src/TSocket.cxx
++++ b/net/net/src/TSocket.cxx
+@@ -1304,7 +1304,7 @@
+ 
+    R__LOCKGUARD2(gSocketAuthMutex);
+ 
+-   // Url to be passed to choosen constructor
++   // Url to be passed to chosen constructor
+    TString eurl(url);
+ 
+    // Parse protocol, if any
+--- a/test/RootShower/RootShower.cxx
++++ b/test/RootShower/RootShower.cxx
+@@ -1071,13 +1071,13 @@
+          fHisto_dEdX->Fill(fEvent->GetParticle(i)->GetELoss());
+          for (j=0;j<fEvent->GetParticle(i)->GetNTracks();j++)
+             fEvent->GetParticle(i)->GetTrack(j)->Draw();
+-         // show track by track if "show process" has been choosen
++         // show track by track if "show process" has been chosen
+          // into the menu
+          if (fShowProcess) {
+             fCA->Modified();
+             fCA->Update();
+             // create one gif image by step if "Animated GIF"
+-            // has been choosen into the menu
++            // has been chosen into the menu
+             if (fCreateGIFs) {
+                fCA->SaveAs("RSEvent.gif+");
+             }
+--- a/test/guitest.cxx
++++ b/test/guitest.cxx
+@@ -1946,7 +1946,7 @@
+    if (mode<10) {
+       fContents->SetViewMode((EListViewMode)mode);
+    } else {
+-      delete this;   // Close menu entry choosen
++      delete this;   // Close menu entry chosen
+    }
+ }
+ 
+--- a/tmva/inc/TMVA/DecisionTreeNode.h
++++ b/tmva/inc/TMVA/DecisionTreeNode.h
+@@ -233,7 +233,7 @@
+       Float_t GetNEvents_unweighted( void ) const  { return fTrainInfo->fNEvents_unweighted; }
+ 
+ 
+-      // set the choosen index, measure of "purity" (separation between S and B) AT this node
++      // set the chosen index, measure of "purity" (separation between S and B) AT this node
+       void SetSeparationIndex( Float_t sep ){ fTrainInfo->fSeparationIndex =sep ; }
+       // return the separation index AT this node
+       Float_t GetSeparationIndex( void ) const  { return fTrainInfo->fSeparationIndex; }
+--- a/tmva/src/DecisionTree.cxx
++++ b/tmva/src/DecisionTree.cxx
+@@ -162,7 +162,7 @@
+       fRegType = new RegressionVariance();
+       if ( nCuts <=0 ) {
+          fNCuts = 200;
+-         Log() << kWARNING << " You had choosen the training mode using optimal cuts, not\n"
++         Log() << kWARNING << " You had chosen the training mode using optimal cuts, not\n"
+                << " based on a grid of " << fNCuts << " by setting the option NCuts < 0\n"
+                << " as this doesn't exist yet, I set it to " << fNCuts << " and use the grid"
+                << Endl;
+--- a/tmva/src/TActivationChooser.cxx
++++ b/tmva/src/TActivationChooser.cxx
+@@ -75,7 +75,7 @@
+ TMVA::TActivationChooser::CreateActivation(EActivationType type) const
+ {
+    // instantiate the correct activation object according to the
+-   // type choosen (given as the enumeration type)
++   // type chosen (given as the enumeration type)
+    
+    switch (type) {
+    case kLinear:  return new TActivationIdentity();
+@@ -93,7 +93,7 @@
+ TMVA::TActivationChooser::CreateActivation(const TString& type) const
+ {
+    // instantiate the correct activation object according to the
+-   // type choosen (given by a TString)
++   // type chosen (given by a TString)
+ 
+    if      (type == fLINEAR)  return CreateActivation(kLinear);
+    else if (type == fSIGMOID) return CreateActivation(kSigmoid);

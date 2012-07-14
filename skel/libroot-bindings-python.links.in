@@ -1,0 +1,2 @@
+@prefix@/lib/@multiarch@/root@libvers@/libPyROOT.so /usr/lib/python@pyver@/dist-packages/libPyROOT.so
+@prefix@/lib/@multiarch@/root@libvers@/ROOT.py      /usr/share/python-support/root/ROOT.py

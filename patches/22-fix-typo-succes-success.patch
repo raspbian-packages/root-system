@@ -1,0 +1,392 @@
+--- a/core/meta/src/TCint.cxx
++++ b/core/meta/src/TCint.cxx
+@@ -1776,7 +1776,7 @@
+ Int_t TCint::UnloadAllSharedLibraryMaps()
+ {
+    // Unload the library map entries coming from all the loaded shared libraries.
+-   // Returns 0 if succesful
++   // Returns 0 if successful
+ 
+    const TString sharedLibLStr = GetSharedLibs();
+    const TObjArray *sharedLibL = sharedLibLStr.Tokenize(" ");
+--- a/core/unix/src/TUnixSystem.cxx
++++ b/core/unix/src/TUnixSystem.cxx
+@@ -1612,7 +1612,7 @@
+ //______________________________________________________________________________
+ int TUnixSystem::Symlink(const char *from, const char *to)
+ {
+-   // Create a symlink from file1 to file2. Returns 0 when succesfull,
++   // Create a symlink from file1 to file2. Returns 0 when successful,
+    // -1 in case of failure.
+ 
+ #if defined(R__AIX)
+@@ -1625,7 +1625,7 @@
+ //______________________________________________________________________________
+ int TUnixSystem::Unlink(const char *name)
+ {
+-   // Unlink, i.e. remove, a file or directory. Returns 0 when succesfull,
++   // Unlink, i.e. remove, a file or directory. Returns 0 when successful,
+    // -1 in case of failure.
+ 
+    TSystem *helper = FindHelper(name);
+--- a/core/winnt/src/TWinNTSystem.cxx
++++ b/core/winnt/src/TWinNTSystem.cxx
+@@ -2724,7 +2724,7 @@
+ //______________________________________________________________________________
+ int TWinNTSystem::Symlink(const char *from, const char *to)
+ {
+-   // Create a symlink from file1 to file2. Returns 0 when succesfull,
++   // Create a symlink from file1 to file2. Returns 0 when successful,
+    // -1 in case of failure.
+ 
+    HRESULT        hRes;                  /* Returned COM result code */
+--- a/graf2d/asimage/src/libAfterImage/libungif/dgif_lib.c
++++ b/graf2d/asimage/src/libAfterImage/libungif/dgif_lib.c
+@@ -687,7 +687,7 @@
+ *   The LZ decompression input routine:					      *
+ *   This routine is responsable for the decompression of the bit stream from  *
+ * 8 bits (bytes) packets, into the real codes.				      *
+-*   Returns GIF_OK if read succesfully.					      *
++*   Returns GIF_OK if read successfully.					      *
+ ******************************************************************************/
+ static int DGifDecompressInput(GifFileType *GifFile, int *Code)
+ {
+@@ -730,7 +730,7 @@
+ *   This routines read one gif data block at a time and buffers it internally *
+ * so that the decompression routine could access it.			      *
+ *   The routine returns the next byte from its internal buffer (or read next  *
+-* block in if buffer empty) and returns GIF_OK if succesful.		      *
++* block in if buffer empty) and returns GIF_OK if successful.		      *
+ ******************************************************************************/
+ static int DGifBufferedInput(GifFileType *GifFile, GifByteType *Buf,
+ 						      GifByteType *NextByte)
+--- a/graf2d/asimage/src/libAfterImage/libungif/egif_lib.c
++++ b/graf2d/asimage/src/libAfterImage/libungif/egif_lib.c
+@@ -69,7 +69,7 @@
+ *   Update a new gif file, given its file handle, which must be opened for    *
+ * write in binary mode.							      *
+ *   Returns GifFileType pointer dynamically allocated which serves as the gif *
+-* info record. _GifError is cleared if succesfull.			      *
++* info record. _GifError is cleared if successful.			      *
+ ******************************************************************************/
+ GifFileType *EGifOpenFileHandle(int FileHandle)
+ {
+@@ -732,7 +732,7 @@
+ *   The LZ compression output routine:                                        *
+ *   This routine is responsible for the compression of the bit stream into    *
+ *   8 bits (bytes) packets.                                                   *
+-*   Returns GIF_OK if written succesfully.                                    *
++*   Returns GIF_OK if written successfully.                                    *
+ ******************************************************************************/
+ static int EGifCompressOutput(GifFileType *GifFile, int Code)
+ {
+@@ -778,7 +778,7 @@
+ *   This routines buffers the given characters until 255 characters are ready *
+ * to be output. If Code is equal to -1 the buffer is flushed (EOF).	      *
+ *   The buffer is Dumped with first byte as its size, as GIF format requires. *
+-*   Returns GIF_OK if written succesfully.				      *
++*   Returns GIF_OK if written successfully.				      *
+ ******************************************************************************/
+ static int EGifBufferedOutput(GifFileType *GifFile, GifByteType *Buf, int c)
+ {
+--- a/graf2d/win32gdk/src/gifquantize.c
++++ b/graf2d/win32gdk/src/gifquantize.c
+@@ -58,7 +58,7 @@
+ * ColorMapSize specifies size of color map up to 256 and will be updated to   *
+ * real size before returning.                                                 *
+ *   Also non of the parameter are allocated by this routine.                  *
+-*   This function returns GIF_OK if succesfull, GIF_ERROR otherwise.          *
++*   This function returns GIF_OK if successful, GIF_ERROR otherwise.          *
+ ******************************************************************************/
+ int GIFquantize(unsigned int Width, unsigned int Height, int *ColorMapSize,
+         byte *RedInput, byte *GreenInput, byte *BlueInput,
+--- a/graf2d/x11/src/gifquantize.c
++++ b/graf2d/x11/src/gifquantize.c
+@@ -58,7 +58,7 @@
+ * ColorMapSize specifies size of color map up to 256 and will be updated to   *
+ * real size before returning.                                                 *
+ *   Also non of the parameter are allocated by this routine.                  *
+-*   This function returns GIF_OK if succesfull, GIF_ERROR otherwise.          *
++*   This function returns GIF_OK if successful, GIF_ERROR otherwise.          *
+ ******************************************************************************/
+ int GIFquantize(unsigned int Width, unsigned int Height, int *ColorMapSize,
+         byte *RedInput, byte *GreenInput, byte *BlueInput,
+--- a/gui/fitpanel/inc/TFitEditor.h
++++ b/gui/fitpanel/inc/TFitEditor.h
+@@ -133,7 +133,7 @@
+    };
+    std::vector<FuncParamData_t> fFuncPars; // function parameters (value + limits)
+ 
+-   std::multimap<TObject*, TF1*> fPrevFit; // Previous succesful fits.
++   std::multimap<TObject*, TF1*> fPrevFit; // Previous successful fits.
+    std::vector<TF1*> fSystemFuncs;         // functions managed by the fitpanel
+ 
+    TGRadioButton       *fLibMinuit;        // set default minimization library (Minuit)
+--- a/gui/fitpanel/test/UnitTesting.cxx
++++ b/gui/fitpanel/test/UnitTesting.cxx
+@@ -170,7 +170,7 @@
+    // This function compares the parameters stored in the TFitEditor
+    // with the ones passed by the test functions. Normally, if the
+    // function return 0, it means all the parameters are equal up to a
+-   // certain limit, thus the test was succesful.
++   // certain limit, thus the test was successful.
+    int CompareFuncPars(std::vector<TFitEditor::FuncParamData_t>& pars)
+    {
+       int status = 0;
+--- a/gui/sessionviewer/src/TSessionDialogs.cxx
++++ b/gui/sessionviewer/src/TSessionDialogs.cxx
+@@ -1313,7 +1313,7 @@
+             }
+             else {
+                new TGMsgBox(fClient->GetRoot(), this, "Upload DataSet",
+-                            "Files have been succesfully uploaded to the cluster",
++                            "Files have been successfully uploaded to the cluster",
+                             kMBIconAsterisk, kMBOk, &retval);
+             }
+             fUploading = kFALSE;
+@@ -1338,7 +1338,7 @@
+             }
+             else {
+                new TGMsgBox(fClient->GetRoot(), this, "Upload DataSet",
+-                            "Files have been succesfully uploaded to the cluster",
++                            "Files have been successfully uploaded to the cluster",
+                             kMBIconAsterisk, kMBOk, &retval);
+             }
+          }
+@@ -1347,7 +1347,7 @@
+    }
+    else {
+       new TGMsgBox(fClient->GetRoot(), this, "Upload DataSet",
+-                   "Files have been succesfully uploaded to the cluster",
++                   "Files have been successfully uploaded to the cluster",
+                    kMBIconAsterisk, kMBOk, &retval);
+    }
+    // finally, update list of datasets in session viewer
+--- a/io/hdfs/src/THDFSFile.cxx
++++ b/io/hdfs/src/THDFSFile.cxx
+@@ -490,7 +490,7 @@
+ //______________________________________________________________________________
+ Int_t THDFSSystem::Unlink(const char * path)
+ {
+-   // Unlink, i.e. remove, a file or directory. Returns 0 when succesfull,
++   // Unlink, i.e. remove, a file or directory. Returns 0 when successful,
+    // -1 in case of failure.
+ 
+    if (fFH == 0) {
+--- a/io/rfio/src/TRFIOFile.cxx
++++ b/io/rfio/src/TRFIOFile.cxx
+@@ -543,7 +543,7 @@
+ //______________________________________________________________________________
+ Int_t TRFIOSystem::Unlink(const char *path)
+ {
+-   // Unlink, i.e. remove, a file or directory. Returns 0 when succesfull,
++   // Unlink, i.e. remove, a file or directory. Returns 0 when successful,
+    // -1 in case of failure.
+ 
+    TUrl url(path);
+--- a/io/sql/src/TSQLFile.cxx
++++ b/io/sql/src/TSQLFile.cxx
+@@ -589,7 +589,7 @@
+ {
+    // Start user transaction.
+    // This can be usesfull, when big number of objects should be stored in
+-   // data base and commitment required only if all operations were succesfull.
++   // data base and commitment required only if all operations were successful.
+    // In that case in the end of all operations method Commit() should be
+    // called. If operation on user-level is looks like not successfull,
+    // method Rollback() will return database data and TSQLFile instance to
+@@ -935,7 +935,7 @@
+ {
+    // read keys for specified directory (when update == kFALSE)
+    // or update value for modified keys when update == kTRUE
+-   // Returns number of succesfully read keys or -1 if error
++   // Returns number of successfully read keys or -1 if error
+ 
+    if (dir==0) return -1;
+ 
+--- a/io/xmlparser/src/TXMLParser.cxx
++++ b/io/xmlparser/src/TXMLParser.cxx
+@@ -164,7 +164,7 @@
+ void TXMLParser::SetParseCode(Int_t errorcode)
+ {
+    // Set the parse code:
+-   //  0: Parse succesfull
++   //  0: Parse successful
+    // -1: Attempt to parse a second file while a parse is in progress
+    // -2: Parse context is not created
+    // -3: An error occured while parsing file
+--- a/math/mathcore/inc/Math/Minimizer.h
++++ b/math/mathcore/inc/Math/Minimizer.h
+@@ -128,7 +128,7 @@
+    }
+    
+ 
+-   /// add variables  . Return number of variables succesfully added
++   /// add variables  . Return number of variables successfully added
+    template<class VariableIterator> 
+    int SetVariables(const VariableIterator & begin, const VariableIterator & end) { 
+       unsigned int ivar = 0; 
+--- a/math/mathmore/inc/Math/GSLRootFinder.h
++++ b/math/mathmore/inc/Math/GSLRootFinder.h
+@@ -104,7 +104,7 @@
+ 
+     using IRootFinderMethod::SetFunction;
+ 
+-    // iterate to find ROOTS return GSL_CONTINUE if iteration was succesfull or another error
++    // iterate to find ROOTS return GSL_CONTINUE if iteration was successful or another error
+     int Iterate(); 
+ 
+     double Root() const; 
+--- a/math/mathmore/inc/Math/GSLRootFinderDeriv.h
++++ b/math/mathmore/inc/Math/GSLRootFinderDeriv.h
+@@ -113,7 +113,7 @@
+ 
+    using IRootFinderMethod::SetFunction;
+ 
+-   /// iterate (return GSL_SUCCESS in case of succesfull iteration)
++   /// iterate (return GSL_SUCCESS in case of successful iteration)
+    int Iterate(); 
+ 
+    double Root() const; 
+--- a/math/minuit2/src/FumiliBuilder.cxx
++++ b/math/minuit2/src/FumiliBuilder.cxx
+@@ -46,7 +46,7 @@
+ 
+ FunctionMinimum FumiliBuilder::Minimum(const MnFcn& fcn, const GradientCalculator& gc, const MinimumSeed& seed, const MnStrategy& strategy, unsigned int maxfcn, double edmval) const {
+    // top level function to find minimum from a given initial seed 
+-   // iterate on a minimum search in case of first attempt is not succesfull
++   // iterate on a minimum search in case of first attempt is not successful
+    
+    edmval *= 0.0001;
+    //edmval *= 0.1; // use small factor for Fumili
+@@ -414,7 +414,7 @@
+    //   std::cout<<"result.back().Error().Dcovar()= "<<result.back().Error().Dcovar()<<std::endl;
+    
+ #ifdef DEBUG
+-   std::cout << "Exiting succesfully FumiliBuilder \n" 
++   std::cout << "Exiting successfully FumiliBuilder \n" 
+       << "NFCalls = " << fcn.NumOfCalls() 
+       << "\nFval = " <<  result.back().Fval() 
+       << "\nedm = " << edm << " requested = " << edmval << std::endl; 
+--- a/math/minuit2/src/VariableMetricBuilder.cxx
++++ b/math/minuit2/src/VariableMetricBuilder.cxx
+@@ -41,7 +41,7 @@
+ 
+ FunctionMinimum VariableMetricBuilder::Minimum(const MnFcn& fcn, const GradientCalculator& gc, const MinimumSeed& seed, const MnStrategy& strategy, unsigned int maxfcn, double edmval) const {   
+    // top level function to find minimum from a given initial seed 
+-   // iterate on a minimum search in case of first attempt is not succesfull
++   // iterate on a minimum search in case of first attempt is not successful
+    
+    // to be consistent with F77 Minuit
+    // in Minuit2 edm is correct and is ~ a factor of 2 smaller than F77Minuit
+@@ -399,7 +399,7 @@
+    //   std::cout<<"result.back().Error().Dcovar()= "<<result.back().Error().Dcovar()<<std::endl;
+    
+ #ifdef DEBUG
+-   std::cout << "Exiting succesfully Variable Metric Builder \n" 
++   std::cout << "Exiting successfully Variable Metric Builder \n" 
+              << "NFCalls = " << fcn.NumOfCalls() 
+              << "\nFval = " <<  result.back().Fval() 
+              << "\nedm = " << edm << " requested = " << edmval << std::endl; 
+--- a/net/net/src/TSQLServer.cxx
++++ b/net/net/src/TSQLServer.cxx
+@@ -132,7 +132,7 @@
+ Bool_t TSQLServer::StartTransaction()
+ {
+    // submit "START TRANSACTION" query to database
+-   // return kTRUE, if succesfull
++   // return kTRUE, if successful
+    
+    return Exec("START TRANSACTION");
+ }
+@@ -141,7 +141,7 @@
+ Bool_t TSQLServer::Commit()
+ {
+    // submit "COMMIT" query to database
+-   // return kTRUE, if succesfull
++   // return kTRUE, if successful
+ 
+    return Exec("COMMIT");
+ }
+@@ -150,7 +150,7 @@
+ Bool_t TSQLServer::Rollback()
+ {
+    // submit "ROLLBACK" query to database
+-   // return kTRUE, if succesfull
++   // return kTRUE, if successful
+ 
+    return Exec("ROLLBACK");
+ }
+--- a/net/net/src/TWebFile.cxx
++++ b/net/net/src/TWebFile.cxx
+@@ -1350,7 +1350,7 @@
+ //______________________________________________________________________________
+ Int_t TWebSystem::Unlink(const char *)
+ {
+-   // Unlink, i.e. remove, a file or directory. Returns 0 when succesfull,
++   // Unlink, i.e. remove, a file or directory. Returns 0 when successful,
+    // -1 in case of failure. Not supported for httpd.
+ 
+    return -1;
+--- a/roofit/roofitcore/src/RooAbsAnaConvPdf.cxx
++++ b/roofit/roofitcore/src/RooAbsAnaConvPdf.cxx
+@@ -231,7 +231,7 @@
+   }
+   delete cIter ;
+ 
+-  // Check if all convolutions were succesfully built
++  // Check if all convolutions were successfully built
+   if (!allOK) {
+     // Delete new basis functions created sofar
+     TIterator* iter = newConvSet.createIterator() ;
+--- a/roofit/roofitcore/src/RooCmdConfig.cxx
++++ b/roofit/roofitcore/src/RooCmdConfig.cxx
+@@ -240,7 +240,7 @@
+ void RooCmdConfig::defineDependency(const char* refArgName, const char* neededArgName) 
+ {
+   // Define that processing argument name refArgName requires processing
+-  // of argument named neededArgName to succesfully complete parsing
++  // of argument named neededArgName to successfully complete parsing
+ 
+   TNamed* dep = new TNamed(refArgName,neededArgName) ;
+   _yList.Add(dep) ;
+@@ -753,7 +753,7 @@
+ //_____________________________________________________________________________
+ Bool_t RooCmdConfig::ok(Bool_t verbose) const 
+ { 
+-  // Return true of parsing was succesfull
++  // Return true of parsing was successful
+ 
+   if (_rList.GetSize()==0 && !_error) return kTRUE ;
+ 
+--- a/roofit/roostats/src/LikelihoodInterval.cxx
++++ b/roofit/roostats/src/LikelihoodInterval.cxx
+@@ -192,7 +192,7 @@
+ {  
+    // Compute lower limit, check first if limit has been computed 
+    // status is a boolean flag which will b set to false in case of error
+-   // and is true if calculation is succesfull
++   // and is true if calculation is successful
+    // in case of error return also a lower limit value of zero
+ 
+    double lower = 0; 
+@@ -206,7 +206,7 @@
+ {  
+    // Compute upper limit, check first if limit has been computed 
+    // status is a boolean flag which will b set to false in case of error
+-   // and is true if calculation is succesfull
++   // and is true if calculation is successful
+    // in case of error return also a lower limit value of zero
+ 
+    double lower = 0; 
+--- a/sql/oracle/src/TOracleServer.cxx
++++ b/sql/oracle/src/TOracleServer.cxx
+@@ -219,7 +219,7 @@
+ Bool_t TOracleServer::Exec(const char* sql)
+ {
+    // Execute sql command wich does not produce any result set.
+-   // Return kTRUE if succesfull
++   // Return kTRUE if successful
+ 
+    CheckConnect("Exec", kFALSE);
+ 

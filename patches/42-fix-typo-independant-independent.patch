@@ -1,0 +1,73 @@
+--- a/graf2d/asimage/src/libAfterImage/ChangeLog
++++ b/graf2d/asimage/src/libAfterImage/ChangeLog
+@@ -3383,7 +3383,7 @@
+ 	* Completed Pseudo-color support with colormap allocation and
+ 	  ximage handling.  Added create_asimage and destroy_asimage for
+ 	  convinience.	Added missing stuff to libAfterImage/afterbase.h to
+-	  make it completely independant.  libAfterImage thus should be
++	  make it completely independent.  libAfterImage thus should be
+ 	  ready for release - only to write up some docs :)
+ 
+ 2001-06-13  sasha
+@@ -3495,7 +3495,7 @@
+ 	  it.  That should allow for better library independancy - visual
+ 	  will go with libAfterImage while ScreenInfo will move into
+ 	  libAfterStep , or, possibly will split up even more.	Goal is to
+-	  make libAfterImage completely independant from everything else.
++	  make libAfterImage completely independent from everything else.
+ 
+ 2001-05-23  allanon
+ 
+--- a/graf3d/eve/doc/index.txt
++++ b/graf3d/eve/doc/index.txt
+@@ -2,7 +2,7 @@
+ <center><h1>The Event Display classes</h1></center>
+ <p><hr><p>
+ 
+-    Eve is a ROOT module based on experiment-independant part of the
++    Eve is a ROOT module based on experiment-independent part of the
+     ALICE event display developed in cooperation between ALICE offline
+     project and ROOT during the last two years. It has been used in
+     ALICE for more than a year to perform high-level event
+--- a/graf3d/eve/inc/TEveVSD.h
++++ b/graf3d/eve/inc/TEveVSD.h
+@@ -64,7 +64,7 @@
+ 
+    static void DisableTObjectStreamersForVSDStruct();
+ 
+-   ClassDef(TEveVSD, 1); // Visualization Summary Data - a collection of trees holding standard event data in experiment independant format.
++   ClassDef(TEveVSD, 1); // Visualization Summary Data - a collection of trees holding standard event data in experiment independent format.
+ };
+ 
+ #endif
+--- a/graf3d/eve/src/TEveVSD.cxx
++++ b/graf3d/eve/src/TEveVSD.cxx
+@@ -19,7 +19,7 @@
+ //______________________________________________________________________________
+ //
+ // Visualization Summary Data - a collection of trees holding standard
+-// event data in experiment independant format.
++// event data in experiment independent format.
+ 
+ ClassImp(TEveVSD);
+ 
+--- a/math/genvector/inc/Math/GenVector/BitReproducible.h
++++ b/math/genvector/inc/Math/GenVector/BitReproducible.h
+@@ -48,7 +48,7 @@
+ 
+   // dto2longs(d, i1, i2) returns (in i1 and i2) two unsigned ints
+   // representation of its double input.  This is byte-ordering
+-  // independant, and depends for complete portability ONLY on adherance
++  // independent, and depends for complete portability ONLY on adherance
+   // to the IEEE 754 standard for 64-bit floating point representation.
+   // The first unsigned int contains the high-order bits in IEEE; thus
+   // 1.0 will always be 0x3FF00000, 00000000
+@@ -64,7 +64,7 @@
+ 
+   // dtox(d) returns a 16-character string containing the (zero-filled) hex
+   // representation of its double input.  This is byte-ordering
+-  // independant, and depends for complete portability ONLY on adherance
++  // independent, and depends for complete portability ONLY on adherance
+   // to the IEEE 754 standard for 64-bit floating point representation.
+   static std::string D2x(double d);
+ 
