@@ -5123,7 +5123,7 @@ void G__cppif_dummyobj(FILE *fp, struct G__ifunc_table_internal *ifunc, int i,in
  *
  * 25-07-07
  *
- * Create the deafult cons, dests, etc as ifunc entries before writing
+ * Create the default cons, dests, etc as ifunc entries before writing
  * them to the file
  **************************************************************************/
 void G__make_default_ifunc(G__ifunc_table_internal *ifunc_copy)
