@@ -1,0 +1,122 @@
+--- a/README/INSTALL
++++ b/README/INSTALL
+@@ -213,7 +213,7 @@
+ 
+         %_topdir <some where you can write>/redhat
+ 
+-     Then you should make the appropiate directories:
++     Then you should make the appropriate directories:
+ 
+         mkdir <some where you can write>/redhat
+         mkdir <some where you can write>/redhat/SOURCES
+--- a/config/root-help.el.in
++++ b/config/root-help.el.in
+@@ -608,7 +608,7 @@
+ 
+ ;;____________________________________________________________________
+ (defun root-insert-linkdef () 
+-  "Insert lines appropiate for a linkdef file into current buffer
++  "Insert lines appropriate for a linkdef file into current buffer
+ 
+ The user will be prompted for classes to add to the linkdef file.  An
+ empty string ends the input."
+--- a/man/man1/proofd.1
++++ b/man/man1/proofd.1
+@@ -27,7 +27,7 @@
+ .SH "SETTING UP PROOF"
+ Since you need to handle sensitive system files, you need to have root
+ (the user, not the program!) privileges. Also, it's recommended that
+-you read the appropiate \fIman\fR(1) pages first. These are
++you read the appropriate \fIman\fR(1) pages first. These are
+ \fIinetd\fR(8) (the internet daemon), \fIsysklogd\fR(8) and
+ \fIsyslog\fR(3) (the system logger daemon),  and \fIinit\fR(8) (the
+ SYSV process control initializer).
+@@ -87,7 +87,7 @@
+   /etc/init.d/inetd restart
+ 
+ .fi
+-or whatever is appropiate for your system.
++or whatever is appropriate for your system.
+ 
+ .TP
+ 5
+@@ -145,7 +145,7 @@
+   /etc/init.d/sysklogd restart
+ 
+ .fi
+-or whatever is appropiate for your system.
++or whatever is appropriate for your system.
+ 
+ .TP
+ 9
+--- a/man/man1/root-config.1
++++ b/man/man1/root-config.1
+@@ -53,7 +53,7 @@
+ .fi
+ .RE
+ where you should substitute \fBFoo\fR with whatever, and list the
+-appropiate source files in the \fB_SOURCES\fR variable. In you
++appropriate source files in the \fB_SOURCES\fR variable. In you
+ \ficonfigure.in\fR file, put:
+ .RS
+ .nf
+--- a/man/man1/rootn.exe.1
++++ b/man/man1/rootn.exe.1
+@@ -5,7 +5,7 @@
+ rootn.exe \- ROOT interpretor memory managed backend 
+ .SH DESCRIPTION
+ This executable is linked with \fBlibNew\fR, unlike \fIroot.exe\fR,
+-which makes it appropiate for if one wants to use memory mapped file,
++which makes it appropriate for if one wants to use memory mapped file,
+ \fBTMapFile\fR, and so on. In all other aspects, it's the same as
+ the \fIroot\fR(1) executable.
+ .SH "SEE ALSO"
+--- a/man/man1/xproofd.1
++++ b/man/man1/xproofd.1
+@@ -34,7 +34,7 @@
+ .SH "SETTING UP PROOF"
+ Since you need to handle sensitive system files, you need to have root
+ (the user, not the program!) privileges. Also, it's recommended that
+-you read the appropiate \fIman\fR(1) pages first. These are
++you read the appropriate \fIman\fR(1) pages first. These are
+ \fIinetd\fR(8) (the internet daemon), \fIsysklogd\fR(8) and
+ \fIsyslog\fR(3) (the system logger daemon),  and \fIinit\fR(8) (the
+ SYSV process control initializer).
+@@ -94,7 +94,7 @@
+   /etc/init.d/inetd restart
+ 
+ .fi
+-or whatever is appropiate for your system.
++or whatever is appropriate for your system.
+ 
+ .TP
+ 5
+@@ -152,7 +152,7 @@
+   /etc/init.d/sysklogd restart
+ 
+ .fi
+-or whatever is appropiate for your system.
++or whatever is appropriate for your system.
+ 
+ .TP
+ 9
+--- a/roofit/roofitcore/src/RooAbsPdf.cxx
++++ b/roofit/roofitcore/src/RooAbsPdf.cxx
+@@ -1707,7 +1707,7 @@
+   }
+ 
+ 
+-  // Forward to appropiate implementation
++  // Forward to appropriate implementation
+   RooDataSet* data ;
+   if (protoData) {
+     data = generate(whatVars,*protoData,nEvents,verbose,randProto,resampleProto) ;
+@@ -2127,7 +2127,7 @@
+ 			<< GetName() << "::expectedEvents() = " << expectedEvents(&whatVars)<< endl ;
+   }
+ 
+-  // Forward to appropiate implementation
++  // Forward to appropriate implementation
+   RooDataHist* data = generateBinned(whatVars,nEvents,expectedData,extended) ;
+ 
+   // Rename dataset to given name if supplied

@@ -1,0 +1,22 @@
+--- a/cint/reflex/doc/ChangeLog.reflex
++++ b/cint/reflex/doc/ChangeLog.reflex
+@@ -348,7 +348,7 @@
+ 	* stl_hash.h: removed namespace define for icc compilers 
+ 
+ 2005-06-17 Pere
+-	* CollectionProxy.h: commited changes from Markus
++	* CollectionProxy.h: committed changes from Markus
+ 
+ 2005-06-10 Pere
+ 	* TypeBuilder.cpp(.h) added EnumTypeBuilder() function
+--- a/roofit/roofitcore/src/RooWorkspace.cxx
++++ b/roofit/roofitcore/src/RooWorkspace.cxx
+@@ -1005,7 +1005,7 @@
+   }
+   delete iter ;
+ 
+-  // Remove all commited objects from the sandbox
++  // Remove all committed objects from the sandbox
+   _sandboxNodes.removeAll() ;
+ 
+   // Mark transaction as finished

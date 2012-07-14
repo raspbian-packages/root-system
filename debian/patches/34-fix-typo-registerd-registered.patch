@@ -1,0 +1,55 @@
+--- a/graf3d/eve/src/TEvePointSet.cxx
++++ b/graf3d/eve/src/TEvePointSet.cxx
+@@ -227,7 +227,7 @@
+ //______________________________________________________________________________
+ void TEvePointSet::SetPointIntIds(Int_t* ids)
+ {
+-   // Set integer ids for the last point that was registerd (most
++   // Set integer ids for the last point that was registered (most
+    // probably via TPolyMarker3D::SetNextPoint(x,y,z)).
+ 
+    SetPointIntIds(fLastPoint, ids);
+--- a/graf3d/eve/src/TEveTrack.cxx
++++ b/graf3d/eve/src/TEveTrack.cxx
+@@ -486,7 +486,7 @@
+ //______________________________________________________________________________
+ void TEveTrack::SortPathMarksByTime()
+ {
+-   // Sort registerd pat-marks by time.
++   // Sort registered pat-marks by time.
+ 
+    std::sort(fPathMarks.begin(), fPathMarks.end(), Cmp_pathmark_t());
+ }
+--- a/hist/hist/src/TFormulaPrimitive.cxx
++++ b/hist/hist/src/TFormulaPrimitive.cxx
+@@ -254,7 +254,7 @@
+ namespace TFastFun {
+    //
+    // Namespace with basic primitive functions registered by TFormulaPrimitive
+-   // all function registerd by TFormulaPrimitive can be used in TFormula
++   // all function registered by TFormulaPrimitive can be used in TFormula
+    //
+    Double_t Pow2(Double_t x){return x*x;}
+    Double_t Pow3(Double_t x){return x*x*x;}
+--- a/proof/proofd/src/XrdProofdNetMgr.cxx
++++ b/proof/proofd/src/XrdProofdNetMgr.cxx
+@@ -491,7 +491,7 @@
+          w++;
+          haveit = 0;
+          while (w != mgr->fRegWorkers.end()) {
+-            TRACE(HDBG,"registerd node: "<< (*w)->fHost <<", port: "<<(*w)->fPort);
++            TRACE(HDBG,"registered node: "<< (*w)->fHost <<", port: "<<(*w)->fPort);
+             if ((*w)->fHost == i->GetHostName() && (*w)->fPort == i->GetPort()) {
+                (*w)->fActive = true;
+                haveit = 1;
+--- a/roofit/roofit/inc/RooCFunction1Binding.h
++++ b/roofit/roofit/inc/RooCFunction1Binding.h
+@@ -153,7 +153,7 @@
+ void RooCFunction1Ref<VO,VI>::Streamer(TBuffer &R__b)
+ {
+   // Custom streamer for function pointer reference object. When writing,
+-  // the function pointer is substituted by its registerd name. When function
++  // the function pointer is substituted by its registered name. When function
+   // is unregistered name 'UNKNOWN' is written and a warning is issues. When
+   // reading back, the embedded name is converted back to a function pointer
+   // using the mapping service. When name UNKNOWN is encountered a warning is

@@ -1,0 +1,11 @@
+--- a/build/rmkdepend/main.c
++++ b/build/rmkdepend/main.c
+@@ -60,7 +60,7 @@
+ #  endif
+ # elif defined(__CYGWIN__)
+ extern int fchmod(int, mode_t);
+-#else
++# elif !defined(__GLIBC__) || __GLIBC__ < 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ < 16)
+ extern int fchmod(int, int);
+ # endif
+ #endif

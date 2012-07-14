@@ -1,0 +1,22 @@
+--- a/net/net/src/TSQLStatement.cxx
++++ b/net/net/src/TSQLStatement.cxx
+@@ -122,7 +122,7 @@
+ // should be stored in internal buffers with TSQLStatement::StoreResult()
+ // method. Information about selected fields (columns)
+ // can be obtained with GetNumFields() and GetFieldName() methods. 
+-// To recieve data for next result row, NextResultRow() method should be called.
++// To receive data for next result row, NextResultRow() method should be called.
+ // Value from each column can be taken with the GetInt(), GetDouble(),
+ // GetString() and other methods. 
+ // 
+--- a/net/rpdutils/src/rpdutils.cxx
++++ b/net/rpdutils/src/rpdutils.cxx
+@@ -3606,7 +3606,7 @@
+ //______________________________________________________________________________
+ int RpdCheckSpecialPass(const char *passwd)
+ {
+-   // Check recieved user's password against password in $HOME/.rootdpass.
++   // Check received user's password against password in $HOME/.rootdpass.
+    // The password is retrieved in RpdUser and temporarly saved in gPasswd.
+    // Returns 1 in case of success authentication, 0 otherwise.
+ 

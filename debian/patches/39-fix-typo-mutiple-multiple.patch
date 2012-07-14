@@ -1,0 +1,35 @@
+diff --git a/gui/gui/src/TGuiBuilder.cxx b/gui/gui/src/TGuiBuilder.cxx
+index ee0444b..499e920 100644
+--- a/gui/gui/src/TGuiBuilder.cxx
++++ b/gui/gui/src/TGuiBuilder.cxx
+@@ -48,7 +48,7 @@
+ //
+ //   o Click left mouse button or Ctrl-Click to select an object to edit.
+ //   o Press right mouse button to activate context menu
+-//   o Mutiple selection (grabbing):
++//   o Multiple selection (grabbing):
+ //      - draw lasso and press Return key
+ //      - press Shift key and draw lasso
+ //   o Dropping:
+diff --git a/gui/guibuilder/src/TRootGuiBuilder.cxx b/gui/guibuilder/src/TRootGuiBuilder.cxx
+index cc7caf8..c49ca83 100644
+--- a/gui/guibuilder/src/TRootGuiBuilder.cxx
++++ b/gui/guibuilder/src/TRootGuiBuilder.cxx
+@@ -83,7 +83,7 @@
+ //
+ //   o Click left mouse button or Ctrl-Click to select an object to edit.
+ //   o Press right mouse button to activate context menu
+-//   o Mutiple selection (grabbing):
++//   o Multiple selection (grabbing):
+ //      - draw lasso and press Return key
+ //      - press Shift key and draw lasso
+ //   o Dropping:
+@@ -133,7 +133,7 @@ const char gHelpBuilder[] = "\
+ \n\
+  o Press left mouse button Click or Ctrl-Click to select an object.\n\
+  o Press right mouse button to activate context menu\n\
+- o Mutiple selection can be done in two ways (grabbing):\n\
++ o Multiple selection can be done in two ways (grabbing):\n\
+       - draw lasso and press Return key\n\
+       - press Shift key and draw lasso\n\
+  o Dropping:\n\

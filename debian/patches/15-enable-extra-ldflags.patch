@@ -1,0 +1,20 @@
+--- a/configure
++++ b/configure
+@@ -6511,7 +6511,7 @@
+ 
+     sed -e "s|@useconfig@|FALSE|" \
+         -e "s|@cflags@||"         \
+-        -e "s|@ldflags@||"        \
++        -e "s|@ldflags@|$EXTRA_LDFLAGS|" \
+             < Makefile.tmp > Makefile.tmpp
+     mv Makefile.tmpp Makefile.tmp
+ fi
+@@ -6645,7 +6645,7 @@
+     -e "s|@ldapincdir@|$ldapincdir|"            \
+     -e "s|@ldaplib@|$ldaplib|"                  \
+     -e "s|@ldaplibdir@|$ldaplibdir|"            \
+-    -e "s|@ldflags@||"                          \
++    -e "s|@ldflags@|$EXTRA_LDFLAGS|"            \
+     -e "s|@libdir@|$libdir|"                    \
+     -e "s|@llvmconfig@|$llvmconfig|"            \
+     -e "s|@macrodir@|$macrodir|"                \

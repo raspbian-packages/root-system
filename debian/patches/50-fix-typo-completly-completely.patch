@@ -1,0 +1,104 @@
+diff --git a/etc/proof/xpd.cf.sample b/etc/proof/xpd.cf.sample
+index be3e530..0982351 100644
+--- a/etc/proof/xpd.cf.sample
++++ b/etc/proof/xpd.cf.sample
+@@ -100,7 +100,7 @@ xrd.protocol xproofd:1093 libXrdProofd.so
+ # Format:
+ #          xpd.shutdown <opt> <delay>
+ # where:
+-#          <opt> is the type of action to be taken when a client completly
++#          <opt> is the type of action to be taken when a client completely
+ #                disconnets; the options are:
+ #                0  remain connected
+ #                1  terminate when idle
+diff --git a/graf2d/doc/v520/index.html b/graf2d/doc/v520/index.html
+index fc9d99c..f39e921 100644
+--- a/graf2d/doc/v520/index.html
++++ b/graf2d/doc/v520/index.html
+@@ -15,7 +15,7 @@
+      mode were wrong.
+ <li> In FillRectangleInternal when the rectangle to be drawn had its width or
+      its height equal to 0, they were set to the current image width or height.
+-     This was not a good solution because this obscured completly the picture.
++     This was not a good solution because this obscured completely the picture.
+      In particular, some markers being drawn with a filled rectangle, they
+      obscured the picture when they were really small because in that case the
+      rectangle drawn had width=height=0. Now, when a rectangle has its width or
+diff --git a/man/man1/proofd.1 b/man/man1/proofd.1
+index 3318326..0585aba 100644
+--- a/man/man1/proofd.1
++++ b/man/man1/proofd.1
+@@ -163,7 +163,7 @@ distribution. This script uses \fIsyslog-facility\fR(1), from the
+ \fBLinux\fR \fIsyslog\fR(1) distribution, and may run on other
+ platforms as well \- but no warrenties mind you!
+ .PP
+-Step 9 is completly up to the user.  
++Step 9 is completely up to the user.  
+ .SH "EXAMPLE"
+ That's it. To test PROOF try the following:
+ .nf
+diff --git a/man/man1/xproofd.1 b/man/man1/xproofd.1
+index 04eb596..a443d47 100644
+--- a/man/man1/xproofd.1
++++ b/man/man1/xproofd.1
+@@ -170,7 +170,7 @@ distribution. This script uses \fIsyslog-facility\fR(1), from the
+ \fBLinux\fR \fIsyslog\fR(1) distribution, and may run on other
+ platforms as well \- but no warrenties mind you!
+ .PP
+-Step 9 is completly up to the user.  
++Step 9 is completely up to the user.  
+ .SH "EXAMPLE"
+ That's it. To test PROOF try the following:
+ .nf
+diff --git a/math/mathmore/inc/Math/GSLSimAnnealing.h b/math/mathmore/inc/Math/GSLSimAnnealing.h
+index 780d876..adfdc0b 100644
+--- a/math/mathmore/inc/Math/GSLSimAnnealing.h
++++ b/math/mathmore/inc/Math/GSLSimAnnealing.h
+@@ -65,7 +65,7 @@ public:
+ protected: 
+ 
+    /**
+-      derived classes might need to re-define completly the class 
++      derived classes might need to re-define completely the class 
+     */
+    GSLSimAnFunc() : 
+       fFunc(0)
+diff --git a/net/rpdutils/src/globus.cxx b/net/rpdutils/src/globus.cxx
+index 0834c7d..81be6e7 100644
+--- a/net/rpdutils/src/globus.cxx
++++ b/net/rpdutils/src/globus.cxx
+@@ -560,7 +560,7 @@ int GlbsToolCheckProxy(char **subjname)
+       }
+ 
+ #else
+-      // Old version: completly different ...
++      // Old version: completely different ...
+       char *                proxy_type;
+       proxy_cred_desc *     pcd = 0;
+       time_t                time_after;
+diff --git a/tmva/test/TMVAGAexample.cxx b/tmva/test/TMVAGAexample.cxx
+index c244692..f6b9eac 100644
+--- a/tmva/test/TMVAGAexample.cxx
++++ b/tmva/test/TMVAGAexample.cxx
+@@ -35,7 +35,7 @@ class MyFitness : public IFitterTarget {
+        // to (int). In this case the variable-range has to be chosen +1 ( to get 0..5, take Interval(0,6) )
+        // since the introduction of "Interval" ranges can be defined with a third parameter
+        // which gives the number of bins within the interval. With that technique discrete values
+-       // can be achieved easier. The random selection out of this discrete numbers is completly uniform.
++       // can be achieved easier. The random selection out of this discrete numbers is completely uniform.
+        // 
+        Double_t EstimatorFunction( std::vector<Double_t> & factors ){
+            //return (10.- (int)factors.at(0) *factors.at(1) + (int)factors.at(2));
+diff --git a/tmva/test/TMVAGAexample2.cxx b/tmva/test/TMVAGAexample2.cxx
+index bf17bf0..d487c36 100644
+--- a/tmva/test/TMVAGAexample2.cxx
++++ b/tmva/test/TMVAGAexample2.cxx
+@@ -35,7 +35,7 @@ class MyFitness : public IFitterTarget {
+        // to (int). In this case the variable-range has to be chosen +1 ( to get 0..5, take Interval(0,6) )
+        // since the introduction of "Interval" ranges can be defined with a third parameter
+        // which gives the number of bins within the interval. With that technique discrete values
+-       // can be achieved easier. The random selection out of this discrete numbers is completly uniform.
++       // can be achieved easier. The random selection out of this discrete numbers is completely uniform.
+        // 
+        Double_t EstimatorFunction( std::vector<Double_t> & factors ){
+            //return (10.- (int)factors.at(0) *factors.at(1) + (int)factors.at(2));
