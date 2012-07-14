@@ -2474,7 +2474,7 @@ Long64_t TProofPlayerRemote::Finalize(TQueryResult *qr)
    TList *tmp = (TList *) qr->GetOutputList();
    if (!tmp) {
       gSystem->RedirectOutput(0);
-      Info("Finalize(TQueryResult *)", "ouputlist is empty");
+      Info("Finalize(TQueryResult *)", "outputlist is empty");
       return -1;
    }
    TList *out = fOutput;
