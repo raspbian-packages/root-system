@@ -83,7 +83,7 @@ namespace RooStats {
       while(RooAbsArg* v = dynamic_cast<RooAbsArg*>( iter->Next() ) ) {
          TString renamed(TString::Format("%s%s", prefix.Data(), v->GetName()));
          if (fResult == NULL) {
-            // we never commited, so by default all columns are expected to not exist
+            // we never committed, so by default all columns are expected to not exist
             RooAbsArg* var = v->createFundamental();
             assert(var != NULL);
             (RooArgSet(*var)) = RooArgSet(*v);
@@ -97,7 +97,7 @@ namespace RooStats {
             if (fBuiltSet->addOwned(*var)) continue;  // OK - can skip past setting value
          }
          if (RooAbsArg* var = fBuiltSet->find(renamed)) {
-            // we already commited an argset once, so we expect all columns to already be in the set
+            // we already committed an argset once, so we expect all columns to already be in the set
             var->SetName(v->GetName());
             (RooArgSet(*var)) = RooArgSet(*v); // copy values and errors
             var->SetName(renamed);
