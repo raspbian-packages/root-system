@@ -195,7 +195,7 @@ UInt_t TMVA::PDEFoamCell::GetDepth()
    // Get depth of cell in binary tree, where the root cell has depth
    // 1
 
-   // check wheter we are in the root cell
+   // check whether we are in the root cell
    if (fParent == 0)
       return 1;
 

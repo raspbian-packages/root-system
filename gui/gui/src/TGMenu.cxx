@@ -299,7 +299,7 @@ void TGMenuBar::PopupConnection()
    }
    fMenuMore->fMsgWindow = 0;
 
-   // Check wheter the current entry is a menu or not (just in case)
+   // Check whether the current entry is a menu or not (just in case)
    TGMenuEntry* currentEntry = fMenuMore->GetCurrent();
    if (currentEntry->GetType() != kMenuPopup) return;
 
