@@ -233,7 +233,7 @@ class selClass :
     #------------------------------------------------------------------------------
     # Check if we have other parameters specified correctly
     #------------------------------------------------------------------------------
-    #  source and target are optional paramater.
+    #  source and target are optional parameter.
     #  for k in ['target', 'source' ]:
     #  if not attrs.has_key(k):
     #    print warning, '- Required attribute is missing:', k
