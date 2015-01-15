@@ -4690,7 +4690,7 @@ if test ! "x$enable_ruby" = "xno" ; then
         /usr/local/include/ruby /usr/include/ruby
     rubyinc=$found_hdr
     rubyincdir=$found_dir
-    check_header "ruby/config.h" "" $rubysysincdir/$rubysysarch
+    check_header "ruby/config.h" "" `ruby -rrbconfig -e 'print RbConfig::CONFIG["rubyarchhdrdir"]'`
     if test "x$found_hdr" != "x" ; then
         rubyincdir="$rubyincdir $found_dir"
     fi
