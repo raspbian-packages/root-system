@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -e
+
+[ $# == 3 ]
+
+url="http://root.cern.ch/download/"
+ver="$2"
+
+pkgdir="root-system-$ver.orig"
+pkg="root-system_$ver.orig.tar.gz"
+
+upver=$(echo $ver | tr '~' '-')
+uppkg="root_v$upver.source.tar.gz"
+
+[ ! -f "../$uppkg" ] && wget "$url/$uppkg" -O "../$uppkg"
+
+[ -d root ] && rm -rf root
+tar xf "../$uppkg"
+
+[ -d "$pkgdir" ] && rm -rf "$pkgdir"
+
+mv root "$pkgdir"
+rm -f "../$pkg"
+tar -zcf "../$pkg" "$pkgdir"
+
+rm -rf "$pkgdir"
