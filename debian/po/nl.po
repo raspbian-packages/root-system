@@ -1,0 +1,120 @@
+# Dutch root-system po-debconf translation,
+# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the root-system package.
+# Vincent Zweije <vincent@zweije.nl>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: root-system 5.34.00-1\n"
+"Report-Msgid-Bugs-To: root-system@packages.debian.org\n"
+"POT-Creation-Date: 2009-02-15 12:03+0100\n"
+"PO-Revision-Date: 2012-10-14 14:44+0000\n"
+"Last-Translator: Vincent Zweije <vincent@zweije.nl>\n"
+"Language-Team: Debian-Dutch <debian-l10n-dutch@lists.debian.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: note
+#. Description
+#: ../ttf-root-installer.templates:2001
+msgid "Non-free fonts"
+msgstr "Niet-vrije fonts"
+
+#. Type: note
+#. Description
+#: ../ttf-root-installer.templates:2001
+msgid ""
+"The fonts provided in this package were provided by Microsoft \"in the "
+"interest of cross-platform compatibility\". This is no longer the case, but "
+"they are still available from third parties."
+msgstr ""
+"De fonts waarin dit pakket voorziet waren beschikbaar gesteld door Microsoft "
+"\"in the interest of cross-platform compatibilty\", maar dit is nu niet "
+"langer zo. Ze zijn echter nog steeds beschikbaar via derde partijen."
+
+#. Type: note
+#. Description
+#: ../ttf-root-installer.templates:2001
+msgid ""
+"You are free to download these fonts and use them for your own purposes, but "
+"you  have no permission to redistribute them in modified form, including "
+"changes to the file name or packaging format."
+msgstr ""
+"U mag deze fonts downloaden en voor uw eigen doeleinden gebruiken, maar u "
+"mag ze niet verder verspreiden in gewijzigde vorm, met inbegrip van "
+"wijzigingen aan de bestandsnaam of het pakketformaat."
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:3001
+msgid "Directory holding Microsoft fonts (if already downloaded):"
+msgstr "Map met Microsoft fonts (indien reeds gedownload):"
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:3001
+msgid ""
+"If you have already downloaded Microsoft's TrueType Core Fonts from the ROOT "
+"FTP server (ftp://root.cern.ch/root/ttf/ttf_fonts.tar.gz), please enter the "
+"name of the directory which contains the archive."
+msgstr ""
+"Indien u Microsofts TrueType Core Fonts al heeft gedownload van de ROOT FTP "
+"server (ftp://root.cern.ch/root/ttf/ttf_fonts.tar.gz), geef dan hier de naam "
+"van de map waar het bestand zich bevindt."
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:3001
+msgid ""
+"If you haven't yet downloaded these fonts, leave this blank and the fonts "
+"will be downloaded automatically. The download size is approximately 1.6 MB."
+msgstr ""
+"Indien u deze fonts nog niet heeft gedownload, laat dit dan leeg; de fonts "
+"worden dan automatisch gedownload. De grootte van de download is ongeveer "
+"1,6 MB."
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:3001
+msgid ""
+"If you are not connected to the Internet or do not wish to download these "
+"fonts now, enter \"none\" to abort."
+msgstr ""
+"Indien u niet bent verbonden met Internet, of wanneer u deze fonts nu niet "
+"wilt downloaden, voer dan \"none\" in om te stoppen."
+
+#. Type: error
+#. Description
+#: ../ttf-root-installer.templates:4001
+msgid "Font files not found"
+msgstr "Fontbestanden niet gevonden"
+
+#. Type: error
+#. Description
+#: ../ttf-root-installer.templates:4001
+msgid ""
+"The directory you entered either does not exist, or does not contain the "
+"Microsoft TrueType Core Fonts for ROOT."
+msgstr ""
+"De map die u heeft ingevoerd bestaat niet, of bevat niet de Microsoft "
+"TrueType Core Fonts voor ROOT."
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:5001
+msgid "Archive files to (optional):"
+msgstr "Bestanden archiveren naar (optioneel):"
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:5001
+msgid ""
+"If you would like to keep a permanent archive of the compressed Microsoft "
+"Core fonts, please enter the directory where you'd like them stored. If you "
+"leave this blank, the files will be deleted after installation."
+msgstr ""
+"Als u de Microsoft Core fonts wilt bewaren in gecomprimeerde vorm, voer dan "
+"de map in waar u ze wilt neerzetten. Als u dit leeg laat worden de bestanden "
+"na installatie verwijderd."

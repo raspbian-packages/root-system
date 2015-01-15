@@ -1,0 +1,37 @@
+Package: libroot-math-foam@libvers@
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Compact Version of Cellular Event Generator
+ The ROOT system provides a set of OO frameworks with all the
+ functionality needed to handle and analyze large amounts of data
+ efficiently. 
+ .
+ The general-purpose self-adapting Monte Carlo (MC) event
+ generator/simulator mFOAM (standing for mini-FOAM) is a new compact
+ version of the FOAM program, with a slightly limited functionality
+ with respect to its parent version. On the other hand, mFOAM is
+ easier to use for the average user. 
+
+Package: libroot-math-foam-dev
+Architecture: any
+Section: libdevel
+Depends: libroot-math-foam@libvers@ (= ${binary:Version}), libroot-hist-dev, ${misc:Depends}
+Replaces: libroot-dev
+Breaks: libroot-dev (<= 5.19.01-1)
+Description: Compact Version of Cellular Event Generator - development files
+ The ROOT system provides a set of OO frameworks with all the
+ functionality needed to handle and analyze large amounts of data
+ efficiently. 
+ .
+ The general-purpose self-adapting Monte Carlo (MC) event
+ generator/simulator mFOAM (standing for mini-FOAM) is a new compact
+ version of the FOAM program, with a slightly limited functionality
+ with respect to its parent version. On the other hand, mFOAM is
+ easier to use for the average user. 
+ .
+ This package provides development files of the compact version of Cellular
+ Event Generator.
+

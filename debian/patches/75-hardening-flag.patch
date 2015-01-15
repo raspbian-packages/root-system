@@ -1,0 +1,22 @@
+--- a/configure
++++ b/configure
+@@ -7054,7 +7054,7 @@
+     fi
+ 
+     sed -e "s|@useconfig@|TRUE|"                       \
+-        -e "s|@cflags@|$haveconfig|"                   \
++        -e "s|@cflags@|$haveconfig $CFLAGS|"                   \
+             < Makefile.tmp > Makefile.tmpp
+     mv Makefile.tmpp Makefile.tmp
+ else
+--- a/net/globusauth/src/GlobusAuth.cxx
++++ b/net/globusauth/src/GlobusAuth.cxx
+@@ -1010,7 +1010,7 @@
+          fn = Form("%s/.globus/usercert.pem",gSystem->HomeDirectory());
+       if (gSystem->AccessPathName(fn, kReadPermission)) {
+          emsg += fn;
+-         Error("GlobusIssuerName", emsg.Data());
++         Error("GlobusIssuerName", "%s", emsg.Data());
+          return 1;
+       }
+    }
