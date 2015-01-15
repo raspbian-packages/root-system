@@ -7105,7 +7105,7 @@ else
 
     sed -e "s|@useconfig@|FALSE|" \
         -e "s|@cflags@||"         \
-        -e "s|@ldflags@||"        \
+        -e "s|@ldflags@|$EXTRA_LDFLAGS|" \
             < Makefile.tmp > Makefile.tmpp
     mv Makefile.tmpp Makefile.tmp
 fi
@@ -7246,7 +7246,7 @@ sed -e "s|@globusincdir@|$globusincdir|"        \
     -e "s|@ldapincdir@|$ldapincdir|"            \
     -e "s|@ldaplib@|$ldaplib|"                  \
     -e "s|@ldaplibdir@|$ldaplibdir|"            \
-    -e "s|@ldflags@||"                          \
+    -e "s|@ldflags@|$EXTRA_LDFLAGS|"            \
     -e "s|@libdir@|$libdir|"                    \
     -e "s|@llvmconfig@|$llvmconfig|"            \
     -e "s|@macosxvers@|$macosxvers|"            \
