@@ -573,6 +573,10 @@ CORELIBEXTRA    += $(LZMALIB)
 STATICEXTRALIBS += $(LZMALIB)
 endif
 
+ifeq ($(BUILDSQLITE),yes)
+STATICEXTRALIBS += $(SQLITECLILIB)
+endif
+
 ##### In case shared libs need to resolve all symbols (e.g.: aix, win32) #####
 
 ifeq ($(EXPLICITLINK),yes)
