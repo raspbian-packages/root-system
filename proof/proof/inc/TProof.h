@@ -453,7 +453,7 @@ private:
    };
    enum EProofDataSetCommands {
       kUploadDataSet       = 1,  //Upload a dataset
-      kCheckDataSetName    = 2,  //Check wheter dataset of this name exists
+      kCheckDataSetName    = 2,  //Check whether dataset of this name exists
       kGetDataSets         = 3,  //List datasets saved on  the master node
       kRegisterDataSet     = 4,  //Save a TList object as a dataset
       kGetDataSet          = 5,  //Get a TFileCollection of TFileInfo objects
