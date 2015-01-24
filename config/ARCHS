@@ -5,6 +5,8 @@ alphagcc             for DEC Unix with gcc
 freebsd4             for FreeBSD 4.x with gcc
 freebsd5             for FreeBSD 5.x and 6.x with gcc
 freebsd7             for FreeBSD 7.x with gcc
+kfreebsd             for i386 kFreeBSD with gcc
+kfreebsdx8664gcc     for x86-64 kFreeBSD with gcc
 hpuxacc              for HP-UX 10.20 with HP aCC
 hpuxgcc              for HP-UX 10.20 with gcc
 hpuxia64acc          for HP-UX 11i v1.5 (IA-64) with HP aCC
