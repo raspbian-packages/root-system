@@ -327,6 +327,7 @@
 #   define R__UNIX
 #   define R__BYTESWAP
 #   define R__GLIBC     /* GNU/Hurd always use GLIBC 2.x :-) */
+#   define PATH_MAX 4096
 #   define NEED_SIGJMP
 #endif
 
