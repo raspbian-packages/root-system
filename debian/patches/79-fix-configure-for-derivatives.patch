@@ -1,0 +1,35 @@
+Description: Fix building on derivatives.
+ Previously the multiarch logic in the configure script was only enabled
+ if lsb-release -d returned "debian", "ubuntu" or "mint" on any derivative
+ where this was not the case (for example raspbian) the multiarch logic would
+ not be enabled, this would cause the configure script to fail to find libraries
+ and hence cause the package to FTBFS.
+
+ This patch changes the logic to use dpkg-vendor --derives-from Debian
+ instead (with a check that dpkg-architecture actually exists first). So the
+ multiarch logic should be enabled on any derivative that describes itself as
+ being derived from debian.
+
+Author: Peter Michael Green <plugwash@debian.org>
+
+Index: root-system-5.34.19+dfsg/configure
+===================================================================
+--- root-system-5.34.19+dfsg.orig/configure
++++ root-system-5.34.19+dfsg/configure
+@@ -2006,14 +2006,8 @@ fi
+ 
+ if test "x$platform" = "xlinux" -o "x$platform" = "xkfreebsd" -o "x$platform" = "xhurd"; then
+     linuxdist=
+-    if `$cwhich lsb_release > /dev/null 2>&1` ; then
+-       if lsb_release -d | grep -i 'ubuntu' > /dev/null 2>& 1; then
+-          linuxdist="multiarch"
+-       fi
+-       if lsb_release -d | grep -i 'debian' > /dev/null 2>& 1; then
+-          linuxdist="multiarch"
+-       fi
+-       if lsb_release -d | grep -i 'mint' > /dev/null 2>& 1; then
++    if `$cwhich dpkg-vendor > /dev/null 2>&1` ; then
++       if dpkg-vendor --derives-from Debian > /dev/null 2>& 1; then
+           linuxdist="multiarch"
+        fi
+     fi

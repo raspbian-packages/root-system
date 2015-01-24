@@ -1,0 +1,838 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+PREFIX		= /usr
+SYSCONFDIR	= /etc
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE    ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_HOST_ARCH_CPU    ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
+DEB_BUILD_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+DEB_BUILD_GNU_SYSTEM ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_SYSTEM)
+DEB_BUILD_ARCH	     ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+
+CPPFLAGS := $(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS   := $(shell dpkg-buildflags --get CFLAGS) $(CPPFLAGS)
+LDFLAGS  := $(shell dpkg-buildflags --get LDFLAGS)
+EXTRA_LDFLAGS  := $(LDFLAGS)
+
+export CFLAGS EXTRA_LDFLAGS DEB_HOST_MULTIARCH
+
+ifeq ($(DEB_HOST_ARCH_CPU),powerpc)
+PLATFORM	= linux
+else
+PLATFORM	=
+endif
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+BUILDOPT	= --build=debug
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+INSTALL_PROGRAM = -s
+endif
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+MAKEFLAGS += -j$(NUMJOBS)
+endif
+ifeq (hurd-i386,$(DEB_BUILD_ARCH))
+MAKEFLAGS += -j1
+endif
+UNUR		= --enable-unuran
+#ifneq (,$(findstring alpha, $(DEB_BUILD_ARCH)))
+#UNUR		= --disable-unuran
+#endif
+#XRD		= --enable-xrootd
+#ifneq (,$(findstring sparc, $(DEB_BUILD_ARCH)))
+XRD		= --disable-xrootd
+#endif
+
+DTMP		= debian/tmp
+PKGDOCDIR	= $(PREFIX)/share/doc/root
+CINTDIR		= $(PREFIX)/lib/$(DEB_HOST_MULTIARCH)/root$(SOVERS)
+ICONTHEME	= $(PREFIX)/share/icons/hicolor/48x48
+CONFOPTIONS	:=--enable-bonjour				\
+		  --enable-cintex				\
+		  --enable-editline				\
+		  --enable-explicitlink				\
+		  --enable-gdml					\
+		  --enable-globus				\
+		  --enable-gsl-shared				\
+		  --disable-gviz				\
+		  --enable-fftw3				\
+		  --enable-krb5					\
+		  --enable-ldap					\
+		  --enable-qt					\
+		  --enable-qtgsi				\
+		  --enable-mathcore				\
+		  --enable-mathmore				\
+		  --enable-memstat				\
+		  --enable-minuit2				\
+		  --enable-mysql				\
+		  --enable-pgsql				\
+		  --enable-pythia8				\
+		  --enable-odbc					\
+		  --enable-reflex				\
+		  --enable-roofit				\
+		  --enable-ruby					\
+		  --enable-shadowpw				\
+		  --enable-shared				\
+		  --enable-soversion				\
+		  --enable-sqlite				\
+		  --enable-table				\
+		  --disable-rpath				\
+		  --disable-afs					\
+		  --disable-srp					\
+		  --disable-builtin-afterimage			\
+		  --disable-builtin-ftgl			\
+		  --disable-builtin-freetype			\
+		  --disable-builtin-glew			\
+		  --disable-builtin-pcre			\
+		  --disable-builtin-zlib			\
+		  --disable-builtin-lzma			\
+		  --disable-alien				\
+		  --disable-chirp				\
+		  --disable-dcache				\
+		  --disable-gfal				\
+		  --disable-monalisa				\
+		  --disable-oracle				\
+		  --disable-pythia6				\
+		  --disable-rfio				\
+		  --disable-sapdb				\
+		  --fail-on-missing				\
+		  --with-globus=/usr				\
+		  --with-globus-incdir=/usr/include/globus	\
+		  --with-globus-libdir=/usr/lib			\
+		  --with-odbc-incdir=/usr/include/iodbc		\
+		  --with-pythia8-incdir=/usr/include/pythia8	\
+		  $(UNUR)					\
+		  $(XRD)					\
+		  $(BUILDOPT)
+#
+# Things for the future 
+#
+#		  --enable-mathcore	libroot
+#		  --enable-cintex	libroot
+#		  --enable-reflex	libroot
+#		  --with-globus=/opt/globus
+#		  --disable-builtin-gsl				
+#		  --disable-builtin				\
+
+VERSION		:= $(shell head -n1 debian/changelog | cut -d' ' -f2 | tr -d '()')
+MAJOR		:= $(shell echo $(VERSION) | cut -f1 -d'.')
+MINOR		:= $(shell echo $(VERSION) | cut -f2 -d'.')
+SOVERS		:= $(MAJOR).$(MINOR)
+PKGLIST		:= $(shell ./configure $(PLATFORM) --pkglist $(CONFOPTIONS) | sed -n -e 's/packages: //p')
+ESSENTIALS	:= libroot-core-dev			\
+		   libroot-core				\
+		   root-system-bin			\
+		   root-system-common			\
+		   ttf-root-installer		
+PLUGINS		:= libroot-geom				\
+		   libroot-graf2d-gpad			\
+		   libroot-graf2d-graf			\
+		   libroot-graf2d-postscript		\
+		   libroot-graf3d-eve			\
+		   libroot-graf3d-g3d			\
+		   libroot-graf3d-gl			\
+		   libroot-gui				\
+		   libroot-gui-ged			\
+		   libroot-hist				\
+		   libroot-hist-spectrum		\
+		   libroot-html				\
+		   libroot-io				\
+		   libroot-io-xmlparser			\
+		   libroot-math-foam			\
+		   libroot-math-genvector		\
+		   libroot-math-mathcore		\
+		   libroot-math-mathmore		\
+		   libroot-math-matrix			\
+		   libroot-math-minuit			\
+		   libroot-math-mlp			\
+		   libroot-math-quadp			\
+		   libroot-math-physics			\
+		   libroot-math-smatrix			\
+		   libroot-math-splot			\
+		   libroot-math-unuran			\
+		   libroot-misc-minicern		\
+		   libroot-misc-memstat			\
+		   libroot-misc-table			\
+		   libroot-montecarlo-eg		\
+		   libroot-montecarlo-vmc		\
+		   libroot-net				\
+		   libroot-net-auth			\
+		   libroot-net-bonjour			\
+		   libroot-net-ldap			\
+		   libroot-proof			\
+		   libroot-proof-proofplayer		\
+		   libroot-tmva				\
+		   libroot-tree				\
+		   libroot-tree-treeplayer		\
+		   root-plugin-geom-geombuilder		\
+		   root-plugin-geom-geompainter		\
+		   root-plugin-graf2d-asimage		\
+		   root-plugin-graf2d-qt		\
+		   root-plugin-graf2d-x11		\
+		   root-plugin-graf2d-gvi		\
+		   root-plugin-graf3d-x3d		\
+		   root-plugin-gui-fitpanel		\
+		   root-plugin-gui-guibuilder		\
+		   root-plugin-gui-qt			\
+		   root-plugin-gui-sessionviewer	\
+		   root-plugin-hist-hbook		\
+		   root-plugin-hist-histpainter		\
+		   root-plugin-hist-spectrumpainter	\
+		   root-plugin-io-sql			\
+		   root-plugin-io-xml			\
+		   root-plugin-math-fftw3		\
+		   root-plugin-math-fumili		\
+		   root-plugin-math-minuit2		\
+		   root-plugin-net-krb5			\
+		   root-plugin-net-netx			\
+		   root-plugin-sql-odbc			\
+		   root-plugin-tree-treeviewer		\
+		   root-system-proofd			\
+		   root-system-doc			\
+		   root-system-rootd
+#		   root-plugin-graf2d-gviz
+EXTRAS		:= libroot-bindings-python		\
+		   libroot-roofit			\
+		   libroot-bindings-ruby		\
+		   root-plugin-geom-gdml		\
+		   root-plugin-io-castor		\
+		   root-plugin-io-chirp			\
+		   root-plugin-io-dcache		\
+		   root-plugin-montecarlo-pythia8	\
+		   root-plugin-net-globus		\
+		   root-plugin-net-bonjour		\
+		   root-plugin-net-alien		\
+		   root-plugin-net-srp			\
+		   root-plugin-sql-maxdb		\
+		   root-plugin-sql-mysql		\
+		   root-plugin-sql-oracle		\
+		   root-plugin-sql-pgsql		
+PLUGINLIST	:= $(filter-out $(EXTRAS) $(ESSENTIALS), $(PKGLIST))
+EXTRALIST	:= $(filter-out $(PLUGINS) $(ESSENTIALS), $(PKGLIST))
+PLUGINLIST	:= $(PLUGINLIST:libroot%=libroot%-dev)
+EXTRALIST	:= $(EXTRALIST:libroot%=libroot%-dev)
+PLUGINHEAD	:= $(filter-out $(lastword $(PLUGINLIST)), $(PLUGINLIST))
+PLUGINLIST	:= $(PLUGINHEAD:%=%,) $(lastword $(PLUGINLIST))
+EXTRAHEAD	:= $(filter-out $(lastword $(EXTRALIST)), $(EXTRALIST))
+EXTRALIST	:= $(EXTRAHEAD:%=%,) $(lastword $(EXTRALIST))
+TEMPLATES	:= $(wildcard debian/skel/*.links.in) \
+                   $(wildcard debian/skel/*.menu.in) \
+                   $(wildcard debian/skel/*.prerm.in) \
+                   $(wildcard debian/skel/*.preinst.in) \
+                   $(wildcard debian/skel/*.postinst.in) \
+                   $(wildcard debian/skel/*.init.in) \
+                   $(wildcard debian/skel/*.desktop.in)
+SPKGLIST	:= $(filter-out root-system-doc root-system-common ttf-root-installer, $(PKGLIST:libroot%=libroot%$(SOVERS))) $(filter libroot%, $(PKGLIST:libroot%=libroot%-dev)) libroot-static
+IPKGLIST	:= root-system-doc ttf-root-installer root-system-common root-system
+DPKGLIST	:= $(SPKGLIST:%=%,) root-system-doc, root-ttf
+#root-plugins root-extra-plugins
+SPKGOPTS	:= $(SPKGLIST:%=-p%) 
+IPKGOPTS	:= $(IPKGLIST:%=-p%) 
+PKGOPTS		:= $(IPKGOPTS) $(SPKGOPTS)
+HAVERUBY	:= $(filter libroot-bindings-ruby, $(PKGLIST))
+ifeq ($(HAVERUBY), libroot-bindings-ruby)
+RUBYARCHDIR	:= $(shell ruby -rrbconfig -e 'print RbConfig::CONFIG["rubyarchhdrdir"]' | sed 's,/,,')
+else
+RUBYARCHDIR	:= 
+endif
+
+HAVEPYTHON	:= $(filter libroot-bindings-python, $(PKGLIST))
+ifeq ($(HAVEPYTHON), libroot-bindings-python)
+PYVERS		:= $(shell pyversions -vs)
+PYVER		:= $(shell python -c 'import sys; print "%d.%d" % (sys.version_info[0], sys.version_info[1])')
+PYTHONDIR	:= /usr/lib/python$(PYVER)/dist-packages/root
+else
+PYTHONDIR	:= 
+endif
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+show_pkgs:
+	@printf "SPKGLIST:\n $(foreach i, $(SPKGLIST), \t$(i)\n)"
+	@printf "IPKGLIST:\n $(foreach i, $(IPKGLIST), \t$(i)\n)"
+	@printf "PLUGINLIST:\n $(foreach i, $(PLUGINLIST), \t$(i)\n)"
+	@printf "EXTRALIST:\n $(foreach i, $(EXTRALIST), \t$(i)\n)"
+	@printf "HAVERUBY: $(HAVERUBY)\nRUBYARCHDIR: $(RUBYARCHDIR)"
+	@printf "HAVEPYTHON: $(HAVEPYTHON)\nPYTHONDIR: $(PYTHONDIR)"
+
+../root-system_$(VERSION).orig.tar.gz:
+	dh_testdir
+	./debian/get-orig-source --upstream-version $(VERSION) $@
+
+get-orig-source: ../root-system_$(VERSION).orig.tar.gz
+
+show_libpkgs:
+	@echo "$(SPKGLIST)"
+	@echo "$(patsubst %, -p%, $(filter libroot%$(SOVERS),$(SPKGLIST)))"
+
+show_conf:
+	./configure $(PLATFORM) --pkglist $(CONFOPTIONS)
+
+debian/%:debian/skel/%.in debian/rules
+	@echo "Making $@ from $< "
+	@sed -e 's,@prefix@,$(PREFIX),g' \
+		-e 's,@sysconfdir@,$(SYSCONFDIR),g' \
+		-e 's,@pkgdocdir@,$(PKGDOCDIR),g' \
+		-e 's,@rubyarchdir@,$(RUBYARCHDIR),g' \
+		-e 's,@pythondir@,$(PYTHONDIR),g' \
+		-e 's,@pyver@,$(PYVER),g' \
+		-e 's,@multiarch@,$(DEB_HOST_MULTIARCH),g' \
+		-e 's,@libvers@,$(SOVERS),g' < $< > $@ 
+
+debian/control:debian/skel/control.in debian/rules
+	@echo "Making $@ (special)"
+	@cp $< $@.tmp
+	@echo "Packages are $(PKGLIST)"
+	@for p in $(PKGLIST) ; do \
+	  if test -f debian/skel/$$p.control ; then \
+	    echo "Adding package $$p to control file" ; \
+	    cat debian/skel/$$p.control >> $@.tmp ; fi ; done
+	@builddep="$(shell ./debian/script/makebuilddepend.sh $(PKGLIST))" && \
+	    sed -e 's,@prefix@,$(PREFIX),g' \
+		-e 's,@libvers@,$(SOVERS),g' \
+		-e 's,@sysconfdir@,$(SYSCONFDIR),g' \
+		-e 's,@pkgdocdir@,$(PKGDOCDIR),g' \
+		-e "s/@builddepends@/$${builddep}/" \
+		-e 's/@pyvers@/$(PYVER)/g' \
+		-e 's/@pkglist@/$(DPKGLIST)/'	\
+		-e 's/@plugins@/$(PLUGINLIST:%,=% (>= $${binary:Version}),)  (>= $${binary:Version})/'	\
+		-e 's/@extras@/$(EXTRALIST:%,=% (>= $${binary:Version}),) (>= $${binary:Version})/' < $@.tmp > $@
+	rm -rf $@.tmp 
+
+.PRECIOUS:	debian/html.C
+
+debian/html.C:
+	rm -f $@
+	@echo "{" 						  >> $@
+	@echo "  /* magic line from Rene */"		  	  >> $@
+	@echo "  gEnv->SetValue(\"Root.PluginPath\","             >> $@
+	@echo "                 \"$(CURDIR)/etc/plugins\");"      >> $@
+	@echo "  gEnv->SetValue(\"Root.TTFontPath\","             >> $@
+	@echo "                 \"/usr/share/fonts/truetype/freefont/:$(CURDIR)/fonts\");" >> $@
+	@echo "  gSystem->AddIncludePath(\"$(CURDIR)/include\");" >> $@
+	@echo "  gSystem->AddIncludePath(\"$(CURDIR)/cint/cint/include\");" >> $@
+	@echo "  gSystem->AddIncludePath(\"$(CURDIR)/cint/cint/stl\");" >> $@
+	@echo "  gROOT->GetPluginManager()->"			  >> $@
+	@echo "    LoadHandlersFromPluginDirs(\"\");"             >> $@
+	@echo "  gROOT->GetPluginManager()->"                     >> $@
+	@echo "   AddHandler(\"TVirtualPS\",\"image\","           >> $@
+	@echo "              \"TImageDump\",\"Postscript\","      >> $@
+	@echo "              \"TImageDump()\");"                  >> $@
+	@echo "  gROOT->GetPluginManager()->"                     >> $@
+	@echo "    AddHandler(\"TVirtualStreamerInfo\","          >> $@
+	@echo "               \"*\",\"TStreamerInfo\","           >> $@
+	@echo "               \"RIO\",\"TStreamerInfo()\");"      >> $@
+	@echo "  gROOT->GetPluginManager()->"                     >> $@
+	@echo "    AddHandler(\"TVirtualGraphPainter\", \"*\","   >> $@
+	@echo "               \"TGraphPainter\",\"GraphPainter\",">> $@
+	@echo "               \"TGraphPainter()\");"              >> $@
+	@echo "  THtml html;"   				  >> $@
+	@echo "  html.SetProductName(\"ROOT\");"		  >> $@
+	@echo "  html.SetEtcDir(\"$(CURDIR)/etc/html\");"	  >> $@
+	@echo "  html.SetHomepage(\"http://root.cern.ch\");"	  >> $@
+	@echo "  html.LoadAllLibs();"				  >> $@
+	@echo "  html.SetBatch(kTRUE);"				  >> $@
+	@echo "  html.MakeAll();"				  >> $@
+	@echo "}"						  >> $@
+
+htmldoc:debian/html.C build-arch-cint-stamp
+	# Download html doc.
+	LD_LIBRARY_PATH=$(CURDIR)/lib:$(CURDIR)/cint/cint/include:$(CURDIR)/cint/cint/stl:$(CURDIR)/include:$(LD_LIBRARY_PATH) ROOTSYS=$(CURDIR) \
+		$(CURDIR)/bin/root.exe -l -b -q $^
+
+	# Use local images.
+	for i in $(CURDIR)/etc/html/* ; do \
+	  sed -i -e 's,http://root.cern.ch/drupal/sites/default/files/,,' \
+	      -e 's,http://root.cern.ch/drupal/sites/all/themes/newsflash/images/blue/,,' \
+	      -e 's,http://root.cern.ch/drupal/sites/all/themes/newsflash/images/,,' $$i ; \
+	done
+	# rm -f debian/html.C
+	#for i in info.png root-banner.png rootdrawing-logo.png ; do \
+	#  cp $(CURDIR)/debian/$$i $(CURDIR)/htmldoc/$$i ; done
+	@touch htmldoc-stamp
+
+htmldoc-stamp: htmldoc
+
+configure-stamp:$(TEMPLATES:debian/skel/%.in=debian/%) config.status
+config.status: configure 
+	dh_testdir
+	tar -xvzf math/unuran/src/unuran*
+	#if change, correct unurar version
+	mv unuran-1.8.0-root ./math/unuran/src/.
+	cp /usr/share/misc/config.guess \
+	  math/unuran/src/unuran-1.8.0-root/autoconf
+	cp /usr/share/misc/config.sub \
+	  math/unuran/src/unuran-1.8.0-root/autoconf
+	sed -i -e 's/auxilliary/auxiliary/' \
+	  math/unuran/src/unuran-1.8.0-root/src/urng/urng_default.c \
+	  math/unuran/src/unuran-1.8.0-root/src/parser/make_stringparser.pl
+	sed -i -e 's/splitted/split/g' \
+	  math/unuran/src/unuran-1.8.0-root/src/methods/tdr_ps_init.ch \
+	  math/unuran/src/unuran-1.8.0-root/src/methods/tdr_gw_init.ch \
+	  math/unuran/src/unuran-1.8.0-root/src/methods/arou.c \
+	  math/unuran/src/unuran-1.8.0-root/src/methods/tabl_init.ch
+	sed -i -e 's/unkown/unknown/' \
+	  math/unuran/src/unuran-1.8.0-root/src/distributions/c_burr.c
+
+	debconf-updatepo --podir=./debian/po
+	#cp /usr/share/misc/config.guess graf2d/asimage/src/libAfterImage/
+	#cp /usr/share/misc/config.sub graf2d/asimage/src/libAfterImage/
+
+	# Add here commands to configure the package.
+	./configure $(PLATFORM)						\
+		    --prefix=$(PREFIX)					\
+		    --mandir=$(PREFIX)/share/man/man1			\
+		    --docdir=$(PKGDOCDIR)				\
+		    --cintincdir=$(CINTDIR)				\
+		    --etcdir=$(SYSCONFDIR)/root				\
+		    --with-sys-iconpath=$(PREFIX)/share/pixmaps		\
+		    --libdir=$(CINTDIR)					\
+		    $(CONFOPTIONS)
+	touch math/unuran/src/headers.d 
+	touch configure-stamp
+
+#	  --fontdir=%_datadir/root/fonts/truetype
+#Architecture 
+build: build-arch build-indep
+
+build-arch: build-arch-cint-stamp
+build-arch-stamp:  configure-stamp
+
+	# Add here commands to compile the arch part of the package.
+	#$(MAKE) ASTEPETAG= XROOTDETAG= UNURANETAG=
+	$(MAKE) $(MAKEFLAGS) UNURANETAG=
+	$(MAKE) $(MAKEFLAGS) static UNURANETAG=
+	touch build-arch-stamp
+
+build-arch-cint-stamp:build-arch-stamp
+	$(MAKE) all-cintdlls
+	touch build-arch-cint-stamp
+
+build-indep: build-indep-stamp
+build-indep-stamp:  configure-stamp 
+
+	# Add here commands to compile the indep part of the package.
+	#$(MAKE) doc
+	touch build-indep-stamp
+
+clean:	$(TEMPLATES:debian/skel/%.in=debian/%)
+	dh_testdir
+	dh_testroot
+
+	rm -rf math/unuran/src/unuran-1.8.0-root
+	rm -f *.tmp
+
+	#rm -f graf2d/asimage/src/libAfterImage/config.guess
+	#rm -f graf2d/asimage/src/libAfterImage/config.sub
+	rm -f debian/pyversions debian/pycombat debian/html.C
+	rm -f build-arch-stamp build-indep-stamp build-arch-cint-stamp \
+		config.status configure-stamp config.log htmldoc-stamp
+	rm -rf minuit2/src/Minuit-1_7_6
+	rm -rf freetype/src/freetype-2.1.9
+	#-rm -rf asimage/src/libAfterImage 
+	rm -rf debian/*.files	debian/*.install	
+	rm -f	macros/html.C 
+	rm -f  memstat.root
+	rm -f  *.Cexec
+	rm -f	cint/MAKEINFO
+	rm -f	etc/daemons/proofd.rc.d
+	rm -f	etc/daemons/proofd.xinetd
+	rm -f	etc/daemons/rootd.rc.d
+	rm -f	etc/daemons/rootd.xinetd
+	rm -f	etc/daemons/olbd.rc.d
+	rm -f	qtgsi/src/G__QtGSI.cxx qtgsi/src/G__QtGSI.h
+	rm -f	qt/src/moc_*.cxx
+	rm -f	G__genreflex_rootcint.h
+	rm -f	graf2d/asimage/src/libAfterImage/Makefile
+	rm -f	graf2d/asimage/src/libAfterImage/afterimage-config
+	rm -f	graf2d/asimage/src/libAfterImage/afterimage-libs
+	rm -f	graf2d/asimage/src/libAfterImage/config.h
+	rm -f	graf2d/asimage/src/libAfterImage/config.log
+	rm -f	graf2d/asimage/src/libAfterImage/config.status
+	rm -f	graf2d/asimage/src/libAfterImage/libAfterImage.a
+	find . -name ".#*" | xargs rm -rf
+	find . \( -name "G__*.cxx" 			\
+		   -or -name "G__*.h" 			\
+		   -or -name "G__*.c" \) \
+		-and -not -name "G__ci.h" 		\
+		-and -not -name G__postprocess.h 	\
+		-and -not -name "G__main.c" 		\
+		-and -not -name "G__setup.c" 		\
+	        -and -not -name "G__ci_fproto.h" 	\
+		-and -not -name "G__security.h"  	\
+		| xargs rm -rf
+	# Add here commands to clean up after the build process.
+	[ ! -f config/Makefile.config ] || [ ! -f config.status ] || $(MAKE) distclean \
+		UNURANETAG= \
+		UNURKEEP=yes
+	# OK to ignore errors for these - makecintdll.sh might fail
+	-for i in climits complex deque exception list map2 map multimap2 \
+		 multimap multiset queue set stack stdexcept valarray \
+		 vectorbool vector ; do \
+		./debian/script/makecintdll.sh clean $$i ; done
+	rm -rf bin lib include htmldoc				\
+		system.rootrc					\
+		config/Makefile.config				\
+		README/Changelog				\
+		etc/system.rootrc				\
+		etc/system.rootauthrc				\
+		etc/system.rootdaemonrc				\
+		etc/root.mimes					\
+		build/misc/root-help.el				\
+		debian/*.files					\
+		debian/*.install				\
+		debian/shlibs.local				\
+		graf2d/freetype/src/freetype-2.1.3		\
+		cint/cint/lib/posix/a.out			\
+		cint/cint/lib/posix/mktypes			\
+		cint/cint/include/*.so*				\
+		cint/cint/include/*.dll				\
+		cint/cint/include/sys/*.so*			\
+		cint/cint/include/sys/*.dll			\
+		cint/cint/stl/*.so*				\
+		cint/cint/stl/*.dll				\
+		core/pcre/src/pcre-6.4				\
+		math/unuran/src/unuran-*-root/config.status	\
+		math/unuran/src/unuran-*-root/config.log	\
+		htmldoc						\
+		math/unuran/src/unuran-*-root/config.h		\
+		math/unuran/src/unuran-*-root/Makefile		\
+		math/unuran/src/unuran-*-root/libtool		\
+		math/unuran/src/unuran-*-root/stamp-h1		\
+		math/unuran/src/unuran-*-root/src/Makefile		\
+		math/unuran/src/unuran-*-root/src/distr/Makefile	\
+		math/unuran/src/unuran-*-root/src/utils/Makefile	\
+		math/unuran/src/unuran-*-root/src/distributions/Makefile \
+		math/unuran/src/unuran-*-root/src/tests/Makefile	\
+		math/unuran/src/unuran-*-root/src/methods/Makefile	\
+		math/unuran/src/unuran-*-root/src/specfunct/Makefile	\
+		math/unuran/src/unuran-*-root/src/urng/Makefile		\
+		math/unuran/src/unuran-*-root/src/uniform/Makefile	\
+		math/unuran/src/unuran-*-root/src/parser/Makefile	
+	# touch graf2d/asimage/src/headers.d 
+	rm -f  $(filter-out debian/control, $(TEMPLATES:debian/skel/%.in=debian/%))
+	dh_clean 
+
+pkglists:
+	rm -rf debian/*.files	debian/*.install	
+	./debian/script/makelists.sh debian debian/tmp \
+		$(VERSION) $(PREFIX) $(SYSCONFDIR) $(PKGDOCDIR)
+	mv debian/libroot-bindings-python.links \
+		debian/libroot-bindings-python$(SOVERS).links
+#	@for i in debian/libroot* ; do \
+#	  if test -d $$i ; then continue ; fi ; \
+#	  case $$i in \
+#	    *-dev.*|*.in|libroot*$(SOVERS).*) continue ;; \
+#	  *) echo "Renaming $$i to version specific" ; \
+#	     cp $$i `echo $$i | sed 's/libroot\(.*\)\.\(.*\)/libroot\1$(SOVERS).\2/'` ;; esac ; \
+#	done 
+
+install: install-indep install-arch
+#install-indep: htmldoc-stamp
+install-indep: install-arch
+	dh_testdir
+	dh_testroot
+	dh_prep -i -X$(DTMP)
+	dh_installdirs -i
+
+	# Add here commands to install the indep part of the package into
+	# debian/<package>-doc.
+	#INSTALLDOC#
+
+	# dh_install $(IPKGOPTS) --sourcedir=$(DTMP)
+	dh_install -i --sourcedir=$(DTMP)
+	#inserted comment htmldoc line
+	#cp -a htmldoc/ $(CURDIR)/debian/root-system-doc/usr/share/doc/root/html
+	#mkdir -p $(CURDIR)/debian/root-system-doc/usr/share/doc/root/html
+	#rm -f $(CURDIR)/debian/root-system-doc/usr/share/doc/root/html/tmva/LICENSE
+	# Make sym-link so that web-page refers to installed tutorials dir. 
+	#cd $(CURDIR)/debian/root-system-doc/usr/share/doc/root/html; \
+	#	ln -s ../tutorials
+
+	# Fix some permissions 
+	-find debian/root-system-common/$(PREFIX)/share/root/icons \
+		-perm 0755 -and -not -type d | xargs chmod a-x 
+
+	# Install sha256sums for ttf installer 
+	cp -a debian/ttf-root-installer.sha256sums \
+		debian/ttf-root-installer/var/lib/ttf-root-installer/sha256sums
+
+	dh_lintian -i
+
+install-arch: build-arch
+	dh_testroot
+	dh_prep -s -X$(DTMP)
+	# Need to clean this, because we don't want to use the 
+	# symblic links made later on. 
+	rm -rf $(DTMP)$(CINTDIR)
+	dh_installdirs -s
+
+	# Add here commands to install the arch part of the package into 
+	# $(DTMP).
+	#$(MAKE) install DESTDIR=$(CURDIR)/$(DTMP) \
+	#	ASTEPETAG= XROOTDETAG= UNURANETAG=
+	$(MAKE) install DESTDIR=$(CURDIR)/$(DTMP) UNURANETAG=
+
+	# Install desktop entry and icon 
+	mkdir -p $(DTMP)$(PREFIX)/share/applications
+	mkdir -p $(DTMP)$(PREFIX)/share/pixmaps
+	mkdir -p $(DTMP)$(ICONTHEME)/apps
+	mkdir -p $(DTMP)$(ICONTHEME)/mimetypes
+	cp debian/root-system-bin.desktop $(DTMP)$(PREFIX)/share/applications
+	cp debian/root-system-bin.xpm \
+		$(DTMP)$(PREFIX)/share/pixmaps/root-system-bin.xpm
+	cp build/package/debian/root-system-bin.png \
+		$(DTMP)$(ICONTHEME)/apps/root-system-bin.png
+	#cp build/package/debian/application-x-root.png \
+	#	$(DTMP)$(ICONTHEME)/mimetypes/application-x-root.png
+
+	# Make root-config output '/usr/lib/$(DEB_HOST_MULTIARCH)' instead of
+	# '/usr/lib/$(DEB_HOST_MULTIARCH)/root<version>'
+	sed 's,$(CINTDIR),$(PREFIX)/lib/$(DEB_HOST_MULTIARCH),' \
+		< $(DTMP)$(PREFIX)/bin/root-config > root-config.tmp
+	mv root-config.tmp $(DTMP)$(PREFIX)/bin/root-config
+
+	# Make default ZIP mode be new library (system library),
+	# remove ROOT plug-in library from load path, since this file
+	# is supposed to be version independent. 
+	# and set start-up url of TBrowser embedded HTML renderer to
+	# be local install of documentation
+	sed -e 's,Root\.ZipMode:.*,Root.ZipMode: 1,' \
+	    -e 's,\(.*\.DynamicPath:.*\):$(PREFIX)/lib/$(DEB_HOST_MULTIARCH)/root[^:]*\(.*\),\1\2,' \
+	    -e 's,\(Browser.StartUrl: *\).*,\1http://localhost/doc/root/html/index.html,'\
+		< $(DTMP)$(SYSCONFDIR)/root/system.rootrc  > rootrc.tmp
+	mv rootrc.tmp $(DTMP)$(SYSCONFDIR)/root/system.rootrc
+
+	# Rename proofserv in /usr/bin to end in `.bin' and make wrapper
+	# script in /usr/bin
+	i=proofserv; \
+	  if test -f $(DTMP)$(PREFIX)/bin/$$i &&			\
+	     test -f debian/skel/$$i.in ; then			\
+	    mv $(DTMP)$(PREFIX)/bin/$$i					\
+	      $(DTMP)$(PREFIX)/bin/$$i.bin ;				\
+	    sed -e 's,@prefix@,$(PREFIX),g'				\
+		-e 's,@libvers@,$(SOVERS),g'				\
+		< debian/skel/$$i.in				\
+		> $(DTMP)$(PREFIX)/bin/$$i	;			\
+	    chmod 755 $(DTMP)$(PREFIX)/bin/$$i ; 			\
+	  else 								\
+	    echo $i missing in $(DTMP)$(PREFIX)/bin ; fi
+
+	# Make the empty proof log file 
+	mkdir -p $(DTMP)$(PREFIX)/share/root/proof/log
+	touch $(DTMP)$(PREFIX)/share/root/proof/log/proof.log 
+
+	# Let usr/include/root/cfortran.h point to usr/include/cfortran.h
+	rm -rf $(DTMP)$(PREFIX)/include/root/cfortran.h 
+	(cd $(DTMP)$(PREFIX)/include/root && ln -s ../cfortran.h cfortran.h)
+
+	# Remove some unwanted files 
+	rm -rf $(DTMP)$(PREFIX)/share/doc/root/INSTALL 
+	rm -rf $(DTMP)$(PREFIX)/share/doc/root/LICENSE
+	rm -rf $(DTMP)$(PREFIX)/share/doc/root/COPYING.CINT
+	rm -rf $(DTMP)$(PREFIX)/share/doc/root/cfortran.doc
+	rm -rf $(DTMP)$(PREFIX)/share/root/fonts/LICENSE
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/posix/a.out
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/posix/mktypes
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/dll_stl/setup
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/G__*
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/dll_stl/G__*
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/dll_stl/rootcint_*
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/posix/exten.o
+	rm -rf $(DTMP)$(CINTDIR)/cint/include/makehpib
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/WildCard/ARCHIVE
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/cintocx
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/gl/setup.bat
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/posix/setup.bat
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/posix/setupsc.bat
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/posix/winposix.c
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/posix/winposix.h
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/wintcldl83
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/win32api
+	rm -rf $(DTMP)$(CINTDIR)/cint/lib/vcstream
+
+	# Remove MacOSX service descriptions 
+	rm -rf $(DTMP)$(SYSCONFDIR)/root/*.plist
+
+	# Remove Xinetd and Red Hat Init scripts from /etc 
+	rm -rf $(DTMP)$(SYSCONFDIR)/root/*.xinetd
+	rm -rf $(DTMP)$(SYSCONFDIR)/root/proofd
+	rm -rf $(DTMP)$(SYSCONFDIR)/root/rootd
+	rm -rf $(DTMP)$(SYSCONFDIR)/root/xrootd
+	rm -rf $(DTMP)$(SYSCONFDIR)/root/olbd 
+
+	# Remove sample configurations for PROOF 
+	rm -rf $(DTMP)/$(PREFIX)/share/root/proof/etc/*.sample
+
+	# Remove the CVS directories if present
+	find $(DTMP) -name "CVS" | xargs rm -fr
+	find $(DTMP) -name ".cvsignore" | xargs rm -fr
+
+	# Fix some permissions 
+	-find $(DTMP)$(CINTDIR)/cint \
+	   -perm 755 -and -not -type d | xargs chmod a-x 
+	-chmod a+x $(DTMP)$(CINTDIR)/cint/lib/pthread/setup
+	-chmod a+x $(DTMP)$(CINTDIR)/cint/lib/WildCard/setup
+	-chmod a-x $(DTMP)$(CINTDIR)/*.py
+	-chmod a-x $(DTMP)$(SYSCONFDIR)/root/html/*
+	# -chmod a+x $(DTMP)$(CINTDIR)/GDMLROOT.py
+
+	# Remove she-bang line from a python scripts
+	-for i in $(DTMP)$(CINTDIR)/*.py ; do \
+	  sed -e 's,#!/usr/bin/env python[0-9.]*,#,' \
+	      -e 's,#!/usr/bin/python[0-9.]*,#,' \
+		< $$i > $$i.tmp ; \
+	  mv $$i.tmp $$i ; \
+	done 
+
+	# Make file lists
+	mkdir -p $(DTMP)$(PREFIX)/lib/$(DEB_HOST_MULTIARCH)
+	./debian/rules pkglists
+
+	#	--sourcedir=$(DTMP) $(SPKGOPTS)			
+
+	# only x86/x64 build cintex
+	case `uname -m` in \
+	    i*86 | x86_64) ;; \
+	    *) sed -i -e '/PyCintex/d' \
+	        debian/libroot-bindings-python$(SOVERS).install;; \
+	esac
+
+	mv $(DTMP)$(CINTDIR)/libRoot.a \
+		$(DTMP)$(PREFIX)/lib/$(DEB_HOST_MULTIARCH)
+
+	dh_install -s							\
+		--list-missing						\
+		--sourcedir=$(DTMP)					\
+		-X$(PREFIX)/include/root/config.h			\
+		-X$(PREFIX)/include/root/rootcint.pri			\
+		-X$(PREFIX)/include/root/rootcintrule.pri		\
+		-X$(PREFIX)/include/root/rootlibs.pri			\
+		-X$(PREFIX)/include/root/precompile.h			\
+		-X$(PREFIX)/include/root/precompile.h.gch		\
+		-X$(PREFIX)/include/root/TQtWidget.cw			\
+		-X$(PREFIX)/share/root/fonts				\
+		-X$(PREFIX)/share/doc/root				\
+		-X$(PREFIX)/share/man/man1/system.rootdaemonrc.1	\
+		-X$(PREFIX)/bin/thisroot.sh				\
+		-X$(PREFIX)/bin/thisroot.csh				\
+		-X$(PREFIX)/share/root/icons/				\
+		-X$(SYSCONFDIR)/root/rootd				\
+		-X$(SYSCONFDIR)/root/daemons/				\
+		-X$(SYSCONFDIR)/root/proof/				\
+		-X$(SYSCONFDIR)/root/html				\
+		-X$(SYSCONFDIR)/root/RadioNuclides.txt			\
+		-X$(SYSCONFDIR)/root/gdb-backtrace-script		\
+		-X$(SYSCONFDIR)/root/gdb-backtrace.sh			\
+		-X$(SYSCONFDIR)/root/hostcert.conf			\
+		-X$(SYSCONFDIR)/root/pdg_table.txt			\
+		-X$(SYSCONFDIR)/root/root.mimes				\
+		-X$(SYSCONFDIR)/root/system.rootrc			\
+		-X$(SYSCONFDIR)/root/system.rootauthrc			\
+		-X$(SYSCONFDIR)/root/system.rootdaemonrc		\
+		-X$(CINTDIR)/libAfterImage.a				\
+		-X$(CINTDIR)/PyCintex.pyc				\
+		-X$(CINTDIR)/PyCintex.pyo				\
+		-X$(CINTDIR)/ROOT.pyc					\
+		-X$(CINTDIR)/ROOT.pyo					\
+		-X$(CINTDIR)/cint7					\
+		-X$(PREFIX)/include/root/Minuit2
+#		$(foreach i, \
+#		   $(wildcard $(DTMP)/$(PREFIX)/lib/root/lib*.so.$(SOVERS)), \
+#		    -X$(i:$(DTMP)/%=%) )
+
+	dh_lintian -s
+
+	# ship spool as empty dir, see #677053
+	mkdir -p debian/root-system-rootd/var/spool/rootd/tmp
+	mkdir -p debian/root-system-rootd/var/spool/rootd/pub
+
+	# This is for alternatives registration, if one want's to install
+	# Richard Kreckels cint package next to ROOT
+	# mv debian/root-system-bin/$(PREFIX)/bin/cint \
+	#	debian/root-system-bin/$(PREFIX)/bin/cint.root
+	# mv debian/root-system-bin/$(PREFIX)/bin/makecint \
+	#	debian/root-system-bin/$(PREFIX)/bin/makecint.root
+	# mv debian/root-system-bin/$(PREFIX)/share/man/man1/cint.1 \
+	# 	debian/root-system-bin/$(PREFIX)/share/man/man1/cint.root.1
+	# mv debian/root-system-bin/$(PREFIX)/share/man/man1/makecint.1 \
+	# 	debian/root-system-bin/$(PREFIX)/share/man/man1/makecint.root.1
+
+# Must not depend on anything. This is to be called by
+# binary-arch/binary-indep
+# in another 'make' thread.
+binary-common:
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs 
+	dh_installdocs
+	dh_installexamples
+	dh_installmenu
+	dh_installdebconf	
+#	dh_installlogrotate	
+#	dh_installemacsen
+#	dh_installpam
+	dh_installmime
+	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress 				\
+		-Xusr/share/doc/root/test 	\
+		-Xusr/share/doc/root/tutorials	\
+		-Xusr/share/doc/root/html
+	dh_fixperms
+#	dh_perl
+
+# Build architecture independent packages using the common target.
+binary-indep: build-indep install-indep
+	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture dependent packages using the common target.
+binary-arch: install-arch
+	$(MAKE) -f debian/rules DH_OPTIONS=-s binary-common
+ifeq ($(HAVEPYTHON), libroot-bindings-python)
+	# We make this here, so that we get the right python version on the 
+	# system compiling. 
+	echo "$(PYVER)-" > debian/pyversions
+endif
+	dh_python2 -plibroot-bindings-python$(SOVERS)
+	#	$(CINTDIR) $(PREFIX)/lib/$(DEB_HOST_MULTIARCH)
+	dh_python2 -plibroot-core-dev \
+		$(CINTDIR)/python/genreflex
+ifeq ($(HAVEPYTHON), libroot-bindings-python)
+	# dh_python2 will only write this field if the package is
+	# named something like 'python-*', so we make it ourselves. 
+	echo "python:Provides=python$(PYVER)-pyroot" >> debian/libroot-bindings-python$(SOVERS).substvars
+endif
+	dh_makeshlibs -V \
+	  $(patsubst %, -p%, $(filter libroot%$(SOVERS),$(SPKGLIST)))
+	dh_makeshlibs -V \
+	  $(patsubst %, -p%, $(filter root-plugin%,$(SPKGLIST)))
+	dh_installdeb -s
+	dh_shlibdeps -s $(SPKGLIST:%=-L%) \
+	  -l$(shell echo $(SPKGLIST:%=$(CURDIR)/debian/%$(CINTDIR)/) | tr ' ' ':') -- --warnings=1
+	dh_gencontrol -s
+	dh_md5sums -s 
+	dh_builddeb -s 
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary-indep binary-arch binary install install-indep install-arch get-orig-source
+
+#
+# EOF
+#

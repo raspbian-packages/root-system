@@ -1,0 +1,13 @@
+diff --git a/core/utils/src/Scanner.cxx b/core/utils/src/Scanner.cxx
+index 14d7faa..84d1bb0 100644
+--- a/core/utils/src/Scanner.cxx
++++ b/core/utils/src/Scanner.cxx
+@@ -34,7 +34,7 @@
+ 
+ 
+ // SHOW_WARNINGS - enable warnings
+-// SHOW_TEMPLATE_INFO - enable informations about encoutered tempaltes
++// SHOW_TEMPLATE_INFO - enable information about encoutered tempaltes
+ 
+ // COMPLETE_TEMPLATES - process templates, not only specializations (instantiations)
+ 
