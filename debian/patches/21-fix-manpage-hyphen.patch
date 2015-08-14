@@ -1,0 +1,33 @@
+--- a/man/man1/rlibmap.1
++++ b/man/man1/rlibmap.1
+@@ -8,7 +8,7 @@
+ rlibmap \- ROOT utility to create class to library maps
+ .SH SYNOPSIS
+ .B rlibmap
+-[-f] [[-r|-o] \fImapfile\fR] -l \fIlibrary\fR -d \fIdependecy\fR -c \fILinkdef\fR
++[\(hyf] [[\(hyr|\(hyo] \fImapfile\fR] \(hyl \fIlibrary\fR \(hyd \fIdependecy\fR \(hyc \fILinkdef\fR
+ .SH "DESCRIPTION"
+ Creates a map from classes to shared libraries that contain these
+ classes. 
+--- a/man/man1/rmkdepend.1
++++ b/man/man1/rmkdepend.1
+@@ -286,7 +286,7 @@
+ Filename.
+ This allows you to specify an alternate target filename to be use for the preceding file.  For example if you call 
+ .sp
+-     rmkdepend -sobj -pbuild file.cxx -tlibrary.so
++     rmkdepend \(hysobj \(hypbuild file.cxx \(hytlibrary.so
+ .sp
+ rather than inserting the line
+ .sp
+--- a/man/man1/root-config.1
++++ b/man/man1/root-config.1
+@@ -48,7 +48,7 @@
+ CLEANFILES              = *Cint.cxx *Cint.h *~ core 
+ 
+ %Cint.cxx %Cint.h:Include.h LinkDef.h
+-        @ROOTCINT@ \-f $*Cint.cxx -c $(INCLUDES) $(AM_CPPFLAGS) $^  
++        @ROOTCINT@ \(hyf $*Cint.cxx \(hyc $(INCLUDES) $(AM_CPPFLAGS) $^  
+ 
+ .fi
+ .RE

@@ -1,0 +1,28 @@
+Package: libroot-net-ldap@libvers@
+Architecture: any
+Section: libs
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: root-plugin-ldap (<< 5.09.01-1)
+Description: LDAP extension for ROOT
+ The ROOT system provides a set of OO frameworks with all the
+ functionality needed to handle and analyze large amounts of data
+ efficiently. 
+ .
+ This package contains the LDAP plugin for ROOT.  This gives you
+ access to LDAP directories via ROOT.
+
+Package: libroot-net-ldap-dev
+Architecture: any
+Section: libdevel
+Depends: libroot-net-ldap@libvers@ (= ${binary:Version}), libroot-core-dev, libldap2-dev | libldap-dev, ${misc:Depends}
+Breaks: libroot-ldap-dev (<< 5.19.01-1)
+Replaces: libroot-ldap-dev (<< 5.19.01-1)
+Description: LDAP extension for ROOT - development files
+ The ROOT system provides a set of OO frameworks with all the
+ functionality needed to handle and analyze large amounts of data
+ efficiently. 
+ .
+ This package contains the development files of LDAP plugin for ROOT.
+

@@ -1,0 +1,120 @@
+# Danish translation root-system.
+# Copyright (C) 2010 root-system & nedenstående oversættere.
+# This file is distributed under the same license as the root-system package.
+# Joe Hansen <joedalton2@yahoo.dk>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: root-system\n"
+"Report-Msgid-Bugs-To: root-system@packages.debian.org\n"
+"POT-Creation-Date: 2009-02-15 12:03+0100\n"
+"PO-Revision-Date: 2010-10-19 19:21+0100\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
+"Language-Team: Danish <debian-l10n-danish@lists.debian.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: note
+#. Description
+#: ../ttf-root-installer.templates:2001
+msgid "Non-free fonts"
+msgstr "Skrifttyper der ikke er frie"
+
+#. Type: note
+#. Description
+#: ../ttf-root-installer.templates:2001
+msgid ""
+"The fonts provided in this package were provided by Microsoft \"in the "
+"interest of cross-platform compatibility\". This is no longer the case, but "
+"they are still available from third parties."
+msgstr ""
+"Skrifttyperne i denne pakke blev tilbudt af Microsoft »med henblik på "
+"krydskompatbilitet mellem platforme«. Dette er dog ikke længere tilfældet, "
+"men de er stadig tilgængelige fra tredjeparter."
+
+#. Type: note
+#. Description
+#: ../ttf-root-installer.templates:2001
+msgid ""
+"You are free to download these fonts and use them for your own purposes, but "
+"you  have no permission to redistribute them in modified form, including "
+"changes to the file name or packaging format."
+msgstr ""
+"Du kan frit hente disse skrifttyper og bruge dem, men du må ikke "
+"redistribuere modificerede udgaver, hvilket også gælder ændringer i filnavne "
+"og pakkeformat."
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:3001
+msgid "Directory holding Microsoft fonts (if already downloaded):"
+msgstr "Mappe med Microsoftskrifttyper (hvis allerede hentet):"
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:3001
+msgid ""
+"If you have already downloaded Microsoft's TrueType Core Fonts from the ROOT "
+"FTP server (ftp://root.cern.ch/root/ttf/ttf_fonts.tar.gz), please enter the "
+"name of the directory which contains the archive."
+msgstr ""
+"Hvis du allerede har hentet Microsofts TrueType Core-skrifttyper fra ROOTs "
+"FTP-server (ftp://root.cern.ch/root/ttf/ttf_fonts.tar.gz), så skriv venligst "
+"navnet på den mappe som indeholder arkivet."
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:3001
+msgid ""
+"If you haven't yet downloaded these fonts, leave this blank and the fonts "
+"will be downloaded automatically. The download size is approximately 1.6 MB."
+msgstr ""
+"Hvis du endnu ikke har hentet disse skrifttyper, så lad dette felt være "
+"blankt. Skrifttyperne vil så automatisk blive hentet. Størrelsen på dataene "
+"er cirka 1,6 MB."
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:3001
+msgid ""
+"If you are not connected to the Internet or do not wish to download these "
+"fonts now, enter \"none\" to abort."
+msgstr ""
+"Hvis du ikke er forbundet til internettet, eller du ikke ønsker at hente "
+"disse skrifttyper nu, så skriv »none« for at afslutte."
+
+#. Type: error
+#. Description
+#: ../ttf-root-installer.templates:4001
+msgid "Font files not found"
+msgstr "Skrifttypefiler blev ikke fundet"
+
+#. Type: error
+#. Description
+#: ../ttf-root-installer.templates:4001
+msgid ""
+"The directory you entered either does not exist, or does not contain the "
+"Microsoft TrueType Core Fonts for ROOT."
+msgstr ""
+"Den mappe du indtastede findes enten ikke, eller indeholder ikke Microsoft "
+"TrueType Core-skrifttyper til ROOT."
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:5001
+msgid "Archive files to (optional):"
+msgstr "Arkiver filer i (valgfrit):"
+
+#. Type: string
+#. Description
+#: ../ttf-root-installer.templates:5001
+msgid ""
+"If you would like to keep a permanent archive of the compressed Microsoft "
+"Core fonts, please enter the directory where you'd like them stored. If you "
+"leave this blank, the files will be deleted after installation."
+msgstr ""
+"Hvis du vil beholde et permanent arkiv af de komprimerede Microsoft Core-"
+"skrifttyper, indtast da den mappe hvor du vil have dem gemt. Hvis du lader "
+"dette felt være blankt, vil filerne blive slettet efter installationen."
