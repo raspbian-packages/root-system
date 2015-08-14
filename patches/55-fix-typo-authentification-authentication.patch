@@ -1,0 +1,26 @@
+diff --git a/build/package/debian/root-system-rootd.default b/build/package/debian/root-system-rootd.default
+index 294dd0f..3e8b814 100644
+--- a/build/package/debian/root-system-rootd.default
++++ b/build/package/debian/root-system-rootd.default
+@@ -54,7 +54,7 @@ SSH_PORT=
+ #        debugging purposes. Only a value of "yes" enables. 
+ #ROOTD_FOREGROUND=
+ 
+-# Disable authentification (-noauth)
++# Disable authentication (-noauth)
+ #        do not require client authentication.  This shouldn't be enabled
+ #        unless you know what you're doing. Only a value of "yes" enables. 
+ #ROOTD_NO_AUTH=
+diff --git a/build/package/debian/root-system-rootd.init.in b/build/package/debian/root-system-rootd.init.in
+index 7f9677c..6899422 100644
+--- a/build/package/debian/root-system-rootd.init.in
++++ b/build/package/debian/root-system-rootd.init.in
+@@ -51,7 +51,7 @@ test ! "x$ROOTD_DEBUG" = "x" && DAEMON_OPTS="$DAEMON_OPTS -d $ROOTD_DEBUG"
+ test ! "x$ROOTD_ACCESS_RULES" = "x" && DAEMON_OPTS="$DAEMON_OPTS -D $ROOTD_ACCESS_RULES"
+ # Run in foreground (shouldn't be done in init script)
+ test "x$ROOTD_FOREGROUND" = "xyes" && DAEMON_OPTS="$DAEMON_OPTS -f"
+-# No client authentification (security issue)
++# No client authentication (security issue)
+ test "x$ROOTD_NO_AUTH" = "xyes" && DAEMON_OPTS="$DAEMON_OPTS -noauth"
+ # files can only be opened read-only
+ test "x$ROOTD_READ_ONLY" = "xyes" && DAEMON_OPTS="$DAEMON_OPTS -r"

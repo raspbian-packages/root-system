@@ -1,0 +1,26 @@
+diff --git a/build/package/debian/root-system-rootd.postinst b/build/package/debian/root-system-rootd.postinst
+index f77d6e4..af817a5 100644
+--- a/build/package/debian/root-system-rootd.postinst
++++ b/build/package/debian/root-system-rootd.postinst
+@@ -66,7 +66,7 @@ case "$1" in
+ 	    -exec chgrp rootd {} \;
+ 
+ 	# Create the tmp and pub directories in /var/spool/rootd and
+-	# make them world read- and writeable. 
++	# make them world read- and writable. 
+ 	if [ ! -d /var/spool/rootd/tmp ] ; then 
+ 	    mkdir -p /var/spool/rootd/tmp
+ 	    chmod 1777 /var/spool/rootd/tmp
+diff --git a/build/package/rpm/root-system-rootd.pre b/build/package/rpm/root-system-rootd.pre
+index a7afda3..da2bfe9 100644
+--- a/build/package/rpm/root-system-rootd.pre
++++ b/build/package/rpm/root-system-rootd.pre
+@@ -43,7 +43,7 @@ find /var/spool/rootd \
+     -exec chgrp rootd {} \;
+ 
+ # Create the tmp and pub directories in /var/spool/rootd and
+-# make them world read- and writeable. 
++# make them world read- and writable. 
+ if [ ! -d /var/spool/rootd/tmp ] ; then 
+   mkdir -p /var/spool/rootd/tmp
+   chmod 777 /var/spool/rootd/tmp

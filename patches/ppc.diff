@@ -1,0 +1,76 @@
+Index: b/config/Makefile.linuxppc64gcc
+===================================================================
+--- a/config/Makefile.linuxppc64gcc
++++ b/config/Makefile.linuxppc64gcc
+@@ -43,12 +43,31 @@ CILIBS        = -lm -ldl
+ CRYPTLIBS     = -lcrypt
+ 
+ # Fortran:
++ifneq ($(findstring gfortran, $(F77)),)
++ifeq ($(F77),)
++# only needed to get default compiler in ./configure
++F77           = gfortran
++endif
++F77FLAGS      = -fPIC -std=legacy
++ifneq ($(shell $(F77) -print-file-name=libgfortran.$(SOEXT)),libgfortran.$(SOEXT))
++F77LIBS      := $(shell $(F77) -print-file-name=libgfortran.$(SOEXT))
++else
++F77LIBS      := $(shell $(F77) -print-file-name=libgfortran.a)
++endif
++F77LIBS      += $(shell $(F77) -print-file-name=libgfortranbegin.a)
++endif
++
++ifneq ($(findstring g77, $(F77)),)
++ifeq ($(F77),)
++# only needed to get default compiler in ./configure
+ F77           = g77
++endif
+ F77FLAGS      = -fPIC
+ ifneq ($(shell $(F77) -print-file-name=libg2c.so),libg2c.so)
+ F77LIBS      := $(shell $(F77) -print-file-name=libg2c.so) -lnsl
+ else
+-F77LIBS      := $(shell $(F77) -print-file-name=libg2c.a)  -lnsl
++F77LIBS      := $(shell $(F77) -print-file-name=libg2c.a) -lnsl
++endif
+ endif
+ 
+ # Extras
+Index: b/config/Makefile.linuxppcgcc
+===================================================================
+--- a/config/Makefile.linuxppcgcc
++++ b/config/Makefile.linuxppcgcc
+@@ -53,6 +53,21 @@ F77LIBS      := $(shell $(F77) -print-fi
+ F77LIBS      += $(shell $(F77) -print-file-name=libgfortranbegin.a) -lnsl
+ endif
+ 
++# Fortran:
++ifneq ($(findstring gfortran, $(F77)),)
++ifeq ($(F77),)
++# only needed to get default compiler in ./configure
++F77           = gfortran
++endif
++F77FLAGS      = -fPIC -std=legacy
++ifneq ($(shell $(F77) -print-file-name=libgfortran.$(SOEXT)),libgfortran.$(SOEXT))
++F77LIBS      := $(shell $(F77) -print-file-name=libgfortran.$(SOEXT))
++else
++F77LIBS      := $(shell $(F77) -print-file-name=libgfortran.a)
++endif
++F77LIBS      += $(shell $(F77) -print-file-name=libgfortranbegin.a)
++endif
++
+ ifneq ($(findstring g77, $(F77)),)
+ ifeq ($(F77),)
+ # only needed to get default compiler in ./configure
+Index: b/configure
+===================================================================
+--- a/configure
++++ b/configure
+@@ -1897,7 +1897,7 @@ case $arch in
+ sgicc)
+    logmsg "Will check 32bit libraries"
+    checklib32="yes" ;;
+-linuxppc64*|sgicc64)
++sgicc64)
+    logmsg "Will ONLY check 64bit libraries"
+    checkonlylib64="yes" ;;
+ linuxx8664k1om*)

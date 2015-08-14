@@ -1,0 +1,26 @@
+Index: b/configure
+===================================================================
+--- a/configure
++++ b/configure
+@@ -7150,7 +7150,7 @@ if test ! "x$haveconfig" = "x" ; then
+     fi
+ 
+     sed -e "s|@useconfig@|TRUE|"                       \
+-        -e "s|@cflags@|$haveconfig $usercflags|"       \
++        -e "s|@cflags@|$haveconfig $usercflags $CFLAGS|"       \
+         -e "s|@usercflags@|$usercflags|"               \
+         -e "s|@usercxxflags@|$usercxxflags|"           \
+             < Makefile.tmp > Makefile.tmpp
+Index: b/net/globusauth/src/GlobusAuth.cxx
+===================================================================
+--- a/net/globusauth/src/GlobusAuth.cxx
++++ b/net/globusauth/src/GlobusAuth.cxx
+@@ -1010,7 +1010,7 @@ Int_t GlobusIssuerName(TString &issuerNa
+          fn = Form("%s/.globus/usercert.pem",gSystem->HomeDirectory());
+       if (gSystem->AccessPathName(fn, kReadPermission)) {
+          emsg += fn;
+-         Error("GlobusIssuerName", emsg.Data());
++         Error("GlobusIssuerName", "%s", emsg.Data());
+          return 1;
+       }
+    }
