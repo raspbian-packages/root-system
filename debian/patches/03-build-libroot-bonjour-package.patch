@@ -1,0 +1,18 @@
+--- a/configure
++++ b/configure
+@@ -6737,6 +6737,7 @@
+     test "x$enable_vc"       = "xyes" && pl="$pl libroot-math-vc"
+     test "x$enable_vdt"      = "xyes" && pl="$pl libroot-math-vdt"
+     test "x$enable_table"    = "xyes" && pl="$pl libroot-misc-table"
++    test "x$enable_bonjour"  = "xyes" && pl="$pl libroot-net-bonjour"
+     test "x$enable_ldap"     = "xyes" && pl="$pl libroot-net-ldap"
+     test "x$enable_roofit"   = "xyes" && pl="$pl libroot-roofit"
+     test "x$enable_asimage"  = "xyes" && pl="$pl root-plugin-graf2d-asimage"
+@@ -6755,7 +6756,6 @@
+     test "x$enable_minuit2"  = "xyes" && pl="$pl root-plugin-math-minuit2"
+     test "x$enable_pythia6"  = "xyes" && pl="$pl root-plugin-montecarlo-pythia6"
+     test "x$enable_alien"    = "xyes" && pl="$pl root-plugin-net-alien"
+-    test "x$enable_bonjour"  = "xyes" && pl="$pl root-plugin-net-bonjour"
+     test "x$enable_globus"   = "xyes" && pl="$pl root-plugin-net-globus"
+     test "x$enable_krb5"     = "xyes" && pl="$pl root-plugin-net-krb5"
+     test "x$enable_monalisa" = "xyes" && pl="$pl root-plugin-net-monalisa"
