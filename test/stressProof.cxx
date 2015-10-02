@@ -3803,7 +3803,7 @@ Int_t PT_EventRange(void *arg, RunTimes &tt)
    // Load special class for event ranges checks
    if (gProof->Load(TString::Format("%s,%s", gProcFileElem.Data(), gEmptyInclude.Data())) != 0) {
       gProof->SetPrintProgress(0);
-      printf("\n >>> Test failure: could not load auxilliary files %s and %s\n",
+      printf("\n >>> Test failure: could not load auxiliary files %s and %s\n",
              gProcFileElem.Data(), gEmptyInclude.Data());
       return -1;
    }
