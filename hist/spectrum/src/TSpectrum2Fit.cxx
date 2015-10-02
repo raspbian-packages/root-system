@@ -2085,7 +2085,7 @@ fByErr;                         //error value of b parameter for 1D ridges in y
 direction</span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
-fA0Init;                        //initial value of background a0 parameter(backgroud
+fA0Init;                        //initial value of background a0 parameter(background
 is estimated as a0+ax*x+ay*y)</span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
@@ -2095,7 +2095,7 @@ fA0Calc;                        //calculated value of background a0 parameter</s
 fA0Err;                         //error value of background a0 parameter</span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t  fAxInit;        
-               //initial value of background ax parameter(backgroud is
+               //initial value of background ax parameter(background is
 estimated as a0+ax*x+ay*y)</span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
@@ -2106,7 +2106,7 @@ fAxErr;                         //error value of background ax parameter</span><
 
 <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
 fAyInit;                        //initial value of background ay
-parameter(backgroud is estimated as a0+ax*x+ay*y)</span></p>
+parameter(background is estimated as a0+ax*x+ay*y)</span></p>
 
 <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
 fAyCalc;                        //calculated value of background ay parameter</span></p>
@@ -6589,7 +6589,7 @@ void TSpectrum2Fit::SetBackgroundParameters(Double_t a0Init, Bool_t fixA0, Doubl
 //   SETTER FUNCTION                                                      
 //                                                     
 //   This function sets the following fitting parameters of background:
-//         -a0Init - initial value of a0 parameter (backgroud is estimated as a0+ax*x+ay*y)
+//         -a0Init - initial value of a0 parameter (background is estimated as a0+ax*x+ay*y)
 //         -fixA0 - logical value of a0 parameter, which allows to fix the parameter (not to fit)  
 //         -axInit - initial value of ax parameter
 //         -fixAx - logical value of ax parameter, which allows to fix the parameter (not to fit)   
