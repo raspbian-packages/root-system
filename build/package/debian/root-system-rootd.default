@@ -54,7 +54,7 @@ SSH_PORT=
 #        debugging purposes. Only a value of "yes" enables. 
 #ROOTD_FOREGROUND=
 
-# Disable authentification (-noauth)
+# Disable authentication (-noauth)
 #        do not require client authentication.  This shouldn't be enabled
 #        unless you know what you're doing. Only a value of "yes" enables. 
 #ROOTD_NO_AUTH=
