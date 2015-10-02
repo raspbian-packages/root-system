@@ -1897,7 +1897,7 @@ case $arch in
 sgicc)
    logmsg "Will check 32bit libraries"
    checklib32="yes" ;;
-linuxppc64*|sgicc64)
+sgicc64)
    logmsg "Will ONLY check 64bit libraries"
    checkonlylib64="yes" ;;
 linuxx8664k1om*)

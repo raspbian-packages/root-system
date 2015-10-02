@@ -53,6 +53,21 @@ F77LIBS      := $(shell $(F77) -print-file-name=libgfortran.$(SOEXT))
 F77LIBS      += $(shell $(F77) -print-file-name=libgfortranbegin.a) -lnsl
 endif
 
+# Fortran:
+ifneq ($(findstring gfortran, $(F77)),)
+ifeq ($(F77),)
+# only needed to get default compiler in ./configure
+F77           = gfortran
+endif
+F77FLAGS      = -fPIC -std=legacy
+ifneq ($(shell $(F77) -print-file-name=libgfortran.$(SOEXT)),libgfortran.$(SOEXT))
+F77LIBS      := $(shell $(F77) -print-file-name=libgfortran.$(SOEXT))
+else
+F77LIBS      := $(shell $(F77) -print-file-name=libgfortran.a)
+endif
+F77LIBS      += $(shell $(F77) -print-file-name=libgfortranbegin.a)
+endif
+
 ifneq ($(findstring g77, $(F77)),)
 ifeq ($(F77),)
 # only needed to get default compiler in ./configure
