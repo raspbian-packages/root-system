@@ -470,7 +470,8 @@ namespace ROOT { namespace Cintex {
 #define DATAPATTERN 0xDADADADAUL
 #endif
 
-#if defined(__arm__)
+// FIXME: https://bugs.launchpad.net/bugs/1485016
+#if 0 && defined(__arm__)
     __attribute__((naked, used))
     static void f0a() {
     __asm__ __volatile__ ("push    {fp, lr}\n\t"
