@@ -225,6 +225,10 @@ extern "C" {
 #include "rsalib.h"
 }
 
+#ifndef NOFILE
+#   define NOFILE 256
+#endif
+
 // General globals
 int     gDebug                   = 0;
 
