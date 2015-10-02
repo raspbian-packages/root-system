@@ -65,7 +65,7 @@ if [ "x$EXPLICIT" = "xyes" ]; then
          EXPLLNKCORE="-Llib -lCint"
       fi
    fi
-   if [ $PLATFORM = "linux" ] || [ $PLATFORM = "linux-k1om" ]; then
+   if [ $PLATFORM = "linux" ] || [ $PLATFORM = "linux-k1om" ] || [ $PLATFORM = "kfreebsd" ]; then
       if [ -z "$EXPLLNKCORE" ]; then
          EXPLLNKCORE=" -ldl"
       else
