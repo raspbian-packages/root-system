@@ -2021,14 +2021,8 @@ fi
 
 if test "x$platform" = "xlinux" -o "x$platform" = "xkfreebsd" -o "x$platform" = "xhurd"; then
     linuxdist=
-    if `$cwhich lsb_release > /dev/null 2>&1` ; then
-       if lsb_release -d | grep -i 'ubuntu' > /dev/null 2>& 1; then
-          linuxdist="multiarch"
-       fi
-       if lsb_release -d | grep -i 'debian' > /dev/null 2>& 1; then
-          linuxdist="multiarch"
-       fi
-       if lsb_release -d | grep -i 'mint' > /dev/null 2>& 1; then
+    if `$cwhich dpkg-vendor > /dev/null 2>&1` ; then
+       if dpkg-vendor --derives-from Debian > /dev/null 2>& 1; then
           linuxdist="multiarch"
        fi
        if lsb_release -d | grep -i 'LMDE' > /dev/null 2>& 1; then
