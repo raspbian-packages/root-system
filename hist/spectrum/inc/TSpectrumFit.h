@@ -61,13 +61,13 @@ protected:
    Double_t  fSInit;                     //initial value of s parameter (relative amplitude of step), for details see html manual and references
    Double_t  fSCalc;                     //calculated value of s parameter
    Double_t  fSErr;                      //error value of s parameter
-   Double_t  fA0Init;                    //initial value of background a0 parameter(backgroud is estimated as a0+a1*x+a2*x*x)
+   Double_t  fA0Init;                    //initial value of background a0 parameter(background is estimated as a0+a1*x+a2*x*x)
    Double_t  fA0Calc;                    //calculated value of background a0 parameter
    Double_t  fA0Err;                     //error value of background a0 parameter
-   Double_t  fA1Init;                    //initial value of background a1 parameter(backgroud is estimated as a0+a1*x+a2*x*x)
+   Double_t  fA1Init;                    //initial value of background a1 parameter(background is estimated as a0+a1*x+a2*x*x)
    Double_t  fA1Calc;                    //calculated value of background a1 parameter
    Double_t  fA1Err;                     //error value of background a1 parameter
-   Double_t  fA2Init;                    //initial value of background a2 parameter(backgroud is estimated as a0+a1*x+a2*x*x)
+   Double_t  fA2Init;                    //initial value of background a2 parameter(background is estimated as a0+a1*x+a2*x*x)
    Double_t  fA2Calc;                    //calculated value of background a2 parameter
    Double_t  fA2Err;                     //error value of background a2 parameter
    Bool_t   *fFixPosition;               //[fNPeaks] array of logical values which allow to fix appropriate positions (not fit). However they are present in the estimated functional   
