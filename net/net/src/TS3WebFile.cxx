@@ -180,7 +180,7 @@ TS3WebFile::TS3WebFile(const char* path, Option_t* options)
    fS3Request.SetHost(fUrl.GetHost());
    if (accessKey.IsNull() || secretKey.IsNull()) {
       // We have no authentication information, neither in the options
-      // nor in the enviromental variables. So may be this is a
+      // nor in the environmental variables. So may be this is a
       // world-readable file, so let's continue and see if
       // we can open it.
       fS3Request.SetAuthType(TS3HTTPRequest::kNoAuth);
