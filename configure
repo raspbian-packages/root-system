@@ -1357,6 +1357,7 @@ guess_architecture() {
         hp-ux:ia64:*)          arch=hpuxia64acc     ;;
         hp-ux:*:*)             arch=hpuxacc         ;;
         hurd*:*:*)             arch=hurddeb         ;;
+        gnu:i*86*:*)           arch=hurddeb         ;;
         linux:ia64:*)          arch=linuxia64gcc    ;;
         linux:x86_64:*)        arch=linuxx8664gcc   ;;
         linux:alpha:*)         arch=linuxalphagcc   ;;
@@ -2018,7 +2019,7 @@ if test "x$platform" = "xmacosx" ; then
    fi
 fi
 
-if test "x$platform" = "xlinux" -o "x$platform" = "xkfreebsd" ; then
+if test "x$platform" = "xlinux" -o "x$platform" = "xkfreebsd" -o "x$platform" = "xhurd"; then
     linuxdist=
     if `$cwhich lsb_release > /dev/null 2>&1` ; then
        if lsb_release -d | grep -i 'ubuntu' > /dev/null 2>& 1; then
@@ -4357,7 +4358,7 @@ check_explicit "$enable_hdfs" "$enable_hdfs_explicit" \
 #
 bonjourcppflags=
 case $platform in
-    linux|kfreebsd|macosx|ios)
+    linux|kfreebsd|hurd|macosx|ios)
         ;;
     *)
         if test "x$enable_bonjour" = "xyes" ; then
@@ -6694,7 +6695,7 @@ fi
 message "Checking whether to build libMemStat"
 if test "x$enable_memstat" = "xyes" || test ! "x$MEMSTAT" = "x"; then
     case $arch in
-    linux*|macos*|kfreebsd*)
+    linux*|macos*|kfreebsd*|hurd*)
        enable_memstat="yes" ;;
     *)
        enable_memstat="no" ;;
