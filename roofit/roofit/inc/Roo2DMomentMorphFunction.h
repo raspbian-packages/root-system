@@ -7,7 +7,7 @@
 // 2-dimensional morph function between a list of input functions (varlist) as a function of one input parameter (m).
 // The vector mrefpoints assigns an m-number to each function in the function list.
 // For example: varlist can contain MC histograms (or single numbers) of a reconstructed mass, for certain 
-// true Higgs masses indicated in mrefpoints. the input parameter m is the true (continous) Higgs mass.
+// true Higgs masses indicated in mrefpoints. the input parameter m is the true (continuous) Higgs mass.
 // Morphing can be set to be linear or non-linear, or mixture of the two.
 
 #ifndef ROO2DMOMENTMORPHFUNCTION
