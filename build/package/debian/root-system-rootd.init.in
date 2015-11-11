@@ -51,7 +51,7 @@ test ! "x$ROOTD_DEBUG" = "x" && DAEMON_OPTS="$DAEMON_OPTS -d $ROOTD_DEBUG"
 test ! "x$ROOTD_ACCESS_RULES" = "x" && DAEMON_OPTS="$DAEMON_OPTS -D $ROOTD_ACCESS_RULES"
 # Run in foreground (shouldn't be done in init script)
 test "x$ROOTD_FOREGROUND" = "xyes" && DAEMON_OPTS="$DAEMON_OPTS -f"
-# No client authentification (security issue)
+# No client authentication (security issue)
 test "x$ROOTD_NO_AUTH" = "xyes" && DAEMON_OPTS="$DAEMON_OPTS -noauth"
 # files can only be opened read-only
 test "x$ROOTD_READ_ONLY" = "xyes" && DAEMON_OPTS="$DAEMON_OPTS -r"
