@@ -278,7 +278,7 @@ namespace ROOT
            void                                    UpdateBoundaries(); 
 
            Bool_t                                  fOwnData;       // terminal node owns the data objects (default = false)
-           eSplitOption                            fSplitOption;   // according to which figure of merit the node is splitted
+           eSplitOption                            fSplitOption;   // according to which figure of merit the node is split
            Double_t                                fBucketSize;    // target number of entries per bucket
            UInt_t                                  fSplitAxis;     // axis at which the next split will occur
            std::vector<const _DataPoint*>          fDataPoints;    // data points in this bucket
