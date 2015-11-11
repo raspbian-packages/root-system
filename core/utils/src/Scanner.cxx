@@ -34,7 +34,7 @@
 
 
 // SHOW_WARNINGS - enable warnings
-// SHOW_TEMPLATE_INFO - enable informations about encoutered tempaltes
+// SHOW_TEMPLATE_INFO - enable information about encoutered tempaltes
 
 // COMPLETE_TEMPLATES - process templates, not only specializations (instantiations)
 
