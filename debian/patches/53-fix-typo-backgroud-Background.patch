@@ -1,0 +1,122 @@
+diff --git a/hist/spectrum/inc/TSpectrum2Fit.h b/hist/spectrum/inc/TSpectrum2Fit.h
+index 2a13e8c..b804bc3 100644
+--- a/hist/spectrum/inc/TSpectrum2Fit.h
++++ b/hist/spectrum/inc/TSpectrum2Fit.h
+@@ -97,13 +97,13 @@ protected:
+    Double_t  fByInit;                        //initial value of b parameter for 1D ridges in y direction (slope), for details see html manual and references
+    Double_t  fByCalc;                        //calculated value of b parameter for 1D ridges in y direction
+    Double_t  fByErr;                         //error value of b parameter for 1D ridges in y direction
+-   Double_t  fA0Init;                        //initial value of background a0 parameter(backgroud is estimated as a0+ax*x+ay*y)
++   Double_t  fA0Init;                        //initial value of background a0 parameter(background is estimated as a0+ax*x+ay*y)
+    Double_t  fA0Calc;                        //calculated value of background a0 parameter
+    Double_t  fA0Err;                         //error value of background a0 parameter
+-   Double_t  fAxInit;                        //initial value of background ax parameter(backgroud is estimated as a0+ax*x+ay*y)
++   Double_t  fAxInit;                        //initial value of background ax parameter(background is estimated as a0+ax*x+ay*y)
+    Double_t  fAxCalc;                        //calculated value of background ax parameter
+    Double_t  fAxErr;                         //error value of background ax parameter
+-   Double_t  fAyInit;                        //initial value of background ay parameter(backgroud is estimated as a0+ax*x+ay*y)
++   Double_t  fAyInit;                        //initial value of background ay parameter(background is estimated as a0+ax*x+ay*y)
+    Double_t  fAyCalc;                        //calculated value of background ay parameter
+    Double_t  fAyErr;                         //error value of background ay parameter   
+    Bool_t   *fFixPositionX;                  //[fNPeaks] array of logical values which allow to fix appropriate x positions of 2D peaks (not fit). However they are present in the estimated functional
+diff --git a/hist/spectrum/inc/TSpectrumFit.h b/hist/spectrum/inc/TSpectrumFit.h
+index a31f380..cdba817 100644
+--- a/hist/spectrum/inc/TSpectrumFit.h
++++ b/hist/spectrum/inc/TSpectrumFit.h
+@@ -61,13 +61,13 @@ protected:
+    Double_t  fSInit;                     //initial value of s parameter (relative amplitude of step), for details see html manual and references
+    Double_t  fSCalc;                     //calculated value of s parameter
+    Double_t  fSErr;                      //error value of s parameter
+-   Double_t  fA0Init;                    //initial value of background a0 parameter(backgroud is estimated as a0+a1*x+a2*x*x)
++   Double_t  fA0Init;                    //initial value of background a0 parameter(background is estimated as a0+a1*x+a2*x*x)
+    Double_t  fA0Calc;                    //calculated value of background a0 parameter
+    Double_t  fA0Err;                     //error value of background a0 parameter
+-   Double_t  fA1Init;                    //initial value of background a1 parameter(backgroud is estimated as a0+a1*x+a2*x*x)
++   Double_t  fA1Init;                    //initial value of background a1 parameter(background is estimated as a0+a1*x+a2*x*x)
+    Double_t  fA1Calc;                    //calculated value of background a1 parameter
+    Double_t  fA1Err;                     //error value of background a1 parameter
+-   Double_t  fA2Init;                    //initial value of background a2 parameter(backgroud is estimated as a0+a1*x+a2*x*x)
++   Double_t  fA2Init;                    //initial value of background a2 parameter(background is estimated as a0+a1*x+a2*x*x)
+    Double_t  fA2Calc;                    //calculated value of background a2 parameter
+    Double_t  fA2Err;                     //error value of background a2 parameter
+    Bool_t   *fFixPosition;               //[fNPeaks] array of logical values which allow to fix appropriate positions (not fit). However they are present in the estimated functional   
+diff --git a/hist/spectrum/src/TSpectrum2Fit.cxx b/hist/spectrum/src/TSpectrum2Fit.cxx
+index 62b0928..7f8ea34 100644
+--- a/hist/spectrum/src/TSpectrum2Fit.cxx
++++ b/hist/spectrum/src/TSpectrum2Fit.cxx
+@@ -2085,7 +2085,7 @@ fByErr;
+ direction</span></p>
+ 
+ <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
+-fA0Init;                        //initial value of background a0 parameter(backgroud
++fA0Init;                        //initial value of background a0 parameter(background
+ is estimated as a0+ax*x+ay*y)</span></p>
+ 
+ <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
+@@ -2095,7 +2095,7 @@ fA0Calc;
+ fA0Err;                         //error value of background a0 parameter</span></p>
+ 
+ <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t  fAxInit;        
+-               //initial value of background ax parameter(backgroud is
++               //initial value of background ax parameter(background is
+ estimated as a0+ax*x+ay*y)</span></p>
+ 
+ <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
+@@ -2106,7 +2106,7 @@ fAxErr;
+ 
+ <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
+ fAyInit;                        //initial value of background ay
+-parameter(backgroud is estimated as a0+ax*x+ay*y)</span></p>
++parameter(background is estimated as a0+ax*x+ay*y)</span></p>
+ 
+ <p class=MsoNormal><span style='font-size:10.0pt'>   Double_t 
+ fAyCalc;                        //calculated value of background ay parameter</span></p>
+@@ -6589,7 +6589,7 @@ void TSpectrum2Fit::SetBackgroundParameters(Double_t a0Init, Bool_t fixA0, Doubl
+ //   SETTER FUNCTION                                                      
+ //                                                     
+ //   This function sets the following fitting parameters of background:
+-//         -a0Init - initial value of a0 parameter (backgroud is estimated as a0+ax*x+ay*y)
++//         -a0Init - initial value of a0 parameter (background is estimated as a0+ax*x+ay*y)
+ //         -fixA0 - logical value of a0 parameter, which allows to fix the parameter (not to fit)  
+ //         -axInit - initial value of ax parameter
+ //         -fixAx - logical value of ax parameter, which allows to fix the parameter (not to fit)   
+diff --git a/hist/spectrum/src/TSpectrumFit.cxx b/hist/spectrum/src/TSpectrumFit.cxx
+index 8960605..70431bd 100644
+--- a/hist/spectrum/src/TSpectrumFit.cxx
++++ b/hist/spectrum/src/TSpectrumFit.cxx
+@@ -1009,7 +1009,7 @@ Double_t
+ 
+ <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
+ Double_t  fA0Init;                    //initial value of background a0
+-parameter(backgroud is estimated as a0+a1*x+a2*x*x)</span></p>
++parameter(background is estimated as a0+a1*x+a2*x*x)</span></p>
+ 
+ <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
+ Double_t  fA0Calc;                    //calculated value of background a0
+@@ -1020,7 +1020,7 @@ Double_t
+ 
+ <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
+ Double_t  fA1Init;                    //initial value of background a1
+-parameter(backgroud is estimated as a0+a1*x+a2*x*x)</span></p>
++parameter(background is estimated as a0+a1*x+a2*x*x)</span></p>
+ 
+ <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
+ Double_t  fA1Calc;                    //calculated value of background a1
+@@ -1031,7 +1031,7 @@ Double_t
+ 
+ <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
+ Double_t  fA2Init;                    //initial value of background a2
+-parameter(backgroud is estimated as a0+a1*x+a2*x*x)</span></p>
++parameter(background is estimated as a0+a1*x+a2*x*x)</span></p>
+ 
+ <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
+ Double_t  fA2Calc;                    //calculated value of background a2
+@@ -3343,7 +3343,7 @@ void TSpectrumFit::SetBackgroundParameters(Double_t a0Init, Bool_t fixA0, Double
+ //   SETTER FUNCTION                                                      
+ //                                                     
+ //   This function sets the following fitting parameters of background:
+-//         -a0Init - initial value of a0 parameter (backgroud is estimated as a0+a1*x+a2*x*x)
++//         -a0Init - initial value of a0 parameter (background is estimated as a0+a1*x+a2*x*x)
+ //         -fixA0 - logical value of a0 parameter, which allows to fix the parameter (not to fit)  
+ //         -a1Init - initial value of a1 parameter
+ //         -fixA1 - logical value of a1 parameter, which allows to fix the parameter (not to fit)   
