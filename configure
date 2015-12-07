@@ -6893,6 +6893,7 @@ if test "x$show_pkglist" = "xyes" ; then
         libroot-net \
         libroot-net-auth \
         libroot-proof \
+        libroot-proof-proofplayer \
         libroot-tmva \
         libroot-tree \
         libroot-tree-treeplayer \
@@ -6909,7 +6910,6 @@ if test "x$show_pkglist" = "xyes" ; then
         root-plugin-io-sql \
         root-plugin-io-xml \
         root-plugin-math-fumili \
-        root-plugin-proof-proofplayer \
         root-plugin-proof-xproof \
         root-plugin-tree-treeviewer \
         root-system-proofd \
