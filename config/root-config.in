@@ -353,6 +353,18 @@ freebsd5|freebsd7)
    auxcflags=
    auxlibs="-lm -lstdc++"
    ;;
+kfreebsd)
+   # kFreeBSD with gcc
+   auxcflags="-m32"
+   auxldflags="-m32"
+   auxlibs="-lm -ldl -rdynamic"
+   ;;
+kfreebsdx8664gcc)
+   # AMD Opteron and Intel EM64T (64 bit mode) kFreeBSD with gcc
+   auxcflags="-m64"
+   auxldflags="-m64"
+   auxlibs="-lm -ldl -rdynamic"
+   ;;
 openbsd)
    # OpenBSD with libc
    auxcflags=
