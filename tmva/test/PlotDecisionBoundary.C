@@ -157,10 +157,10 @@ void PlotDecisionBoundary( TString weightFile = "weights/TMVAClassification_BDT.
    // (Use the smallest number of misclassifications as criterion)
    const Int_t nValBins=100;
    Double_t    sum = 0.;
-   TH1F *mvaS= new TH1F("mvaS","",nValBins,MinMVA,MaxMVA); mvaS->SetXTitle("MVA-ouput"); mvaS->SetYTitle("#entries");
-   TH1F *mvaB= new TH1F("mvaB","",nValBins,MinMVA,MaxMVA); mvaB->SetXTitle("MVA-ouput"); mvaB->SetYTitle("#entries");
-   TH1F *mvaSC= new TH1F("mvaSC","",nValBins,MinMVA,MaxMVA); mvaSC->SetXTitle("MVA-ouput"); mvaSC->SetYTitle("cummulation");
-   TH1F *mvaBC= new TH1F("mvaBC","",nValBins,MinMVA,MaxMVA); mvaBC->SetXTitle("MVA-ouput"); mvaBC->SetYTitle("cummulation");
+   TH1F *mvaS= new TH1F("mvaS","",nValBins,MinMVA,MaxMVA); mvaS->SetXTitle("MVA-output"); mvaS->SetYTitle("#entries");
+   TH1F *mvaB= new TH1F("mvaB","",nValBins,MinMVA,MaxMVA); mvaB->SetXTitle("MVA-output"); mvaB->SetYTitle("#entries");
+   TH1F *mvaSC= new TH1F("mvaSC","",nValBins,MinMVA,MaxMVA); mvaSC->SetXTitle("MVA-output"); mvaSC->SetYTitle("cummulation");
+   TH1F *mvaBC= new TH1F("mvaBC","",nValBins,MinMVA,MaxMVA); mvaBC->SetXTitle("MVA-output"); mvaBC->SetYTitle("cummulation");
 
    Long64_t nentries;
    nentries = signal->GetEntries();
