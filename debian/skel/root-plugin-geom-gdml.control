@@ -1,0 +1,14 @@
+Package: root-plugin-geom-gdml
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Breaks: libroot-dev (<< 5.19.01-1)
+Replaces: libroot-dev
+Depends: ${shlibs:Depends}, dh-python, ${python:Depends}, ${misc:Depends}
+Description: GDML import/export module for ROOT geometries
+ The ROOT system provides a set of OO frameworks with all the
+ functionality needed to handle and analyze large amounts of data
+ efficiently. 
+ .
+ This package contains an import/export module for the ROOT geometry.
+

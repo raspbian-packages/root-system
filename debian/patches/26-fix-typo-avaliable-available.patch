@@ -1,0 +1,13 @@
+diff --git a/man/man1/xpdtest.1 b/man/man1/xpdtest.1
+index c87be6a..3f70ca4 100644
+--- a/man/man1/xpdtest.1
++++ b/man/man1/xpdtest.1
+@@ -27,7 +27,7 @@ inside a monitor infrastructure, for example
+ .SH OPTIONS 
+ .TP 
+ .B \-\-help, \-h
+-Gives a short list of options avaliable, and exit
++Gives a short list of options available, and exit
+ .TP
+ .B \-t\fP \fR<test>\fP 
+ type of test to be run:

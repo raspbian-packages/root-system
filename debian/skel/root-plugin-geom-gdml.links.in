@@ -1,0 +1,2 @@
+@prefix@/lib/@multiarch@/root@libvers@/ROOTwriter.py   /usr/lib/python@pyver@/dist-packages/root/ROOTwriter.py
+@prefix@/lib/@multiarch@/root@libvers@/writer.py       /usr/lib/python@pyver@/dist-packages/root/writer.py
