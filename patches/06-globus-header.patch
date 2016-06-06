@@ -1,0 +1,21 @@
+--- a/net/globusauth/Module.mk
++++ b/net/globusauth/Module.mk
+@@ -64,5 +64,5 @@
+ distclean::     distclean-$(MODNAME)
+ 
+ ##### extra rules ######
+-$(GLBSAUTHO): CXXFLAGS += $(GLOBUSINCDIR:%=-I%)
+-$(GLBPATCHO): CFLAGS += $(GLBPATCHFLAGS) $(GLOBUSINCDIR:%=-I%)
++$(GLBSAUTHO): CXXFLAGS += $(shell pkg-config --cflags globus-core)
++$(GLBPATCHO): CFLAGS += $(GLBPATCHFLAGS) $(shell pkg-config --cflags globus-core)
+--- a/net/rpdutils/Module.mk
++++ b/net/rpdutils/Module.mk
+@@ -64,7 +64,7 @@
+ 
+ # use Globus for authentication
+ ifneq ($(GLOBUSLIB),)
+-GLBSFLAGS     := $(GLOBUSINCDIR:%=-I%)
++GLBSFLAGS     := $(shell pkg-config --cflags globus-core)
+ GLBSLIBS      := $(GLOBUSLIBDIR) $(GLOBUSLIB)
+ SRVAUTHS      += $(MODDIRS)/globus.cxx
+ SRVAUTHO      += $(call stripsrc,$(MODDIRS)/globus.o)

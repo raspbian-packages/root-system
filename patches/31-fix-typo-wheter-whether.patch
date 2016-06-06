@@ -1,0 +1,33 @@
+--- a/gui/gui/src/TGMenu.cxx
++++ b/gui/gui/src/TGMenu.cxx
+@@ -299,7 +299,7 @@
+    }
+    fMenuMore->fMsgWindow = 0;
+ 
+-   // Check wheter the current entry is a menu or not (just in case)
++   // Check whether the current entry is a menu or not (just in case)
+    TGMenuEntry* currentEntry = fMenuMore->GetCurrent();
+    if (currentEntry->GetType() != kMenuPopup) return;
+ 
+--- a/proof/proof/inc/TProof.h
++++ b/proof/proof/inc/TProof.h
+@@ -453,7 +453,7 @@
+    };
+    enum EProofDataSetCommands {
+       kUploadDataSet       = 1,  //Upload a dataset
+-      kCheckDataSetName    = 2,  //Check wheter dataset of this name exists
++      kCheckDataSetName    = 2,  //Check whether dataset of this name exists
+       kGetDataSets         = 3,  //List datasets saved on  the master node
+       kRegisterDataSet     = 4,  //Save a TList object as a dataset
+       kGetDataSet          = 5,  //Get a TFileCollection of TFileInfo objects
+--- a/tmva/src/PDEFoamCell.cxx
++++ b/tmva/src/PDEFoamCell.cxx
+@@ -195,7 +195,7 @@
+    // Get depth of cell in binary tree, where the root cell has depth
+    // 1
+ 
+-   // check wheter we are in the root cell
++   // check whether we are in the root cell
+    if (fParent == 0)
+       return 1;
+ 
