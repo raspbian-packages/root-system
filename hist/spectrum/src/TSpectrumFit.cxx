@@ -1009,7 +1009,7 @@ Double_t  fSErr;                      //error value of s parameter</span></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
 Double_t  fA0Init;                    //initial value of background a0
-parameter(backgroud is estimated as a0+a1*x+a2*x*x)</span></p>
+parameter(background is estimated as a0+a1*x+a2*x*x)</span></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
 Double_t  fA0Calc;                    //calculated value of background a0
@@ -1020,7 +1020,7 @@ Double_t  fA0Err;                     //error value of background a0 parameter</
 
 <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
 Double_t  fA1Init;                    //initial value of background a1
-parameter(backgroud is estimated as a0+a1*x+a2*x*x)</span></p>
+parameter(background is estimated as a0+a1*x+a2*x*x)</span></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
 Double_t  fA1Calc;                    //calculated value of background a1
@@ -1031,7 +1031,7 @@ Double_t  fA1Err;                     //error value of background a1 parameter</
 
 <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
 Double_t  fA2Init;                    //initial value of background a2
-parameter(backgroud is estimated as a0+a1*x+a2*x*x)</span></p>
+parameter(background is estimated as a0+a1*x+a2*x*x)</span></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-size:10.0pt'>  
 Double_t  fA2Calc;                    //calculated value of background a2
@@ -3343,7 +3343,7 @@ void TSpectrumFit::SetBackgroundParameters(Double_t a0Init, Bool_t fixA0, Double
 //   SETTER FUNCTION                                                      
 //                                                     
 //   This function sets the following fitting parameters of background:
-//         -a0Init - initial value of a0 parameter (backgroud is estimated as a0+a1*x+a2*x*x)
+//         -a0Init - initial value of a0 parameter (background is estimated as a0+a1*x+a2*x*x)
 //         -fixA0 - logical value of a0 parameter, which allows to fix the parameter (not to fit)  
 //         -a1Init - initial value of a1 parameter
 //         -fixA1 - logical value of a1 parameter, which allows to fix the parameter (not to fit)   

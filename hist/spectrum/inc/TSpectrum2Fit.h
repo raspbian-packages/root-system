@@ -97,13 +97,13 @@ protected:
    Double_t  fByInit;                        //initial value of b parameter for 1D ridges in y direction (slope), for details see html manual and references
    Double_t  fByCalc;                        //calculated value of b parameter for 1D ridges in y direction
    Double_t  fByErr;                         //error value of b parameter for 1D ridges in y direction
-   Double_t  fA0Init;                        //initial value of background a0 parameter(backgroud is estimated as a0+ax*x+ay*y)
+   Double_t  fA0Init;                        //initial value of background a0 parameter(background is estimated as a0+ax*x+ay*y)
    Double_t  fA0Calc;                        //calculated value of background a0 parameter
    Double_t  fA0Err;                         //error value of background a0 parameter
-   Double_t  fAxInit;                        //initial value of background ax parameter(backgroud is estimated as a0+ax*x+ay*y)
+   Double_t  fAxInit;                        //initial value of background ax parameter(background is estimated as a0+ax*x+ay*y)
    Double_t  fAxCalc;                        //calculated value of background ax parameter
    Double_t  fAxErr;                         //error value of background ax parameter
-   Double_t  fAyInit;                        //initial value of background ay parameter(backgroud is estimated as a0+ax*x+ay*y)
+   Double_t  fAyInit;                        //initial value of background ay parameter(background is estimated as a0+ax*x+ay*y)
    Double_t  fAyCalc;                        //calculated value of background ay parameter
    Double_t  fAyErr;                         //error value of background ay parameter   
    Bool_t   *fFixPositionX;                  //[fNPeaks] array of logical values which allow to fix appropriate x positions of 2D peaks (not fit). However they are present in the estimated functional
