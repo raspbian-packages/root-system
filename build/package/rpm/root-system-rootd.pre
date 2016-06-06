@@ -43,7 +43,7 @@ find /var/spool/rootd \
     -exec chgrp rootd {} \;
 
 # Create the tmp and pub directories in /var/spool/rootd and
-# make them world read- and writeable. 
+# make them world read- and writable. 
 if [ ! -d /var/spool/rootd/tmp ] ; then 
   mkdir -p /var/spool/rootd/tmp
   chmod 777 /var/spool/rootd/tmp
